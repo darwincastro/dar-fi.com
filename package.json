@@ -8,7 +8,7 @@
     "gatsby"
   ],
   "scripts": {
-    "develop": "gatsby develop",
+    "dev": "gatsby develop",
     "start": "gatsby develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@mdx-js/react": "^2.2.1",
+    "framer-motion": "^9.0.1",
     "gatsby": "^5.5.0",
     "gatsby-plugin-google-gtag": "^5.5.0",
     "gatsby-plugin-image": "^3.5.0",
@@ -29,5 +30,11 @@
     "postcss": "^8.4.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.13",
+    "prettier": "^2.8.3",
+    "prettier-plugin-tailwindcss": "^0.2.2",
+    "tailwindcss": "^3.2.4"
   }
 }
