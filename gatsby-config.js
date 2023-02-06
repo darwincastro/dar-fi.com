@@ -13,7 +13,10 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        icon: 'src/images/icon.png',
+        name: 'dar-fi.com',
+        short_name: 'dar-fi.com',
+        start_url: '/',
+        icon: './src/static/favicon.png',
       },
     },
     'gatsby-plugin-sharp',
@@ -21,8 +24,8 @@ module.exports = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        name: 'images',
-        path: './src/images/',
+        name: 'static',
+        path: './src/static/',
       },
       __key: 'images',
     },
