@@ -8,7 +8,7 @@ const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.valueO
 const last_posts = posts.slice(0, 3);
 ---
 
-<BaseLayout>
+<BaseLayout title="Home">
   <div class="pb-12 mt-5">
     <h1 class="text-5xl font-bold">I'm Darwin Castro</h1>
     <h2 class="text-3xl py-6 font-bold">Consulting Engineer - Wireless</h2>
