@@ -3,6 +3,7 @@ title: 'VLAN Bridging in Mobility Express using RAP and MAP'
 description: 'VLAN Bridging in Mobility Express using RAP and MAP'
 pubDate: 'Jul 15 2021'
 heroImg: '/vlan-bridging-in-me/image_01.png'
+updatedDate: 'Feb 09 2023'
 ---
 
 This post is mainly focused in mapping VLANs using 2 Cisco Outdoors APs. The RAP will run Mobility Express WLC image, and the MAP is converted to CAPWAP mode.
@@ -195,8 +196,12 @@ If you like the CLI way, you can go to the ME WLC CLI and run the following to a
 (Cisco Controller) >config ap ethernet 0 mode trunk add <ap name> <vlan ID> >>>>> Up to 16 VLANs <<<<<<
 ```
 
-> Note: 
-> in the RAP side you don’t need to change the interface mode or add any VLAN there, the RAP will work with the MAP settings.
+---
+
+**Note**: 
+in the RAP side you don’t need to change the interface mode or add any VLAN there, the RAP will work with the MAP settings.
+
+---
 
 **Let’s see how this work!!!**
 
