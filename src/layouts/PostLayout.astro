@@ -16,13 +16,12 @@ const displayDate = dayjs(pubDate).format('ll');
     <article class="prose prose-lg max-w-[750px] prose-img:mx-auto">
       {heroImg && <img src={heroImg} alt={title} class="w-full mb-6" />}
       <h1 class="title my-2 text-4xl font-bold">{title}</h1>
-      {pubDate && <time>{displayDate}</time>}
+      {pubDate && <time class="text-sm">{displayDate}</time>}
       {
         updatedDate && (
-          <div>
-            {' '}
-            Last updated on <time>{updatedDate}</time>{' '}
-          </div>
+          <p class="text-sm inline">
+            - Last updated on <time>{updatedDate}</time>{' '}
+          </p>
         )
       }
       <div class="divider my-2"></div>
