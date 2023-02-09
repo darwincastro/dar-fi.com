@@ -41,7 +41,7 @@ Bluetooth belongs to the 2.4 GHz frequency group, and it operates especially on 
 
 ![BLE Transmit Spectrum Mask](/bluetooth-low-energy-ble/image_01.png)
 
-Image courtesy of ResearchGate
+<figcaption>Image courtesy of ResearchGate</figcaption>
 
 ### Bluetooth and Wi-Fi
 
