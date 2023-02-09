@@ -1,6 +1,6 @@
 ---
 title: 'Bluetooth Low Energy (BLE)'
-description: Bluetooth Low Energy"
+description: 'Bluetooth Low Energy'
 pubDate: 'Sep 24 2020'
 heroImg: '/bluetooth-low-energy-ble/image_01.png'
 updatedDate: 'Feb 02 2023'
