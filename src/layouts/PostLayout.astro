@@ -13,7 +13,7 @@ const displayDate = dayjs(pubDate).format('ll');
 
 <BaseLayout title={title} description={description} image={heroImg}>
   <main class="md:flex md:justify-center">
-    <article class="prose prose-lg max-w-[750px] prose-img:mx-auto">
+    <article class="prose prose-base md:prose-lg max-w-[750px] prose-img:mx-auto">
       {heroImg && <img src={heroImg} alt={title} class="w-full max-w-xs mb-6" />}
       <h1 class="title my-2 text-4xl font-bold">{title}</h1>
       {pubDate && <time class="text-sm">{displayDate}</time>}
