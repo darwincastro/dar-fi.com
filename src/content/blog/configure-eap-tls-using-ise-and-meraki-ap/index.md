@@ -1,11 +1,10 @@
 ---
 title: 'Configure EAP-TLS using ISE and Meraki AP'
-description: 'Configure EAP-TLS using ISE and MAP'
+description: 'How to set up a Meraki WLAN with 802.1x using EAP-TLS as an Authentication Method.'
 pubDate: 'Feb 02 2021'
 heroImg: '/configure-eap-tls-using-ise-and-meraki-ap/image_01.png'
+updatedDate: 'Feb 09 2023'
 ---
-
-02-02-2021
 
 This post describes how to set up a Meraki WLAN with 802.1x using EAP-TLS as an Authentication Method.
 
@@ -307,4 +306,4 @@ An example of what a successful EAP-TLS log looks like:
 
 I will post some troubleshooting steps in a different post!
 
-Thanks for reading!
+**Thanks for reading!**
