@@ -3,13 +3,10 @@ title: 'Decrypt wireless frames with Wireshark'
 description: 'Decrypt wireless frames with Wireshark'
 pubDate: 'Apr 15 2021'
 heroImg: '/decrypting_802-11/image_01.png'
+updatedDate: 'Feb 09 2023'
 ---
 
----
-
-**Disclaimer**:
-
-This is not a hacking post about sniffing wireless networks or cracking passwords, the intention is to show how to decrypt 802.11 frames (knowing the password and the SSID) using the open-source packet analyzer Wireshark.
+**Disclaimer**: This is not a hacking post about sniffing wireless networks or cracking passwords, the intention is to show how to decrypt 802.11 frames (knowing the password and the SSID) using the open-source packet analyzer Wireshark.
 
 ---
 
