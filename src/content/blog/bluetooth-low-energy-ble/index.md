@@ -10,7 +10,7 @@ updatedDate: 'Feb 02 2023'
 
 Many of us – Well, at least in my case? ever wondered if Bluetooth Technology is part of the Wi-Fi technology, and why its coverage distance is low…
 
-Let’s starts from the Origin of the name, courtesy of [bluetooh.com](https://www.bluetooth.com/about-us/bluetooth-origin/)
+Let’s starts from the Origin of the name, courtesy of [bluetooth.com](https://www.bluetooth.com/about-us/bluetooth-origin/)
 
 For how innovative the technology, the name doesn’t sound techie. It’s not an acronym and doesn’t stand for anything. So what does it mean?
 
