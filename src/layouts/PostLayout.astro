@@ -15,15 +15,17 @@ const displayDate = dayjs(pubDate).format('ll');
   <main class="md:flex md:justify-center">
     <article class="prose prose-stone md:prose-lg max-w-[750px] prose-img:mx-auto">
       {heroImg && <img src={heroImg} alt={title} class="w-full max-w-xs mb-6" />}
-      <h1 class="my-2">{title}</h1>
-      {pubDate && <time class="text-sm">{displayDate}</time>}
-      {
-        updatedDate && (
-          <p class="text-sm inline">
-            - Last updated on <time>{updatedDate}</time>{' '}
-          </p>
-        )
-      }
+      <h1 class="my-2 text-3xl md:text-4xl tracking-[0.5px] text-center">{title}</h1>
+      <div class="text-center">
+        {pubDate && <time class="text-sm">{displayDate}</time>}
+        {
+          updatedDate && (
+            <p class="text-sm inline">
+              - Last updated on <time>{updatedDate}</time>{' '}
+            </p>
+          )
+        }
+      </div>
       <div class="divider my-2"></div>
       <slot />
     </article>
