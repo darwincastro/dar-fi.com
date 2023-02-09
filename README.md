@@ -1,4 +1,4 @@
 <div align="center">
-  <h1>dar-fi.com</h1>
+  <a href="https://dar-fi.com"><img src='./public/logo.png' alt="dar-fi.com" height="75" /></a>
   <h2>🚧 WIP 🚧</h2>
 </div>
