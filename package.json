@@ -1,37 +1,27 @@
 {
-  "name": "dar-fi.com",
-  "version": "1.0.0",
+  "name": "Astro Modern Personal Website",
+  "description": "Astro Modern personal website template with Project Section, CV Section, Paginated Blog, Shop, RSS Feed, SEO Friendly, Visual themes and Responsive Desing.",
+  "type": "module",
+  "version": "2.1.1",
   "private": true,
-  "description": "dar-fi.com",
-  "author": "rwxdan",
-  "keywords": [
-    "gatsby"
-  ],
   "scripts": {
-    "dev": "gatsby develop",
-    "start": "gatsby develop",
-    "build": "gatsby build",
-    "serve": "gatsby serve",
-    "clean": "gatsby clean"
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
   },
   "dependencies": {
-    "framer-motion": "^9.0.1",
-    "gatsby": "^5.5.0",
-    "gatsby-plugin-image": "^3.5.0",
-    "gatsby-plugin-manifest": "^5.5.0",
-    "gatsby-plugin-postcss": "^6.5.0",
-    "gatsby-plugin-sharp": "^5.5.0",
-    "gatsby-plugin-sitemap": "^6.5.0",
-    "gatsby-source-filesystem": "^5.5.0",
-    "gatsby-transformer-sharp": "^5.5.0",
-    "postcss": "^8.4.21",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "@astrojs/mdx": "^0.11.1",
+    "@astrojs/rss": "^1.0.1",
+    "@astrojs/sitemap": "^1.0.0",
+    "@astrojs/tailwind": "^3.0.0",
+    "astro": "^2.0.0",
+    "daisyui": "^2.27.0",
+    "dayjs": "^1.11.7"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.13",
-    "prettier": "^2.8.3",
-    "prettier-plugin-tailwindcss": "^0.2.2",
-    "tailwindcss": "^3.2.4"
+    "@tailwindcss/typography": "^0.5.7",
+    "prettier": "^2.8.4"
   }
 }

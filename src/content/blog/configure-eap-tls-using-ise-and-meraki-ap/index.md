@@ -1,0 +1,310 @@
+---
+title: 'Configure EAP-TLS using ISE and Meraki AP'
+description: 'Configure EAP-TLS using ISE and MAP'
+pubDate: 'Feb 02 2021'
+heroImg: '/configure-eap-tls-using-ise-and-meraki-ap/image_01.png'
+---
+
+02-02-2021
+
+This post describes how to set up a Meraki WLAN with 802.1x using EAP-TLS as an Authentication Method.
+
+If you want to get some background about the flow process of EAP-TLS, please take a look at my previous [post](https://www.dar-fi.com/eap-tls-auth/), along with [RFC 5216](https://tools.ietf.org/html/rfc5216) page.
+
+## Components Used
+
+- Windows 10 Workstation (Wireless Supplicant)
+- Meraki MR52 (Authenticator)
+- Cisco ISE (Authentication Server)
+- Windows Server 2016 (Certificate Authority)
+- Some L2/L3 Network devices helping with the end to end communication.
+
+## Topology Implemented
+
+![](/configure-eap-tls-using-ise-and-meraki-ap/image_01.png)
+
+You can use other alternatives or combinations on the components above mentioned, but for this demo, I will play around with the above topology, we expected to have complete reachability between the Authenticator, Authentication Server, and the Certificate Authority Server to get the wireless authentication using EAP-TLS.
+
+## Configure
+
+I will mainly focus on the Authenticator, and the Authentication Server side, however, I’m going to scope some supplicant and CA configurations as well.
+
+### Let’s start with the Authenticator = Meraki Side
+
+Step 1:
+
+The first step is to configure an SSID in the Meraki Dashboard, in the desired Meraki Network go to **Wireless > SSIDs > and select any SSID at your convenience > Select enabled >  rename the SSID > Save the changes** as shown in the image.
+
+![](/configure-eap-tls-using-ise-and-meraki-ap/image_02.png)
+
+After saving, click on **edit settings.**
+
+Step 2:
+
+Under **Access Control (select the SSID)**
+
+- Association requirements: Enterprise with my RADIUS server as shown in the image.
+
+![](/configure-eap-tls-using-ise-and-meraki-ap/image_03.png)
+
+- Splash page None (direct access)
+- RADIUS servers (Here, you need to enter the IP address and the shared secret that is used to validate the MR52 on the ISE side.
+- Optionally, you can enable RADIUS CoA, and you can set the RADIUS Accounting (I’m just leaving the default values) as shown in the image.
+
+![](/configure-eap-tls-using-ise-and-meraki-ap/image_04.png)
+
+- The client IP assignment (It’s up to you, you can use Bridge mode with or without VLAN tagging, or simply use NAT mode for simplicity as shown in the image.
+
+![](/configure-eap-tls-using-ise-and-meraki-ap/image_05.png)
+
+- I’m leaving the rest of the options per Meraki default as shown in the image.
+
+![](/configure-eap-tls-using-ise-and-meraki-ap/image_06.png)
+
+Step 3:
+
+It is a good idea to verify that you can reach the RADIUS server from the MR52 before you continue, go to **Wireless > Access Points > Select the access point > Tools > Ping using the RADIUS IP address.**
+
+Now, the Authenticator side is done!
+
+### RADIUS server (ISE configuration)
+
+![](/configure-eap-tls-using-ise-and-meraki-ap/image_07.png)
+
+Step 1:
+
+Go to **Policy > Policy Elements > Results > Authentication > Allowed Protocols** and click **Add.**
+
+- On this Allowed Protocol list, you can enter the name for the list. In this case, **Allow EAP-TLS** box is checked and other boxes are unchecked as shown in the image.
+
+![](/configure-eap-tls-using-ise-and-meraki-ap/image_08.png)
+
+Step 2:
+
+Go to **Administration > Network Resources > Network Devices > Add** as shown in the image.
+
+![](/configure-eap-tls-using-ise-and-meraki-ap/image_09.png)
+
+Step 3: Create New User on ISE
+
+Go to **Administration > Identity Management > Identities > Users > Add** as shown in the image.
+
+![](/configure-eap-tls-using-ise-and-meraki-ap/image_10.png)
+
+![](/configure-eap-tls-using-ise-and-meraki-ap/image_11.png)
+
+Step 4. Create Policy set
+
+Go to **Policy > Policy Set** and then click on the plus (**+**) icon on the upper-left corner as shown in the image.
+
+![](/configure-eap-tls-using-ise-and-meraki-ap/image_12.png)
+
+Step 5: Set the policy name (it could be something generic)
+
+Under the conditions menu, select “Network Access Protocol > EQUALS RADIUS”, and lastly, select the name of the policy result set on step 1 as shown in the image.
+
+![](/configure-eap-tls-using-ise-and-meraki-ap/image_13.png)
+
+Step 6: Create an Authentication Policy.
+
+Go to the **>** icon on the body right side as shown in the image.
+
+![](/configure-eap-tls-using-ise-and-meraki-ap/image_14.png)
+
+Step 7:
+
+Go to Authentication Policy > click on the plus (**+**) icon, and set “the conditions & use” as shown in the image.
+
+![](/configure-eap-tls-using-ise-and-meraki-ap/image_15.png)
+
+Step 8:
+
+Go to Authorization Policy > click on the plus (**+**) icon, and set “the conditions & results profiles” as shown in the image.
+
+![](/configure-eap-tls-using-ise-and-meraki-ap/image_16.png)
+
+Step 9: Verify
+
+![](/configure-eap-tls-using-ise-and-meraki-ap/image_17.png)
+
+Step 10: Certificate on ISE
+
+Go to **Administration > Certificates > Certificate Signing Requests > Generate Certificate Signing Requests (CSR)** as shown in the image.
+
+![](/configure-eap-tls-using-ise-and-meraki-ap/image_18.png)
+
+Step 11:
+
+As shown in the image.
+
+![](/configure-eap-tls-using-ise-and-meraki-ap/image_19.png)
+
+The result:
+
+![](/configure-eap-tls-using-ise-and-meraki-ap/image_20.png)
+
+Step 12:
+
+**Select the certificated generated > View > CSR Contents > Copy** (from “Begin to End”) as shown in the image.
+
+![](/configure-eap-tls-using-ise-and-meraki-ap/image_21.png)
+
+Step 13:
+
+From here is necessary to go into the **Windows Server** (Certificate Authority) > **open a web browser** and **Request a Certificate** to complete the ISE configurations as shown in the image.
+
+![](/configure-eap-tls-using-ise-and-meraki-ap/image_22.png)
+
+Step 14:
+
+Click **Advanced certificate request** as shown in the image.
+
+![](/configure-eap-tls-using-ise-and-meraki-ap/image_23.png)
+
+Step 15:
+
+Click **Submit a certificate request by using a base-64….**  as shown in the image.
+
+![](/configure-eap-tls-using-ise-and-meraki-ap/image_24.png)
+
+Step 16:
+
+Paste the CSR generated on step 12 in the **Base-64 encoded certificate request**. From the **Certificate Template:** drop-down option, choose **Web Server** and click **Submit** as shown in the image.
+
+![](/configure-eap-tls-using-ise-and-meraki-ap/image_25.png)
+
+Step 17:
+
+Once you click **Submit**, you get the option to select the type of certificate, select **Base-64 encoded,** and click **Download certificate chain** as shown in the image.
+
+![](/configure-eap-tls-using-ise-and-meraki-ap/image_26.png)
+
+Step 18:
+
+Going back to the ISE server
+
+Extract the certificates, the main file will contain two certificates, one root certificate, and another intermediate. The root certificate can be imported under **Administration > Certificates > Trusted certificates > Import** as shown in the images.
+
+![](/configure-eap-tls-using-ise-and-meraki-ap/image_27.png)
+
+Once you click **Submit**, the certificate is added to the trusted certificate list.
+
+Step 19:
+
+Go to **Administration > Certificates > Certificate Signing Requests > Bind Certificate** and add the intermediate certificate as shown in the image.
+
+![](/configure-eap-tls-using-ise-and-meraki-ap/image_28.png)
+
+Step 20:
+
+To view the certificate, navigate to **Administration > Certificates > System Certificates** as shown in the image.
+
+![](/configure-eap-tls-using-ise-and-meraki-ap/image_29.png)
+
+### Windows Workstation (Supplicant)
+
+To authenticate a wireless user through EAP-TLS, you have to generate a client certificate.
+
+Step 1:
+
+Go to the CA and **create** a **user** using the same credentials used in the RADIUS server (ISE configuration) step 3.
+
+![](/configure-eap-tls-using-ise-and-meraki-ap/image_30.png)
+
+For this lab, I’m creating a matching user on both sides (ISE & CA) you can integrate an AD or LDAP to your ISE server and reference it under the policy set authentication as well.
+
+Step 2:
+
+Connect your Windows computer to the network so that you can access the server. Open a web browser and enter this: `https://severIPaddress/certsrv`
+
+The credential belongs to the recent **user-created** on the CA & ISE.
+
+![](/configure-eap-tls-using-ise-and-meraki-ap/image_31.png)
+
+---
+
+**Important**:
+
+It should be noted that the CA must be the same with which the certificate was downloaded for ISE.
+
+---
+
+Step 3:
+
+Click **Request a certificate** as previously done, however this time you need to select **User** as the Certificate Template as shown in the image.
+
+![](/configure-eap-tls-using-ise-and-meraki-ap/image_32.png)
+
+Step 4:
+
+Click **User Certificate** as shown in the image.
+
+![](/configure-eap-tls-using-ise-and-meraki-ap/image_33.png)
+
+Step 5:
+
+Certificate Template > **User > Create new key set > Key size 1024 > Automatic key container name > Mark key as exportable > CMC > sha1 > Submit** as shown in the image.
+
+![](/configure-eap-tls-using-ise-and-meraki-ap/image_34.png)
+
+Step 6:
+
+Click **Install this certificate** to install the certificate in the local machine.
+
+![](/configure-eap-tls-using-ise-and-meraki-ap/image_35.png)
+
+Step 7:
+
+Go **Control Panel > Network and Internet > Network and Sharing Center > Setup a new connection or network** > Select **Manually connect to a wireless network > Next** as shown in the image.
+
+![](/configure-eap-tls-using-ise-and-meraki-ap/image_36.png)
+
+Step 8:
+
+**Network name** (This name must match with the SSID in **The Authenticator = Meraki Side** Step 1) > **Security type: Select WPA2-Enterprise > Next.**
+
+![](/configure-eap-tls-using-ise-and-meraki-ap/image_37.png)
+
+Step 9:
+
+Click **Change connection settings.**
+
+![](/configure-eap-tls-using-ise-and-meraki-ap/image_38.png)
+
+Step 10:
+
+Select **Microsoft: Smart Card or other certificate** and click **Settings**.
+
+![](/configure-eap-tls-using-ise-and-meraki-ap/image_39.png)
+
+Step 11:
+
+Select **Trusted Root Certification Authorities** (this is the certificate issued from the CA server) > Click **OK** as shown in the image
+
+![](/configure-eap-tls-using-ise-and-meraki-ap/image_40.png)
+
+Step 12:
+
+Click **Advanced Settings** and select **User or computer authentication** from the 802.1x settings tab > Click **OK** as shown in the image.
+
+![](/configure-eap-tls-using-ise-and-meraki-ap/image_41.png)
+
+Step 13.
+
+Go to Wireless network, select the correct profile (ISE_TLS in this example) and **Connect** as shown in the image.
+
+![](/configure-eap-tls-using-ise-and-meraki-ap/image_42.png)
+
+### Verify
+
+After the successful authentication to the WLAN, go to the ISE server dashboard > **Operations > RADIUS > Live Logs** as shown in the image.
+
+![](/configure-eap-tls-using-ise-and-meraki-ap/image_43.png)
+
+An example of what a successful EAP-TLS log looks like:
+
+![](/configure-eap-tls-using-ise-and-meraki-ap/image_44.png)
+
+I will post some troubleshooting steps in a different post!
+
+Thanks for reading!

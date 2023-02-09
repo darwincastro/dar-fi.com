@@ -1,0 +1,92 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TimeLineElement from '../components/cv/TimeLine.astro';
+---
+
+<BaseLayout title="Resume">
+  <div>
+    <h1 class="text-3xl w-full font-bold my-10 underline">Resume</h1>
+  </div>
+
+  <div class="mb-5">
+    <h2 class="text-2xl font-bold">Profile</h2>
+  </div>
+
+  <div class="mb-10 text-justify">
+    Motivated and tech-savvy associate with more than three years of experience working in the Computer Networking
+    field. Wireless Network Consulting Engineer used to resolve customer's hardest problems, networks issues in real
+    time, decipher logs, recreate issues in Cisco advanced labs, collaborate with Cisco Engineering to find, investigate
+    and fix software and hardware bugs, and more. Experience in internal wireless networks test measurement and analysis
+    techniques. Specialized in LAN/WAN LWAPP Ethernet and Frame Relay. Skilled in Solution Design & Development,
+    expectation management, creative problem solving, and customer service support. Able communicate effectively with a
+    team and eager to continue developing more professional skills in the digital world.
+  </div>
+
+  <div class="mb-5">
+    <h2 class="text-2xl font-bold">Education</h2>
+  </div>
+
+  <div class="time-line-container grid gap-4 mb-10">
+    <TimeLineElement
+      title="Florida National University, Miami, FL"
+      subtitle="Networking System Administrator, A.S., 09/2019"
+    />
+    <TimeLineElement
+      title="Colegio Universitario de Caracas, Caracas, VE"
+      subtitle="Technician in Administration, Mention O & S, 2008"
+    />
+  </div>
+
+  <div class="mb-5">
+    <h2 class="text-2xl font-bold">Experience</h2>
+  </div>
+
+  <div class="time-line-container mb-10">
+    <TimeLineElement
+      title="Network Support Engineer"
+      subtitle="From 2019 to 2021 at Cisco Meraki. Chicago, IL"
+      desc="Diagnose and troubleshoot wireless, security, switching, and other various network-related issues reported by Cisco Meraki customers and partners. Own each customer case from initial creation to resolution. Collaborate with other support team members to fix network outages, mis-configurations, and complex networking issues on customer's devices. Work with engineering and management to diagnose and resolve critical, escalated issues. "
+    />
+    <TimeLineElement
+      title="Technical Consulting Engineer - Wireless"
+      subtitle="From 2021 to 2022 at Cisco Systems, Richardson, TX"
+      desc="Technical specialist on Wireless networking, and Cisco Wireless network elements, both hardware and software. Providing top-tier collaborative consultation (via phone/email/WebEx) to independently solve and support Cisco customers. Contributing significantly to support communities through posts, blogs, and videos. Acting as the focal point for network problem resolution between Cisco, our customers, engineering, and industry third parties."
+    />
+    <TimeLineElement
+      title="Consulting Engineer - Wireless"
+      subtitle="Present at Cisco Systems, Richardson, TX"
+      desc="Being a trusted advisor engaging in proactive network optimization. High-level design and low-level design, implementation, and test plan creation. Troubleshooting customer network issues and helping to expedite case resolution. Supporting Greenfield and Brownfield RF design and remediation. Ability to configure and manage Wireless LAN Controller best practices. Leverage programmability for implementation, reporting, and validation"
+    />
+  </div>
+
+  <div class="mb-5">
+    <h2 class="text-2xl font-bold">Certifications</h2>
+  </div>
+
+  <ul class="list-disc mx-6 mb-10 grid gap-2">
+    <li>CCIE-W #66154</li>
+    <li>Certified 5G LAN Specialist (C5S)</li>
+    <li>CompTIA A+ 220-901 & 220-902</li>
+    <li>CompTIA Network+ N10-007</li>
+    <li>CompTIA IT Operations Specialist</li>
+    <li>CWNA Certified Wireless Network Administrator</li>
+    <li>CWDP Certified Wireless Design Professional</li>
+    <li>CWISA Certified Wireless IoT Solutions Administrator</li>
+  </ul>
+
+  <div class="mb-5">
+    <h2 class="text-2xl font-bold">Skills</h2>
+  </div>
+
+  <ul class="list-disc md:columns-2 columns-1 mx-6">
+    <li>Windows Server 2012/16/19</li>
+    <li>Quickbooks</li>
+    <li>Grafana, Telegraf and InfluxDB</li>
+    <li>Cisco IOS (IOS, AireOS, IOS-XE, DNACenter, DNA Spaces, ISE, CMX, Prime, MSE)</li>
+    <li>IoT</li>
+    <li>VMware ESXi, Proxmox KVM</li>
+    <li>Postman</li>
+    <li>Python</li>
+    <li>Linux OS (Debian/Centos/Fedora, Raspbian)</li>
+  </ul>
+</BaseLayout>
