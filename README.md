@@ -38,6 +38,6 @@ pnpm run dev
 
 ---
 
-<footer align="center">
-  <p>Made with ♥</p>
+<footer>
+  <p align="center">Made with ♥</p>
 </footer>
