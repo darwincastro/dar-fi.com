@@ -8,7 +8,7 @@ updatedDate: 'Feb 09 2023'
 
 This post describes how to set up a Meraki WLAN with 802.1x using EAP-TLS as an Authentication Method.
 
-If you want to get some background about the flow process of EAP-TLS, please take a look at my previous [post](https://www.dar-fi.com/eap-tls-auth/), along with [RFC 5216](https://tools.ietf.org/html/rfc5216) page.
+If you want to get some background about the flow process of EAP-TLS, please take a look at my previous [post](./eap-tls-auth), along with [RFC 5216](https://tools.ietf.org/html/rfc5216) page.
 
 ## Components Used
 

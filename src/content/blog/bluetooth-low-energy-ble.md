@@ -69,7 +69,7 @@ Due to the versatility, and low power usage BLE is specially designed for Smart 
 
 BLE uses [FHSS](https://www.freewave.com/technology/frequency-hopping-spread-spectrum-technology/), hence in order to capture all BLE beacons, you may require an industrial 2.4 GHz wideband sniffer tuned for BLE.
 
-Please take a look into this [post](https://www.dar-fi.com/capturing-bluetooth/) to learn how to capture Bluetooth traffic using a Linux machine.
+Please take a look into this [post](./capturing-bluetooth) to learn how to capture Bluetooth traffic using a Linux machine.
 
 ### Tools
 

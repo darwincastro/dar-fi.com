@@ -85,6 +85,6 @@ After sending the EAP Success Frame, the Authenticator will start the 4-way hand
 
 ![](/eap-tls-auth/image_13.png)
 
-If you want to run a test in your lab, the following link will provide some steps to play around with [EAP-TLS.](https://www.dar-fi.com/configure-eap-tl%E2%80%A6se-and-meraki-ap/)
+If you want to run a test in your lab, the following link will provide some steps to play around with [EAP-TLS.](./eap-tls-auth)
 
 As always, I hope that my short experience can answer any doubt during your CWDP journey, please stay safe, and protect yourself and others from Coronavirus (COVID-19)

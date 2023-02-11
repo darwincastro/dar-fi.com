@@ -70,7 +70,7 @@ My score was 88/100, I know… It’s not a perfect score, and there is a lot of
 
 ![](/cwisa-experience/image_02.png)
 
-Having a [CWNA](https://www.dar-fi.com/blog-i-passed-my-cwna-test/) and [CWDP](https://www.dar-fi.com/cwdp-exam-experience/) prior to this certification is a big plus, the first 5 chapters are a recap of those tracks.
+Having a [CWNA](./cwna-experience) and [CWDP](./cwdp-experience) prior to this certification is a big plus, the first 5 chapters are a recap of those tracks.
 
 My worn suggestion is to take notes while reading and print those concepts in your memory, and at the end of the chapter go back and re-read those notes.
 

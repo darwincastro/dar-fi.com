@@ -5,7 +5,7 @@ pubDate: 'Sep 15 2020'
 heroImg: '/enwlsd-experience/image_01.jpg'
 ---
 
-Right after I passed my CWNA exam, on July 06 I started studying for my 300-425 ENWLSD Cisco exam to continue with my wireless journey, and develop new skills. Thanks to my previous experience in the [CWNA](https://www.dar-fi.com/blog-i-passed-my-cwna-test/) exam preparation, I built a good foundation about the dos and don’ts in the Wi-Fi world.
+Right after I passed my CWNA exam, on July 06 I started studying for my 300-425 ENWLSD Cisco exam to continue with my wireless journey, and develop new skills. Thanks to my previous experience in the [CWNA](./cwna-experience) exam preparation, I built a good foundation about the dos and don’ts in the Wi-Fi world.
 
 The ENWLSD 300-425 gives you the knowledge that you need to design Cisco wireless networks.
 

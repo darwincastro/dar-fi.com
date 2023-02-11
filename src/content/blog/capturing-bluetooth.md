@@ -7,7 +7,7 @@ heroImg: '/capturing-bluetooth/image_01.png'
 
 ## What's Bluetooth?
 
-Bluetooth, it’s a wireless industry-standard registered in the Institute of Electrical and Electronics Engineers under IEEE 802.15.1 It’s short distance energy transmitted by low powered radios, it’s used to exchange data and handle communication between Bluetooth devices. The Bluetooth concept was developed initially for portable devices like; cellphones, headsets, wireless speakers, headphones, but nowadays is almost everywhere. Please refer to the following [link](https://www.dar-fi.com/bluetooth-low-energy-ble/) to learn more about Bluetooth, and the advanced Bluetooth Low Energy (BLE).
+Bluetooth, it’s a wireless industry-standard registered in the Institute of Electrical and Electronics Engineers under IEEE 802.15.1 It’s short distance energy transmitted by low powered radios, it’s used to exchange data and handle communication between Bluetooth devices. The Bluetooth concept was developed initially for portable devices like; cellphones, headsets, wireless speakers, headphones, but nowadays is almost everywhere. Please refer to the following [link](./bluetooth-low-energy-ble) to learn more about Bluetooth, and the advanced Bluetooth Low Energy (BLE).
 
 Now, if you are curious and you want to learn how to capture Bluetooth traffic and analyze it with Wireshark, this is the best place to be…
 

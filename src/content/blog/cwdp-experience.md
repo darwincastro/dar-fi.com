@@ -45,7 +45,7 @@ On my CWNP account, I can see results based on well-answered questions as follow
 
 ![](/cwdp-experience/image_02.png)
 
-Besides that, nothing compares to the feeling of meeting the goals successfully, I think, I had some advantage due to my previous Cisco Wireless Desing exam preparation [(link to the post)](https://www.dar-fi.com/enwlsd-exam-experience/) because I invested a lot of time learning for that Certification, I read every corner of the blueprint exam, and I always found myself looking into somebody’s blog or diving on the cisco community to figure it out something.
+Besides that, nothing compares to the feeling of meeting the goals successfully, I think, I had some advantage due to my previous Cisco Wireless Desing exam preparation [(link to the post)](./enwlsd-experience) because I invested a lot of time learning for that Certification, I read every corner of the blueprint exam, and I always found myself looking into somebody’s blog or diving on the cisco community to figure it out something.
 
 The first time reading the CWDP Official Cert Guide, I felt; heeey I’ve been here before, for me was easy to grasp and reinforce all the concepts, it was like reviewing old topics and getting the subjects from the CWDP standard perspective.
 
