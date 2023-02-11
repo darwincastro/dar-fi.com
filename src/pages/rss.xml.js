@@ -9,5 +9,6 @@ export async function get (context) {
 		items: await pagesGlobToRssItems(
       import.meta.glob('./blog/*.{md,mdx}'),
     ),
+		stylesheet: '/rss/styles.xsl',
 	});
 }
