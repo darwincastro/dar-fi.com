@@ -19,7 +19,7 @@ Now, if you are curious and you want to learn how to capture Bluetooth traffic a
 
 - The network protocol analyzer Wireshark, it’s a powerful tool, open-source, and you can download it [here.](https://www.wireshark.org/download.html)
 
-![](/capturing-bluetooth/image_01.png)
+![About Wireshark](/capturing-bluetooth/image_01.png)
 
 I’m currently running Wireshark version 2.6.10
 
