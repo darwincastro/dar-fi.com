@@ -9,7 +9,7 @@ This is a peculiar year where working from home is trending, and working in the 
 
 The CWNA exam measures your understanding of the fundamentals of RF behavior, your ability to describe the features and functions of wireless LAN components, and your knowledge of the skills needed to install, configure, and troubleshoot wireless LAN hardware peripherals and protocols
 
-_“Coleman, D. D., & Westcott, D. A. (2018). CWNA Certified Wireless Network Administrator study guide. Hoboken, NJ: Sybex, a Wiley Brand, page 51″_
+> Coleman, D. D., & Westcott, D. A. (2018). CWNA Certified Wireless Network Administrator study guide. Hoboken, NJ: Sybex, a Wiley Brand, page 51
 
 I know… there are a lot of blogs talking & teaching how to prepare and pass the Certified Wireless Network Administrator CWNA test, I’m not pretending to overcome those well-structured blogs, I just want to share; how I prepared myself to take and pass the test in 5 months, yes I know, I know… potentially many fellas passed it in a lower timeframe, but raising a child + working from home + studying  = sometimes is overwhelming.
 

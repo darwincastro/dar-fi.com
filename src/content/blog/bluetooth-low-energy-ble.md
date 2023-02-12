@@ -73,7 +73,7 @@ Please take a look into this [post](./capturing-bluetooth) to learn how to captu
 
 ### Tools
 
-#### The following tool helps to capture some BLE beacon frames over the air, it could help if you have an access point or other capable BLE device sending beacons:
+**The following tool helps to capture some BLE beacon frames over the air, it could help if you have an access point or other capable BLE device sending beacons:**
 
 - BLE Scanner is used by not only developers but also users who are using it to find their lost Fitness Trackers and other Bluetooth Smart Devices. You can download it in Google Play [here](https://play.google.com/store/apps/details?id=com.macdom.ble.blescanner&hl=en_US).
 
