@@ -13,18 +13,18 @@ specifiers:
   dayjs: ^1.11.7
   postcss: ^8.4.21
   prettier: ^2.8.4
-  rollup: ^3.17.1
+  rollup: ^3.17.2
   tailwindcss: ^3.2.7
 
 dependencies:
-  '@astrojs/mdx': 0.16.2_astro@2.0.14+rollup@3.17.1
+  '@astrojs/mdx': 0.16.2_astro@2.0.14+rollup@3.17.2
   '@astrojs/rss': 2.1.1
   '@astrojs/sitemap': 1.0.1
   '@astrojs/tailwind': 3.0.1_hf2kjfio2dr6w52rh4mpociq2u
   astro: 2.0.14
   daisyui: 2.50.1_gbtt6ss3tbiz4yjtvdr6fbrj44
   dayjs: 1.11.7
-  rollup: 3.17.1
+  rollup: 3.17.2
 
 devDependencies:
   '@tailwindcss/typography': 0.5.9_tailwindcss@3.2.7
@@ -93,14 +93,14 @@ packages:
       - supports-color
     dev: false
 
-  /@astrojs/mdx/0.16.2_astro@2.0.14+rollup@3.17.1:
+  /@astrojs/mdx/0.16.2_astro@2.0.14+rollup@3.17.2:
     resolution: {integrity: sha512-ZNOdBW7ExnWM50+wubg8iw5J1jkUVkTHAJXQt3IwH4TVIOC3mQyr5hDPfN2/pwG9Ch9RNlI+7nsDFNaHY0AeaA==}
     engines: {node: '>=16.12.0'}
     dependencies:
       '@astrojs/markdown-remark': 2.0.1_astro@2.0.14
       '@astrojs/prism': 2.0.0
       '@mdx-js/mdx': 2.3.0
-      '@mdx-js/rollup': 2.3.0_rollup@3.17.1
+      '@mdx-js/rollup': 2.3.0_rollup@3.17.2
       acorn: 8.8.2
       es-module-lexer: 0.10.5
       estree-util-visit: 1.2.1
@@ -176,7 +176,7 @@ packages:
   /@astrojs/webapi/2.0.1:
     resolution: {integrity: sha512-aOOHa86W5Ux77A3dS91YrVlSxtBSJsVK4UhvcXHY0gAl0ZrOStSKSBO45gZ6tFi2AiHu3bzpMtZjwrPHtl+cyg==}
     dependencies:
-      undici: 5.19.1
+      undici: 5.18.0
     dev: false
 
   /@babel/code-frame/7.18.6:
@@ -691,14 +691,14 @@ packages:
       - supports-color
     dev: false
 
-  /@mdx-js/rollup/2.3.0_rollup@3.17.1:
+  /@mdx-js/rollup/2.3.0_rollup@3.17.2:
     resolution: {integrity: sha512-wLvRfJS/M4UmdqTd+WoaySEE7q4BIejYf1xAHXYvtT1du/1Tl/z2450Gg2+Hu7fh05KwRRiehiTP9Yc/Dtn0fA==}
     peerDependencies:
       rollup: '>=2'
     dependencies:
       '@mdx-js/mdx': 2.3.0
-      '@rollup/pluginutils': 5.0.2_rollup@3.17.1
-      rollup: 3.17.1
+      '@rollup/pluginutils': 5.0.2_rollup@3.17.2
+      rollup: 3.17.2
       source-map: 0.7.4
       vfile: 5.3.7
     transitivePeerDependencies:
@@ -742,7 +742,7 @@ packages:
       escalade: 3.1.1
     dev: false
 
-  /@rollup/pluginutils/5.0.2_rollup@3.17.1:
+  /@rollup/pluginutils/5.0.2_rollup@3.17.2:
     resolution: {integrity: sha512-pTd9rIsP92h+B6wWwFbW8RkZv4hiR/xKsqre4SIuAOaOEQRxi0lqLke9k2/7WegC85GgUs9pjmOjCUi3In4vwA==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
@@ -754,7 +754,7 @@ packages:
       '@types/estree': 1.0.0
       estree-walker: 2.0.2
       picomatch: 2.3.1
-      rollup: 3.17.1
+      rollup: 3.17.2
     dev: false
 
   /@tailwindcss/typography/0.5.9_tailwindcss@3.2.7:
@@ -3473,8 +3473,8 @@ packages:
     resolution: {integrity: sha512-U9nH88a3fc/ekCF1l0/UP1IosiuIjyTh7hBvXVMHYgVcfGvt897Xguj2UOLDeI5BG2m7/uwyaLVT6fbtCwTyzw==}
     engines: {iojs: '>=1.0.0', node: '>=0.10.0'}
 
-  /rollup/3.17.1:
-    resolution: {integrity: sha512-8RnSms6rNqHmZK+wiqgnPCqen+rRnUHXkciGDirh7B00g1rX1vpKbPDhuxCvAG2bburoI+W4Q9/PlUB/zYkiYA==}
+  /rollup/3.17.2:
+    resolution: {integrity: sha512-qMNZdlQPCkWodrAZ3qnJtvCAl4vpQ8q77uEujVCCbC/6CLB7Lcmvjq7HyiOSnf4fxTT9XgsE36oLHJBH49xjqA==}
     engines: {node: '>=14.18.0', npm: '>=8.0.0'}
     hasBin: true
     optionalDependencies:
@@ -3900,8 +3900,8 @@ packages:
     hasBin: true
     dev: false
 
-  /undici/5.19.1:
-    resolution: {integrity: sha512-YiZ61LPIgY73E7syxCDxxa3LV2yl3sN8spnIuTct60boiiRaE1J8mNWHO8Im2Zi/sFrPusjLlmRPrsyraSqX6A==}
+  /undici/5.18.0:
+    resolution: {integrity: sha512-1iVwbhonhFytNdg0P4PqyIAXbdlVZVebtPDvuM36m66mRw4OGrCm2MYynJv/UENFLdP13J1nPVQzVE2zTs1OeA==}
     engines: {node: '>=12.18'}
     dependencies:
       busboy: 1.6.0
@@ -4066,7 +4066,7 @@ packages:
       esbuild: 0.16.17
       postcss: 8.4.21
       resolve: 1.22.1
-      rollup: 3.17.1
+      rollup: 3.17.2
     optionalDependencies:
       fsevents: 2.3.2
     dev: false
