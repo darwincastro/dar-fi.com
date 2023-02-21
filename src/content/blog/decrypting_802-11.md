@@ -2,8 +2,8 @@
 title: 'Decrypt wireless frames with Wireshark'
 description: 'Decrypt wireless frames with Wireshark'
 pubDate: 'Apr 15 2021'
-heroImg: '/decrypting_802-11/image_01.png'
-updatedDate: 'Feb 09 2023'
+heroImg: '/decrypting_802-11/decrypt.png'
+updatedDate: 'Feb 20 2023'
 ---
 
 **Disclaimer**: This is not a hacking post about sniffing wireless networks or cracking passwords, the intention is to show how to decrypt 802.11 frames (knowing the password and the SSID) using the open-source packet analyzer Wireshark.
@@ -13,16 +13,16 @@ updatedDate: 'Feb 09 2023'
 ## Components Used
 
 - A computer running any OS like; Linux, MacOS, or Windows.
-- Packet analyzer [Wireshark](https://www.wireshark.org/download.html).
-- Previous packets capture collected in [monitor mode](https://documentation.meraki.com/MR/Monitoring_and_Reporting/Capturing_Wireless_Traffic_from_a_Client_Machine).
-- Know the password of the target [SSID](<https://en.wikipedia.org/wiki/Service_set_(802.11_network)>).
+- Packet analyzer <a href="https://www.wireshark.org/download.html" target="_blank">Wireshark</a>
+- Previous packets capture collected in <a href="https://documentation.meraki.com/MR/Monitoring_and_Reporting/Capturing_Wireless_Traffic_from_a_Client_Machine)" target="_blank">monitor mode</a>
+- Know the password of the target <a href="https://en.wikipedia.org/wiki/Service_set_(802.11_network" target="_blank">SSID</a>
 
 ## Considerations
 
 - Up to 64 keys are supported.
-- The packets capture collected must contain the 4-way handshake (EAPOL-Messages 1 to 4), the Wireshark decrypt tool uses WPA/WPA2 keys derived from an EAPOL handshake.
+- The packets captured collected must contain the 4-way handshake (EAPOL-Messages 1 to 4), the Wireshark decrypt tool uses WPA/WPA2 keys derived from an EAPOL handshake.
 
-In other words, if your capture doesn’t contain the complete handshake, Wireshark won’t be able to decrypt the frames, it won’t work using control frames, management frames, and data frames only.
+In other words, if your capture doesn’t contain the complete handshake, Wireshark won’t be able to decrypt the frames it won’t work using control frames, management frames, and data frames only.
 
 ## How to
 
@@ -32,31 +32,31 @@ In this post, we are going to focus only on WPA2-PWD & WPA2-PSK.
 
 1.  Open your .pcap file collected with Wireshark. (I filtered only interesting traffic for this post)
 
-![](/decrypting_802-11/image_01.png)
+![opening the pcap file](/decrypting_802-11/image_01.png)
 
 From packets 9 – 12 we can see the 4-way handshake required, packets 18, 20, 22, and so on shows encrypted Data.
 
 Let’s take a look at frame 28, see the payload is encrypted.
 
-![](/decrypting_802-11/image_02.png)
+![frame 28](/decrypting_802-11/image_02.png)
 
 2. Go to the Wireshark tab > Preferences > Protocols > IEEE 802.11, as shown in the image:
 
-![](/decrypting_802-11/image_03.png)
+![frame 28 flags](/decrypting_802-11/image_03.png)
 
 3. Enable decryption and click on Edit, as shown in the image:
 
-![](/decrypting_802-11/image_04.png)
+![enabling decryption in wireshark](/decrypting_802-11/image_04.png)
 
-4. Let’s start with wpa-psw, the key is in plaintext, the password goes first followed by `:` and the name of the SSID, as shown in the image.
+4. Let’s start with wpa-psw, the key is in plaintext, and the password goes first followed by `:` and the name of the SSID, as shown in the image.
 
-![](/decrypting_802-11/image_05.png)
+![wpa key in plain text](/decrypting_802-11/image_05.png)
 
-5. To use wpa-psk you will need to derive your PSK combining your passphrase and your SSID name, you can use this [link](https://www.wireshark.org/tools/wpa-psk.html) for simplicity, copy and paste the result in Wireshark, as shown in the images.
+5. To use wpa-psk you will need to derive your PSK combining your passphrase and your SSID name, you can use this <a href="https://www.wireshark.org/tools/wpa-psk.html" target="_blank">link</a> for simplicity, copy and paste the result in Wireshark, as shown in the images.
 
-![](/decrypting_802-11/image_06.png)
+![wpa key in plain tex v2](/decrypting_802-11/image_06.png)
 
-![](/decrypting_802-11/image_07.png)
+![wpa key in plain tex v3](/decrypting_802-11/image_07.png)
 
 In my case, the name of the SSID is “Meraki”
 
@@ -64,11 +64,11 @@ In my case, the name of the SSID is “Meraki”
 
 Let’s see packets 18, 20, and 22 again! Now,  we can see L3 information followed by the protocol of the data which is DHCP (before we had 802.11 and L2 information only)
 
-![](/decrypting_802-11/image_08.png)
+![looking at packet 18, 20 and 22](/decrypting_802-11/image_08.png)
 
 Let’s take a look at frame 28 one more time!
 
-![](/decrypting_802-11/image_09.png)
+![looking at packet 28](/decrypting_802-11/image_09.png)
 
 You can see the entire payload which includes a DHCP offer.
 
@@ -79,7 +79,7 @@ Above all, if for some reason the steps don’t work for you, please try enablin
 
 ---
 
-![](/decrypting_802-11/image_10.png)
+![ignoring the protection bit](/decrypting_802-11/image_10.png)
 
 In conclusion, decrypting 802.11 frames could be very helpful in a troubleshooting session, instead of seeing only the 802.11 protocols, you can see another picture with L3 information on there. For instance; if your supplicant is sending a Discover, and receiving an offer needed.
 

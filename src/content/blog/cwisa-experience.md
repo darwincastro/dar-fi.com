@@ -2,7 +2,7 @@
 title: 'CWISA – Certified Wireless IoT Solutions Administrator – Exam Experience'
 description: 'My CWISA experience'
 pubDate: 'May 26 2021'
-heroImg: '/cwisa-experience/image_01.png'
+heroImg: '/cwisa-experience/cwisa-png.png'
 ---
 
 I started my CWISA studies in March 2021, my goal was to obtain the CWISA cert before moving to another State for my new role in Cisco, it took almost 3 months to prepare and pass the exam, starting from 3-3 to 5-24.
