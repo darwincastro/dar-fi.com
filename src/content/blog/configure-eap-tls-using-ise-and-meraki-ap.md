@@ -2,8 +2,8 @@
 title: 'Configure EAP-TLS using ISE and Meraki AP'
 description: 'How to set up a Meraki WLAN with 802.1x using EAP-TLS as an Authentication Method.'
 pubDate: 'Feb 02 2021'
-heroImg: '/configure-eap-tls-using-ise-and-meraki-ap/image_01.png'
-updatedDate: 'Feb 09 2023'
+heroImg: '/configure-eap-tls-using-ise-and-meraki-ap/tls.jpeg'
+updatedDate: 'Feb 20 2023'
 ---
 
 This post describes how to set up a Meraki WLAN with 802.1x using EAP-TLS as an Authentication Method.
@@ -16,13 +16,13 @@ If you want to get some background about the flow process of EAP-TLS, please tak
 - Meraki MR52 (Authenticator)
 - Cisco ISE (Authentication Server)
 - Windows Server 2016 (Certificate Authority)
-- Some L2/L3 Network devices helping with the end to end communication.
+- Some L2/L3 Network devices help with end-to-end communication.
 
 ## Topology Implemented
 
 ![](/configure-eap-tls-using-ise-and-meraki-ap/image_01.png)
 
-You can use other alternatives or combinations on the components above mentioned, but for this demo, I will play around with the above topology, we expected to have complete reachability between the Authenticator, Authentication Server, and the Certificate Authority Server to get the wireless authentication using EAP-TLS.
+You can use other alternatives or combinations of the components above mentioned, but for this demo, I will play around with the above topology, we expected to have complete reachability between the Authenticator, Authentication Server, and Certificate Authority Server to get the wireless authentication using EAP-TLS.
 
 ## Configure
 
@@ -94,19 +94,19 @@ Go to **Administration > Identity Management > Identities > Users > Add** as s
 
 Step 4. Create Policy set
 
-Go to **Policy > Policy Set** and then click on the plus (**+**) icon on the upper-left corner as shown in the image.
+Go to **Policy > Policy Set** and then click on the plus (**+**) icon in the upper-left corner as shown in the image.
 
 ![](/configure-eap-tls-using-ise-and-meraki-ap/image_12.png)
 
 Step 5: Set the policy name (it could be something generic)
 
-Under the conditions menu, select “Network Access Protocol > EQUALS RADIUS”, and lastly, select the name of the policy result set on step 1 as shown in the image.
+Under the conditions menu, select “Network Access Protocol > EQUALS RADIUS”, and lastly, select the name of the policy result set in step 1 as shown in the image.
 
 ![](/configure-eap-tls-using-ise-and-meraki-ap/image_13.png)
 
 Step 6: Create an Authentication Policy.
 
-Go to the **>** icon on the body right side as shown in the image.
+Go to the **>** icon on the body's right side as shown in the image.
 
 ![](/configure-eap-tls-using-ise-and-meraki-ap/image_14.png)
 
