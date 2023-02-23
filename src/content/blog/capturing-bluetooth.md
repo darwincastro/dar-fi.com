@@ -1,13 +1,14 @@
 ---
 title: 'Capturing Bluetooth traffic with TCPDUMP'
-description: 'Capturing bluetooth traffic'
+description: 'To understand Bluetooth behaviors, we would like to capture Bluetooth frames with few steps'
 pubDate: 'Oct 04 2020'
-heroImg: '/capturing-bluetooth/image_01.png'
+heroImg: '/capturing-bluetooth/Wireshark.png'
+updatedDate: 'Feb 20 2023'
 ---
 
 ## What's Bluetooth?
 
-Bluetooth, it’s a wireless industry-standard registered in the Institute of Electrical and Electronics Engineers under IEEE 802.15.1 It’s short distance energy transmitted by low powered radios, it’s used to exchange data and handle communication between Bluetooth devices. The Bluetooth concept was developed initially for portable devices like; cellphones, headsets, wireless speakers, headphones, but nowadays is almost everywhere. Please refer to the following [link](./bluetooth-low-energy-ble) to learn more about Bluetooth, and the advanced Bluetooth Low Energy (BLE).
+Bluetooth, it’s a wireless industry standard registered in the Institute of Electrical and Electronics Engineers under IEEE 802.15.1 It’s short-distance energy transmitted by low-powered radios, it’s used to exchange data and handle communication between Bluetooth devices. The Bluetooth concept was developed initially for portable devices like; cellphones, headsets, wireless speakers, and headphones, but nowadays is almost everywhere. Please refer to the following <a href="./bluetooth-low-energy-ble" target="_blank">link</a> to learn more about Bluetooth, and the advanced Bluetooth Low Energy (BLE).
 
 Now, if you are curious and you want to learn how to capture Bluetooth traffic and analyze it with Wireshark, this is the best place to be…
 
@@ -15,9 +16,9 @@ Now, if you are curious and you want to learn how to capture Bluetooth traffic a
 
 - A Computer running Linux with an integrated interface dedicated to Bluetooth. (I’m currently running Ubuntu 18.04.0) you can use a Bluetooth adapter that supports a monitor or promiscuous mode for this task as well.
 
-- A second Bluetooth capable device to connect to your Linux machine (it could be a device like; an iPhone, Android, or any other device of your preference) I will use a MacBook Pro running macOS Catalina 10.15.6.
+- A second Bluetooth-capable device to connect to your Linux machine (it could be a device like; an iPhone, Android, or any other device of your preference) I will use a MacBook Pro running macOS Catalina 10.15.6.
 
-- The network protocol analyzer Wireshark, it’s a powerful tool, open-source, and you can download it [here.](https://www.wireshark.org/download.html)
+- The network protocol analyzer Wireshark, it’s a powerful tool, open-source, and you can download it <a href="https://www.wireshark.org/download.html" target="_blank">here</a>
 
 ![About Wireshark](/capturing-bluetooth/image_01.png)
 
@@ -33,17 +34,17 @@ Let’s check our Ubuntu machine:
 bluetoothd -v
 ```
 
-To know if you have installed [BlueZ](http://www.bluez.org/) in your distro, also run:
+To know if you have installed <a href="http://www.bluez.org/" target="_blank">BlueZ</a> in your distro, also run
 
 ```shell
 tcpdump --version
 ```
 
-Know if you have [TCPdump & Libpcap](https://www.tcpdump.org/) installed, those are required to accomplish this task.
+Know if you have <a href="https://www.tcpdump.org/" target="_blank">TCPdump & Libpcap</a> installed, those are required to accomplish this task.
 
 The result will be something like this:
 
-![](/capturing-bluetooth/image_02.png)
+![Terminal output](/capturing-bluetooth/image_02.png)
 
 - With administrator privileges run:
 
@@ -53,7 +54,7 @@ sudo tcpdump -D
 
 To confirm if your Bluetooth card is up and running, also copy the name of your Bluetooth card (in my case is bluetooth0).
 
-![](/capturing-bluetooth/image_03.png)
+![Confirming BLE card operation](/capturing-bluetooth/image_03.png)
 
 ---
 
@@ -63,7 +64,7 @@ Some advanced Bluetooth cards allow you to capture packets in the air using moni
 
 ---
 
-![](/capturing-bluetooth/image_04.png)
+![capturing bluetooth](/capturing-bluetooth/image_04.png)
 
 - Let’s check if the Bluetooth interface is turned ON in the second device, and make sure that you don’t have restrictions to share content using Bluetooth, for example, on my Mac machine I went to Sharing and I enabled the Bluetooth Sharing option there.
 
@@ -79,11 +80,11 @@ tcpdump -i bluetooth0 -w capturing_bluetooth.pcap
 
 Your input should be like this:
 
-![](/capturing-bluetooth/image_05.png)
+![capturing bluetoothv2](/capturing-bluetooth/image_05.png)
 
 With the previous command, we set our Bluetooth interface in promiscuous mode, which means it will send and receive all the packets as normal, but also it will collect and save those packets for future analysis.
 
-- Let’s connect via Bluetooth the Mac and the Ubuntu machine.
+- Let’s connect via Bluetooth Mac and the Ubuntu machine.
 
 - Let’s generate some Bluetooth traffic between both, in my scenario I just sent a .png image.
 
@@ -97,12 +98,12 @@ You must generate in/out traffic using the Linux machine because you will captur
 
 - Finish the packet capture with the keyboards: `Ctrl+c.`
 
-- In the Ubuntu machine Go to your Home directory, and locate the .pcap file and open it (it should open using Wireshark by default if it doesn’t open Wireshark and go to File > Open and locate the file under Home directory.
+- In the Ubuntu machine Go to your Home directory, locate the .pcap file and open it (it should open using Wireshark by default if it doesn’t open Wireshark and go to File > Open and locate the file under /Home directory.
 
-![](/capturing-bluetooth/image_06.png)
+![getting BLE traffic locally](/capturing-bluetooth/image_06.png)
 
 Voila!!! you captured Bluetooth traffic using your Ubuntu machine.
 
 I hope you have enjoyed this quick reference to How to Capture Bluetooth Traffic in Ubuntu.
 
-Please take care, keep the social distancing, and don’t go outside without a face mask!
+Please take care, keep social distancing, and don’t go outside without a face mask!
