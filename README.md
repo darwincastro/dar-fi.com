@@ -10,7 +10,7 @@
 </div>
 
 | ![](./public//desktop.jpg) | ![](./public/mobile.jpg) |
-| --- | --- |
+| -------------------------- | ------------------------ |
 
 ## Tools 🧰
 
@@ -24,16 +24,21 @@
 ## Local development 🛠
 
 1. Clone the project, then `cd` into it
+
 ```
 git clone https://github.com/darwincastro/dar-fi.com && cd dar-fi.com
 ```
+
 2. Install all the dependencies
+
 ```
-pnpm i
+npm install
 ```
+
 3. Start the development server
+
 ```
-pnpm run dev
+npm run dev
 ```
 
 ---
