@@ -6,9 +6,10 @@ heroImg: '/decrypting_802-11/decrypt.png'
 updatedDate: 'Feb 20 2023'
 ---
 
-**Disclaimer**: This is not a hacking post about sniffing wireless networks or cracking passwords, the intention is to show how to decrypt 802.11 frames (knowing the password and the SSID) using the open-source packet analyzer Wireshark.
+import Warning from '../../components/common/Warning.astro';
+import Note from '../../components/common/Note.astro';
 
----
+<Warning content="This is not a hacking post about sniffing wireless networks or cracking passwords, the intention is to show how to decrypt 802.11 frames (knowing the password and the SSID) using the open-source packet analyzer Wireshark." />
 
 ## Components Used
 
@@ -72,12 +73,7 @@ Let’s take a look at frame 28 one more time!
 
 You can see the entire payload which includes a DHCP offer.
 
----
-
-**Important**:
-Above all, if for some reason the steps don’t work for you, please try enabling “Validate the FCS checksum if possible” and play around with the “Ignore the protection bit” options, as shown in the image.
-
----
+<Note content="Above all, if for some reason the steps don’t work for you, please try enabling “Validate the FCS checksum if possible” and play around with the “Ignore the protection bit” options, as shown in the image." />
 
 ![ignoring the protection bit](/decrypting_802-11/image_10.png)
 

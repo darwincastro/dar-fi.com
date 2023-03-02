@@ -6,6 +6,8 @@ heroImg: '/configure-eap-tls-using-ise-and-meraki-ap/wireless.png'
 updatedDate: 'Feb 20 2023'
 ---
 
+import Path from '../../components/common/Path.astro';
+
 This post describes how to set up a Meraki WLAN with 802.1x using EAP-TLS as an Authentication Method.
 
 If you want to get some background about the flow process of EAP-TLS, please take a look at my previous <a href="./eap-tls-auth" target="_blank">post</a>, along with <a href="https://tools.ietf.org/html/rfc5216" target="_blank">RFC 5216</a> page.
@@ -32,7 +34,20 @@ I will mainly focus on the Authenticator, and the Authentication Server side, ho
 
 Step 1:
 
-The first step is to configure an SSID in the Meraki Dashboard, in the desired Meraki Network go to **Wireless > SSIDs > and select any SSID at your convenience > Select enabled >  rename the SSID > Save the changes** as shown in the image.
+The first step is to configure an SSID in the Meraki Dashboard, in the desired Meraki Network go to:
+
+<Path
+  route={[
+    'Wireless',
+    'SSIDs',
+    'Select any SSID at your convenience',
+    'Select enabled',
+    'Rename the SSID',
+    'Save the changes',
+  ]}
+/>
+
+as shown in the image.
 
 ![starting the eap configuration](/configure-eap-tls-using-ise-and-meraki-ap/image_02.png)
 
@@ -80,7 +95,7 @@ Go to **Policy > Policy Elements > Results > Authentication > Allowed Protocols
 
 Step 2:
 
-Go to **Administration > Network Resources > Network Devices > Add** as shown in the image.
+Go to: **Administration > Network Resources > Network Devices > Add** as shown in the image.
 
 ![configuring resources](/configure-eap-tls-using-ise-and-meraki-ap/image_09.png)
 
