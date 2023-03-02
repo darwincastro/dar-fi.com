@@ -2,26 +2,15 @@
 export interface Props {
   content?: string;
 }
-
+import { Icon } from 'astro-icon';
 const { content } = Astro.props;
 ---
 
-<div class="alert alert-warning shadow-lg">
+<div class="alert alert-success shadow-lg">
   <div>
     <div>
-      <div class="flex items-center gap-2 -mt-4 -mb-8">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="stroke-current flex-shrink-0 h-6 w-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          ><path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg
-        >
-
+      <div class="flex items-center gap-2 -mt-4 -mb-8 ml-3">
+        <Icon name="mdi:check-circle-outline" size="24" />
         <p class="font-bold">Success:</p>
       </div>
       <p class="px-4">{content}</p>
