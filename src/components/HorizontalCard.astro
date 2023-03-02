@@ -2,10 +2,10 @@
 const { title, img, desc, url, badge, tags, target = '_blank' } = Astro.props;
 ---
 
-<div class="rounded-lg bg-base-100 hover:shadow-xl transition ease-in-out hover:scale-[102%] card">
+<div class="rounded-lg bg-base-100 hover:shadow-xl transition ease-in-out hover:scale-[101%] card">
   <a href={url} target={target}>
-    <div class="hero-content flex-col md:flex-row">
-      {img && <img src={img} alt={title} class="max-w-[13rem] rounded-lg" />}
+    <div class="hero-content flex-col md:flex-row gap-8">
+      {img && <img src={img} alt={title} class="max-w-[8rem] rounded-lg" />}
       <div class="grow w-full">
         <h3 class="card-title">
           {title}
@@ -15,8 +15,14 @@ const { title, img, desc, url, badge, tags, target = '_blank' } = Astro.props;
         <div class="card-actions justify-end">
           {tags && tags.map((tag) => <div class="badge badge-outline">{tag}</div>)}
         </div>
-        <div class="card-actions">
-          <a href={url} class="btn btn-outline mt-6" target={target}>read article</a>
+        <div class="card-actions items-center mt-6">
+          <a href={url} class="uppercase text-sm font-bold hover:underline -ml-2 block" target={target}>read article</a>
+          <span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+              ><path fill="currentColor" d="M4 11v2h12l-5.5 5.5l1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5L16 11H4Z"
+              ></path></svg
+            >
+          </span>
         </div>
       </div>
     </div>
