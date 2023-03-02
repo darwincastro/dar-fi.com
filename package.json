@@ -12,18 +12,18 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/mdx": "^0.16.2",
+    "@astrojs/mdx": "^0.17.2",
     "@astrojs/rss": "^2.1.1",
     "@astrojs/sitemap": "^1.0.1",
     "@astrojs/tailwind": "^3.0.1",
-    "astro": "^2.0.14",
-    "daisyui": "^2.50.1",
+    "astro": "^2.0.16",
+    "daisyui": "^2.51.1",
     "dayjs": "^1.11.7",
-    "rollup": "^3.17.1"
+    "rollup": "^3.17.3"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.9",
-    "astro-compress": "^1.1.33",
+    "astro-compress": "^1.1.35",
     "autoprefixer": "^10.4.13",
     "postcss": "^8.4.21",
     "prettier": "^2.8.4",
