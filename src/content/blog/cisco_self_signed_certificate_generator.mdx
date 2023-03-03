@@ -3,7 +3,7 @@ title: 'Cisco Sef-Signed Certificate Generator'
 description: 'Script used to create a CA and self-signed certificate for Cisco devices, it could be used for other network devices as well.'
 pubDate: 'Feb 17 2022'
 heroImg: '/cisco_self_signed_certificate_generator/PKI-blue-cert.png'
-updatedDate: 'Feb 20 2023'
+updatedDate: 'Mar 03 2023'
 ---
 
 import Note from '../../components/common/Note.astro';
@@ -17,17 +17,14 @@ This script was tested with OpenSSL v1.1.1f & LibreSSL 3.3.6
 
 1. Clone the repository, and go to the directory.
 
-```
+```shell
 git clone https://github.com/darwincastro/ssc-cisco.git
-```
-
-```
 cd ssc-cisco
 ```
 
 2. Run the script:
 
-```
+```shell
 ./mkcerts+CA.sh
 ```
 
@@ -67,7 +64,7 @@ You will get a handy output with green text, it includes the commands to run in 
 
 1. In global configuration mode run:
 
-```
+```shell
 crypto pki import <trustpoint name> pem terminal password cisco
 ```
 
@@ -77,7 +74,7 @@ Add any truspoint name of your preference, **please notice** that I'm using a pa
 
 In your Linux machine run:
 
-```
+```shell
 cat ca.pem
 ```
 
@@ -134,7 +131,7 @@ After pasting the device key hit enter and then type `quit` in your controller t
 4. Copy and paste the device certificate
    Into your Linux machine run:
 
-```
+```shell
 cat device.pem
 ```
 
@@ -164,9 +161,9 @@ Hit enter twice after pasting the certificate.
 
 ### Steps to set up self-signed certificates for web authentication in C9800
 
-a) CLI:
+1. CLI:
 
-```
+```shell
 ip http secure-trustpoint web
 ```
 
@@ -176,7 +173,7 @@ In my case, I called `web` the trustpoint
 
 ![CLI uploading web auth cert](/cisco_self_signed_certificate_generator/image_10.png)
 
-b) GUI
+2. GUI
 
 <Path route={['Administration', 'Management', 'HTTP/HTTPS/Netconf/VTY']} />
 
