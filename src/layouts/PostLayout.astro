@@ -13,7 +13,9 @@ const displayDate = dayjs(pubDate).format('ll');
 
 <BaseLayout title={title} description={description} image={heroImg}>
   <main class="md:flex md:justify-center">
-    <article class="prose prose-neutral md:prose-lg prose-img:mx-auto prose-img:rounded-md">
+    <article
+      class="prose prose-neutral md:prose-lg prose-img:mx-auto prose-img:rounded-md prose-code:rounded-[4px] prose-code:bg-[#22272e] prose-code:text-[#adbac7]"
+    >
       {heroImg && <img src={heroImg} alt={title} class="w-full max-w-[13rem] mb-6" />}
       <h1 class="my-2 text-3xl md:text-4xl tracking-[0.5px] text-center">{title}</h1>
       <div class="flex justify-between items-center">
