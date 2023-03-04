@@ -82,18 +82,14 @@ cat ca.pem
 
 ![read ca file](/cisco_self_signed_certificate_generator/image_08.png)
 
-Make sure to copy from BEGIN to END, like
+Make sure to copy from `BEGIN` to `END`, like
 
 ```
 -----BEGIN CERTIFICATE-----
 MIIDTTCCAjUCFCgoqdvrzkQyrpvgQhxa6d8rZbYnMA0GCSqGSIb3DQEBCwUAMGMx
 CzAJBgNVBAYTAlVTMQ4wDAYDVQQIDAVUZXhhczEPMA0GA1UEBwwGRGFsbGFzMQ8w
 DQYDVQQKDAZEYXItRmkxCzAJBgNVBAsMAkhRMRUwEwYDVQQDDAxkYXItZmkubG9j
-```
-
----snip---
-
-```
+..
 XXkv0/Km8rM3hIUghFbxk3OFZBhuoe+yzpldJfgoW37yeagqwX8tH2CDTOwVCVIZ
 o8xMvt59fiw3uE+ipzgIOj2TteS2EdTRiTcyLTTlc+6BgG6Atk6zzzfxXuJ5A6q2
 vBmP1XJA7Q/K313g04GGHPQG4nrqa3oGrxKnqmzMqRnJ
@@ -103,11 +99,11 @@ vBmP1XJA7Q/K313g04GGHPQG4nrqa3oGrxKnqmzMqRnJ
 3. Copy and paste the device key
    Into your Linux machine run:
 
-```
+```shell
 cat device.key
 ```
 
-Make sure to copy from BEGIN to END:
+Make sure to copy from `BEGIN` to `END`:
 
 ```
 -----BEGIN RSA PRIVATE KEY-----
@@ -117,11 +113,7 @@ DEK-Info: DES-EDE3-CBC,BF15DEEAE3BAD00A
 +640AcngqnC1PDeWPM5E7rihLuGtVnRGvd6mg6/oe6xYL4TgNMoDvBoE0xBzK+p0
 pWCjygammeggIlMcndBSE3NMxm8g4OzLmnUgoToBf/gZsQDEwzOs+1NfmNtxiwfx
 ZCd6ZQ9L1SBH5xTdJbVgAGnBYsUgalQ5S9dGWCemOK9aaT4gIzojhDclYt3KT/+N
-```
-
----snip---
-
-```
+..
 a2bQDrhudkvX+k6kwGKLUfSLA+zqs46UhsqinMNdquHOE1z4nFzF493Ecmk4LzT/
 sYy2glwhWnmo4rlLjhMP5mR1GS4mH15fmk8qX29VOZES3XjIsgzGFtAzTjYMsgvi
 x9Ch+mLQeLqLEVeGpbv3XzOZzJdZBLqlafHCQAEE/5pEfcCUEt/0l9Ql3W2WNiQU
@@ -144,11 +136,7 @@ cat device.pem
 MIIEkDCCA3igAwIBAgIUMFEMGS0nwUv7DuLwkQHoN8gVRlMwDQYJKoZIhvcNAQEL
 BQAwYzELMAkGA1UEBhMCVVMxDjAMBgNVBAgMBVRleGFzMQ8wDQYDVQQHDAZEYWxs
 YXMxDzANBgNVBAoMBkRhci1GaTELMAkGA1UECwwCSFExFTATBgNVBAMMDGRhci1m
-```
-
----snip---
-
-```
+..
 cI/2yIYln6xlLvQ5dyphfRxReXF877xGRNfD5nm2VgQ7Tp6+/rJdhYpmDOPxlWxG
 LJwAD1NylPhVw3NsHkdJKx35OYDxc9Yzbt9QOCfK1qd4qNJJMgI1sDjFPgb+2PK0
 fpkMcqC0mpHsZUaLOp7IOG52ljo=
@@ -175,7 +163,7 @@ In my case, I called `web` the trustpoint
 
 ![CLI uploading web auth cert](/cisco_self_signed_certificate_generator/image_10.png)
 
-2. GUI
+2. GUI 
 
 <Path route={['Administration', 'Management', 'HTTP/HTTPS/Netconf/VTY']} />
 
