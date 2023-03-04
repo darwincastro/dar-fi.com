@@ -61,7 +61,9 @@ To confirm if your Bluetooth card is up and running, also copy the name of your 
 
 ![Confirming BLE card operation](/capturing-bluetooth/image_03.png)
 
-<Note content="Some advanced Bluetooth cards allow you to capture packets in the air using monitor mode, in my case I don’t have that option on my Bluetooth card, you can confirm that opening your Wireshark and going to Capture > Options > Input, see if your Bluetooth card(s) has a square box under Bluetooth monitor (in case of affirmative, check the square box and start capturing your Bluetooth environment directly with Wireshark)" />
+<Note>
+  Some advanced Bluetooth cards allow you to capture packets in the air using monitor mode, in my case I don’t have that option on my Bluetooth card, you can confirm that opening your Wireshark and going to Capture > Options > Input, see if your Bluetooth card(s) has a square box under Bluetooth monitor (in case of affirmative, check the square box and start capturing your Bluetooth environment directly with Wireshark)
+</Note>
 
 ![capturing bluetooth](/capturing-bluetooth/image_04.png)
 
@@ -87,9 +89,11 @@ With the previous command, we set our Bluetooth interface in promiscuous mode, w
 
 - Let’s generate some Bluetooth traffic between both, in my scenario I just sent a .png image.
 
-<Important content="You must generate in/out traffic using the Linux machine because you will capture packets throughout that interface, it won’t work capturing third Bluetooth devices not connected to the Linux machine." />
+<Important>
+  You must generate in/out traffic using the Linux machine because you will capture packets throughout that interface, it won’t work capturing third Bluetooth devices not connected to the Linux machine.
+</Important>
 
-- Finish the packet capture with the shortcut: <Kbd hit={"Ctrl"} /> + <Kbd hit={"c"} />
+- Finish the packet capture with the shortcut: <Kbd>Ctrl</Kbd> + <Kbd>c</Kbd>
 
 - In the Ubuntu machine Go to your Home directory, locate the .pcap file and open it (it should open using Wireshark by default if it doesn’t open Wireshark and go to File > Open and locate the file under /Home directory.
 
