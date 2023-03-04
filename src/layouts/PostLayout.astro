@@ -8,7 +8,8 @@ export interface Props extends BlogSchema {}
 
 const { title, description, tags, pubDate, updatedDate, heroImg } = Astro.props;
 dayjs.extend(localizedFormat);
-const displayDate = dayjs(pubDate).format('ll');
+const formatPubDate = dayjs(pubDate.toLocaleString('en-US', { timeZone: 'UTC' })).format('LL');
+const formatUpdatedDate = dayjs(updatedDate?.toLocaleString('en-US', { timeZone: 'UTC' })).format('LL');
 ---
 
 <BaseLayout title={title} description={description} image={heroImg}>
@@ -25,11 +26,11 @@ const displayDate = dayjs(pubDate).format('ll');
           </ul>
         </div>
         <div>
-          {pubDate && <time class="text-sm">{displayDate}</time>}
+          {pubDate && <time class="text-sm">{formatPubDate}</time>}
           {
             updatedDate && (
               <p class="text-sm inline">
-                - Last updated on <time>{updatedDate}</time>{' '}
+                - Last updated on <time>{formatUpdatedDate}</time>{' '}
               </p>
             )
           }
