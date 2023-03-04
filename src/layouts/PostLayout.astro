@@ -30,6 +30,7 @@ const formatUpdatedDate = dayjs(updatedDate?.toLocaleString('en-US', { timeZone:
           {
             updatedDate && (
               <p class="text-sm inline">
+                {' '}
                 - Last updated on <time>{formatUpdatedDate}</time>{' '}
               </p>
             )
