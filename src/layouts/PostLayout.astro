@@ -17,9 +17,9 @@ const formatUpdatedDate = dayjs(updatedDate?.toLocaleString('en-US', { timeZone:
     <article
       class="prose prose-neutral md:prose-lg prose-img:mx-auto prose-img:rounded-md prose-code:rounded-[4px] prose-code:bg-[#22272e] prose-code:text-[#adbac7]"
     >
-      {heroImg && <img src={heroImg} alt={title} class="w-full max-w-[13rem] mb-6" />}
+      {heroImg && <img src={heroImg} alt={title} class="w-full max-w-[9rem] sm:max-w-[13rem] mb-6" />}
       <h1 class="my-2 text-3xl md:text-4xl tracking-[0.5px] text-center">{title}</h1>
-      <div class="flex justify-between items-center">
+      <div class="flex justify-center sm:justify-between items-center flex-wrap gap-6">
         <div>
           <ul class="flex gap-2 list-none text-sm -ml-5">
             {tags && tags.map((tag) => <li class="badge badge-primary">{tag}</li>)}
