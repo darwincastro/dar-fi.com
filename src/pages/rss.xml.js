@@ -4,6 +4,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../config';
 
 export async function get(context) {
   const blog = await getCollection('blog');
+  blog.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
   return rss({
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
