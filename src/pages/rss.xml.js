@@ -12,7 +12,7 @@ export async function get(context) {
     items: blog.map((post) => ({
       title: post.data.title,
       tags: post.data.tags,
-      pubDate: post.data.pubDate,
+      pubDate: post.data.pubDate.toLocaleString('en-US', { timeZone: 'UTC' }),
       description: post.data.description,
       link: `/blog/${post.slug}/`,
     })),
