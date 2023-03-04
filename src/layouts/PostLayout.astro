@@ -3,13 +3,13 @@ import { BlogSchema } from '../content/config';
 import BaseLayout from './BaseLayout.astro';
 import dayjs from 'dayjs';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
-
+import { generateCategoryData } from '../utils/generateCategoryData';
 export interface Props extends BlogSchema {}
-
-const { title, description, tags, pubDate, updatedDate, heroImg } = Astro.props;
+const { title, description, tags, categories, pubDate, updatedDate, heroImg } = Astro.props;
 dayjs.extend(localizedFormat);
 const formatPubDate = dayjs(pubDate.toLocaleString('en-US', { timeZone: 'UTC' })).format('LL');
 const formatUpdatedDate = dayjs(updatedDate?.toLocaleString('en-US', { timeZone: 'UTC' })).format('LL');
+const allCategoriesData = generateCategoryData(categories);
 ---
 
 <BaseLayout title={title} description={description} image={heroImg}>
