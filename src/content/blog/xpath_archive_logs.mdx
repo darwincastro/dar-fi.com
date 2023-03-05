@@ -1,0 +1,60 @@
+---
+title: XPath to archive all relevant logs in IOS XE
+description: To archive all the trace logs relevant to all the processes running on a system since the last reload on the switches and to save this in the specified location.
+tags:
+	- "#xpath"
+category: CLI to XPath
+pubDate: 2022-03-12
+updatedDate: 2023-03-05
+---
+
+To archive all the trace logs relevant to all the processes running on a system since the last reload on the switches and to save this in the specified location.
+
+The following XPath will retrieve a full archive, at this time there is not way to get an archive per day.   
+
+## Cisco Platform
+
+IOS XE
+
+## CLI
+
+```
+request platform software trace archive target harddisk:
+```
+
+## WLC version used
+
+17.6.2
+
+## Yang Module
+
+Cisco-IOS-XE-trace-rpc.yang
+
+## Prefix
+
+
+trace-ios-xe-rpc
+
+
+## Xpath
+
+
+/trace-ios-xe-rpc:trace-archive
+
+## Example
+
+### RPC
+
+```xml
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="101">
+  <trace-archive xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-trace-rpc">
+    <all>
+      <location>harddisk</location>
+      <file-name>testing_trace_file</file-name>
+    </all>
+  </trace-archive>
+</rpc>
+```
+
+The archive will be stored on the harddisk drive, but you can use bootflash or any other supported location.
+
