@@ -1,0 +1,13 @@
+---
+export interface Props {
+  route?: string[];
+}
+
+const { route } = Astro.props;
+---
+
+<div class="text-lg breadcrumbs">
+  <ul class="-ml-9">
+    {route?.map((item) => <li>{item}</li>)}
+  </ul>
+</div>

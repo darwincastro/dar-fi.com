@@ -3,28 +3,36 @@ import { BlogSchema } from '../content/config';
 import BaseLayout from './BaseLayout.astro';
 import dayjs from 'dayjs';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
-
 export interface Props extends BlogSchema {}
-
-const { title, description, pubDate, updatedDate, heroImg } = Astro.props;
+const { title, description, tags, pubDate, updatedDate, heroImg } = Astro.props;
 dayjs.extend(localizedFormat);
-const displayDate = dayjs(pubDate).format('ll');
+const formatPubDate = dayjs(pubDate.toLocaleString('en-US', { timeZone: 'UTC' })).format('LL');
+const formatUpdatedDate = dayjs(updatedDate?.toLocaleString('en-US', { timeZone: 'UTC' })).format('LL');
 ---
 
 <BaseLayout title={title} description={description} image={heroImg}>
   <main class="md:flex md:justify-center">
-    <article class="prose prose-stone md:prose-lg max-w-[750px] prose-img:mx-auto">
-      {heroImg && <img src={heroImg} alt={title} class="w-full max-w-xs mb-6" />}
+    <article
+      class="prose prose-neutral md:prose-lg prose-img:mx-auto prose-img:rounded-md prose-code:rounded-[4px] prose-code:bg-[#22272e] prose-code:text-[#adbac7]"
+    >
+      {heroImg && <img src={heroImg} alt={title} class="w-full max-w-[9rem] sm:max-w-[13rem] mb-6" />}
       <h1 class="my-2 text-3xl md:text-4xl tracking-[0.5px] text-center">{title}</h1>
-      <div class="text-center">
-        {pubDate && <time class="text-sm">{displayDate}</time>}
-        {
-          updatedDate && (
-            <p class="text-sm inline">
-              - Last updated on <time>{updatedDate}</time>{' '}
-            </p>
-          )
-        }
+      <div class="flex justify-center sm:justify-between items-center flex-wrap gap-6">
+        <div>
+          <ul class="flex gap-2 list-none text-sm -ml-5">
+            {tags && tags.map((tag) => <li class="badge badge-primary">{tag}</li>)}
+          </ul>
+        </div>
+        <div>
+          {pubDate && <time class="text-sm">{formatPubDate}</time>}
+          {
+            updatedDate && (
+              <span class="text-sm">
+                -&nbsp;Last updated on <time>{formatUpdatedDate}</time>
+              </span>
+            )
+          }
+        </div>
       </div>
       <div class="divider my-2"></div>
       <slot />

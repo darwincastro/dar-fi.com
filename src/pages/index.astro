@@ -2,9 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HorizontalCard from '../components/HorizontalCard.astro';
 import { getCollection } from 'astro:content';
-
 const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-
 const last_posts = posts.slice(0, 3);
 ---
 
@@ -12,12 +10,16 @@ const last_posts = posts.slice(0, 3);
   <div class="pb-12 mt-5">
     <h1 class="text-3xl md:text-5xl font-bold">I'm Darwin Castro</h1>
     <h2 class="text-2xl md:text-3xl my-5 md:my-6 font-bold">Consulting Engineer - Wireless</h2>
-    <div class="py-4">
+    <div class="py-4 max-w-[72ch]">
       <p class="text-lg">
-        Hi there, I'm Darwin Castro, I'm currently working as a Consulting Engineer - Wireless at Cisco Systems, I have some experience with network cloud-controlled using Cisco Meraki.
+        Hi there, thanks for coming. I'm Darwin Castro, I'm currently working as a Wireless Consulting Engineer at Cisco
+        Systems, and I have some experience working with networks cloud-controlled using Cisco Meraki.
       </p>
       <p class="text-lg mt-4">
-        I feel passion learning new stuff related to technology, I have a special interest in network systems I like to test network behaviors, put my hands on network labs "labbing-everyday", I'm in love with the Wireless World (Wi-Fi for now). I'm not pretending to reinvent the wheel, but you are welcome to take a look at some of the stuff I've played with and you may or may not find something useful here 😀
+        I feel passion learning new stuff related to technology, I have a special interest in networking. I like to test
+        network behaviors, put my hands on labs "labbing-everyday", I'm in love with the Wireless World (Wi-Fi for now).
+        I'm not pretending to reinvent the wheel, but you are welcome to take a look at some of the things that I've
+        played, and you may or may not find something useful here 😀
       </p>
     </div>
     <div class="mt-8">
@@ -36,11 +38,12 @@ const last_posts = posts.slice(0, 3);
         <HorizontalCard
           title={post.data.title}
           img={post.data.heroImg}
+          tags={post.data.tags}
           desc={post.data.description}
           url={'/blog/' + post.slug}
           target="_self"
         />
-        <div class="divider my-0" />
+        <div class="divider my-0 max-w-[65ch]" />
       </>
     ))
   }

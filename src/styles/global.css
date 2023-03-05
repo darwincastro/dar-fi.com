@@ -1,5 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Source+Code+Pro:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Roboto+Mono:wght@400;500;700&display=swap');
 
 .time-line-container > div:last-child .education__time > .education__line {
   display: none;
+}
+
+.tip * {
+  color: #002b3d;
 }

@@ -1,8 +1,8 @@
 {
   "name": "dar-fi.com",
-  "description": "Darwin Castro personal website",
+  "description": "Darwin Castro's personal website",
   "type": "module",
-  "version": "2.1.1",
+  "version": "2.2.1",
   "private": true,
   "scripts": {
     "dev": "astro dev",
@@ -16,7 +16,7 @@
     "@astrojs/rss": "^2.1.1",
     "@astrojs/sitemap": "^1.0.1",
     "@astrojs/tailwind": "^3.0.1",
-    "astro": "^2.0.16",
+    "astro": "^2.0.17",
     "daisyui": "^2.51.1",
     "dayjs": "^1.11.7",
     "rollup": "^3.17.3"

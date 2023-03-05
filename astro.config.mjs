@@ -7,5 +7,15 @@ import compress from 'astro-compress';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://dar-fi.com',
-  integrations: [compress(), mdx(), sitemap(), tailwind()],
+  integrations: [
+    compress(),
+    mdx({
+      syntaxHighlight: 'shiki',
+      shikiConfig: {
+        theme: 'github-dark-dimmed',
+      },
+    }),
+    sitemap(),
+    tailwind(),
+  ],
 });

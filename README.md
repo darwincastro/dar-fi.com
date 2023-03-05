@@ -6,11 +6,9 @@
   The second iteration of <a href="https://dar-fi.com/">dar-fi.com</a>, my website. Built with <a href="https://astro.build/">Astro</a> and Deployed by <a href="https://vercel.com/">Vercel</a>
 </p>
 <div align="center">
-    <img height="44" src="https://skillicons.dev/icons?i=vercel,astro,nodejs,typescript,tailwindcss" />
+    <img height="44" src="https://skillicons.dev/icons?i=vercel,astro,nodejs,typescript,tailwindcss" alt="Vercel, Astro, NodeJS, TypeScript, TailwindCSS" />
+    <img src="./public/mockup.png" alt="Device mockups of https://dar-fi.com" />
 </div>
-
-| ![](./public//desktop.jpg) | ![](./public/mobile.jpg) |
-| -------------------------- | ------------------------ |
 
 ## Tools 🧰
 

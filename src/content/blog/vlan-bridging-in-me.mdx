@@ -1,12 +1,16 @@
 ---
-title: 'VLAN Bridging in Mobility Express using RAP and MAP'
-description: 'VLAN Bridging in Mobility Express using RAP and MAP'
-pubDate: 'Jul 15 2021'
-heroImg: '/vlan-bridging-in-me/bridge.jpeg'
-updatedDate: 'Feb 20 2023'
+title: VLAN Bridging in Mobility Express using RAP and MAP
+description: This post is mainly focused in mapping VLANs using 2 Cisco Outdoors APs. The RAP will run Mobility Express WLC image, and the MAP is converted to CAPWAP mode.
+tags: 
+  - "#wireless"
+category: Wireless
+pubDate: 2021-07-15
+heroImg: /vlan-bridging-in-me/bridge.jpeg
+updatedDate: 2023-03-05
 ---
 
-This post is mainly focused in mapping VLANs using 2 Cisco Outdoors APs. The RAP will run Mobility Express WLC image, and the MAP is converted to CAPWAP mode.
+import Note from "../../components/common/Note.astro"
+import Important from "../../components/common/Important.astro"
 
 I won't covert the initial ME configuration and the MAP joining to the controller (I supposed that you have the point to point up and running) as shown the image:
 
@@ -127,7 +131,7 @@ wifi0                n/a             n/a      up                     up         
 wifi1                n/a             n/a      up                     up         n/a        n/a
 ```
 
-### **Ethernet Bridging**
+### Ethernet Bridging
 
 In order for wired clients behind the MAP send traffic over the mesh link, Ethernet Bridging needs to be enabled on the MAP under Wireless Settings > Access Points > MAP > Mesh:
 
@@ -181,12 +185,9 @@ Now, if we go to the ME WLC GUI > **Wireless Settings > Access Points > select 
 
 ![adding VLAN](/vlan-bridging-in-me/image_11.png)
 
----
-
-**Important**:
+<Important>
 You must add all of the VLAN required, if you exclude any productive VLAN the traffic will get drop as soon as it arrives to the APs, Cisco recommends adding up to 16 VLANs, however, I prefer to limit the number of the VLANs used in a Meshing environment.
-
----
+</Important>
 
 If you like the CLI way, you can go to the ME WLC CLI and run the following to accomplish the above;
 
@@ -196,12 +197,9 @@ If you like the CLI way, you can go to the ME WLC CLI and run the following to a
 (Cisco Controller) >config ap ethernet 0 mode trunk add <ap name> <vlan ID> >>>>> Up to 16 VLANs <<<<<<
 ```
 
----
-
-**Note**: 
-in the RAP side you don’t need to change the interface mode or add any VLAN there, the RAP will work with the MAP settings.
-
----
+<Note>
+In the RAP side you don’t need to change the interface mode or add any VLAN there, the RAP will work with the MAP settings.
+</Note>
 
 **Let’s see how this work!!!**
 

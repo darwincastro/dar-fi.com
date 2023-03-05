@@ -1,10 +1,16 @@
 ---
-title: 'Cisco Sef-Signed Certificate Generator'
-description: 'Script used to create a CA and self-signed certificate for Cisco devices, it could be used for other network devices as well.'
-pubDate: 'Feb 17 2022'
-heroImg: '/cisco_self_signed_certificate_generator/PKI-blue-cert.png'
-updatedDate: 'Feb 20 2023'
+title: Cisco Self-Signed Certificate Generator
+description: Script used to create a CA and self-signed certificate for Cisco devices, it could be used for other network devices as well.
+tags: 
+   - "#projects"
+category: Projects
+pubDate: 2022-02-17
+heroImg: /cisco_self_signed_certificate_generator/PKI-blue-cert.png
+updatedDate: 2023-03-03
 ---
+
+import Note from '../../components/common/Note.astro';
+import Path from '../../components/common/Path.astro';
 
 In this post, we are going to use a Cisco C9800-CL and a VM running Linux for this demo, the certificate should work with any IOS-XE device.
 
@@ -14,17 +20,14 @@ This script was tested with OpenSSL v1.1.1f & LibreSSL 3.3.6
 
 1. Clone the repository, and go to the directory.
 
-```
+```shell
 git clone https://github.com/darwincastro/ssc-cisco.git
-```
-
-```
 cd ssc-cisco
 ```
 
 2. Run the script:
 
-```
+```shell
 ./mkcerts+CA.sh
 ```
 
@@ -52,11 +55,9 @@ Add any information that you like, but make sure the device hostname includes th
 
 ![copy and paste the FQDN](/cisco_self_signed_certificate_generator/image_06.png)
 
----
-
-**Note**: The script supports one hostname, and one IP address, if you are planning to use multiple IPs & names feel free to modify the code at your convenience.
-
----
+<Note>
+   The script supports one hostname, and one IP address, if you are planning to use multiple IPs & names feel free to modify the code at your convenience.
+</Note>
 
 **After adding the IP address you will see the following output**:
 
@@ -68,7 +69,7 @@ You will get a handy output with green text, it includes the commands to run in 
 
 1. In global configuration mode run:
 
-```
+```shell
 crypto pki import <trustpoint name> pem terminal password cisco
 ```
 
@@ -78,24 +79,20 @@ Add any truspoint name of your preference, **please notice** that I'm using a pa
 
 In your Linux machine run:
 
-```
+```shell
 cat ca.pem
 ```
 
 ![read ca file](/cisco_self_signed_certificate_generator/image_08.png)
 
-Make sure to copy from BEGIN to END, like
+Make sure to copy from `BEGIN` to `END`, like
 
 ```
 -----BEGIN CERTIFICATE-----
 MIIDTTCCAjUCFCgoqdvrzkQyrpvgQhxa6d8rZbYnMA0GCSqGSIb3DQEBCwUAMGMx
 CzAJBgNVBAYTAlVTMQ4wDAYDVQQIDAVUZXhhczEPMA0GA1UEBwwGRGFsbGFzMQ8w
 DQYDVQQKDAZEYXItRmkxCzAJBgNVBAsMAkhRMRUwEwYDVQQDDAxkYXItZmkubG9j
-```
-
----snip---
-
-```
+..
 XXkv0/Km8rM3hIUghFbxk3OFZBhuoe+yzpldJfgoW37yeagqwX8tH2CDTOwVCVIZ
 o8xMvt59fiw3uE+ipzgIOj2TteS2EdTRiTcyLTTlc+6BgG6Atk6zzzfxXuJ5A6q2
 vBmP1XJA7Q/K313g04GGHPQG4nrqa3oGrxKnqmzMqRnJ
@@ -105,11 +102,11 @@ vBmP1XJA7Q/K313g04GGHPQG4nrqa3oGrxKnqmzMqRnJ
 3. Copy and paste the device key
    Into your Linux machine run:
 
-```
+```shell
 cat device.key
 ```
 
-Make sure to copy from BEGIN to END:
+Make sure to copy from `BEGIN` to `END`:
 
 ```
 -----BEGIN RSA PRIVATE KEY-----
@@ -119,11 +116,7 @@ DEK-Info: DES-EDE3-CBC,BF15DEEAE3BAD00A
 +640AcngqnC1PDeWPM5E7rihLuGtVnRGvd6mg6/oe6xYL4TgNMoDvBoE0xBzK+p0
 pWCjygammeggIlMcndBSE3NMxm8g4OzLmnUgoToBf/gZsQDEwzOs+1NfmNtxiwfx
 ZCd6ZQ9L1SBH5xTdJbVgAGnBYsUgalQ5S9dGWCemOK9aaT4gIzojhDclYt3KT/+N
-```
-
----snip---
-
-```
+..
 a2bQDrhudkvX+k6kwGKLUfSLA+zqs46UhsqinMNdquHOE1z4nFzF493Ecmk4LzT/
 sYy2glwhWnmo4rlLjhMP5mR1GS4mH15fmk8qX29VOZES3XjIsgzGFtAzTjYMsgvi
 x9Ch+mLQeLqLEVeGpbv3XzOZzJdZBLqlafHCQAEE/5pEfcCUEt/0l9Ql3W2WNiQU
@@ -135,7 +128,7 @@ After pasting the device key hit enter and then type `quit` in your controller t
 4. Copy and paste the device certificate
    Into your Linux machine run:
 
-```
+```shell
 cat device.pem
 ```
 
@@ -146,11 +139,7 @@ cat device.pem
 MIIEkDCCA3igAwIBAgIUMFEMGS0nwUv7DuLwkQHoN8gVRlMwDQYJKoZIhvcNAQEL
 BQAwYzELMAkGA1UEBhMCVVMxDjAMBgNVBAgMBVRleGFzMQ8wDQYDVQQHDAZEYWxs
 YXMxDzANBgNVBAoMBkRhci1GaTELMAkGA1UECwwCSFExFTATBgNVBAMMDGRhci1m
-```
-
----snip---
-
-```
+..
 cI/2yIYln6xlLvQ5dyphfRxReXF877xGRNfD5nm2VgQ7Tp6+/rJdhYpmDOPxlWxG
 LJwAD1NylPhVw3NsHkdJKx35OYDxc9Yzbt9QOCfK1qd4qNJJMgI1sDjFPgb+2PK0
 fpkMcqC0mpHsZUaLOp7IOG52ljo=
@@ -165,9 +154,9 @@ Hit enter twice after pasting the certificate.
 
 ### Steps to set up self-signed certificates for web authentication in C9800
 
-a) CLI:
+1. CLI:
 
-```
+```shell
 ip http secure-trustpoint web
 ```
 
@@ -177,9 +166,9 @@ In my case, I called `web` the trustpoint
 
 ![CLI uploading web auth cert](/cisco_self_signed_certificate_generator/image_10.png)
 
-b) GUI
+2. GUI 
 
-> Administration > Management > HTTP/HTTPS/Netconf/VTY
+<Path route={['Administration', 'Management', 'HTTP/HTTPS/Netconf/VTY']} />
 
 **The output should look like the following**:
 
