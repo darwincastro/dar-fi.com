@@ -31,7 +31,10 @@ const sortedCategories = Array.from(allCategoriesUnique).sort();
               tabindex="0"
               class="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box mb-6 shadow-md"
             >
-              <input aria-label="collapse" type="checkbox" />
+              <label for="collapse">
+                <span class="sr-only">{category}</span>
+              </label>
+              <input id="collapse" aria-label="collapse" type="checkbox" />
               <div class="collapse-title text-xl font-medium">{category}</div>
               <div class="collapse-content">
                 <ul>
