@@ -2,7 +2,7 @@
   "name": "dar-fi.com",
   "description": "Darwin Castro's personal website",
   "type": "module",
-  "version": "2.1.1",
+  "version": "2.2.1",
   "private": true,
   "scripts": {
     "dev": "astro dev",
