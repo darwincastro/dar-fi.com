@@ -7,13 +7,12 @@ const { title, img, desc, url, badge, tags, target = '_blank' } = Astro.props;
     <div class="hero-content flex-col md:flex-row gap-8">
       {img && <img src={img} alt={title} class="max-w-[8rem] rounded-lg" />}
       <div class="grow w-full">
-        <h3 class="card-title">
+        <h3 class="card-title text-lg md:text-xl">
           {title}
-          {badge && <div class="badge badge-secondary mx-2">{badge}</div>}
         </h3>
-        <p class="py-1 text-1xl">{desc}</p>
+        <p class="py-2 text-base">{desc}</p>
         <div class="card-actions justify-end">
-          {tags && tags.map((tag) => <div class="badge badge-primary rounded-lg">{tag}</div>)}
+          {tags && tags.map((tag) => <div class="badge badge-primary rounded-lg my-4 md:my-0">{tag}</div>)}
         </div>
         <div class="card-actions items-center mt-6">
           <a href={url} class="uppercase text-sm font-bold hover:underline -ml-2 block" target={target}>read article</a>
