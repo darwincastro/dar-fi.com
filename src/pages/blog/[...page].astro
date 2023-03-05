@@ -10,10 +10,7 @@ export async function getStaticPaths({ paginate }) {
 const { page } = Astro.props;
 const allCategoriesUnique = new Set();
 page.data.map((post) => {
-  post.data.categories &&
-    post.data.categories.map((category) => {
-      allCategoriesUnique.add(category);
-    });
+  post.data.category && allCategoriesUnique.add(post.data.category);
 });
 const sortedCategories = Array.from(allCategoriesUnique).sort();
 ---
@@ -40,7 +37,7 @@ const sortedCategories = Array.from(allCategoriesUnique).sort();
                 <ul>
                   {page.data.map((post) => (
                     <>
-                      {post.data.categories == category && (
+                      {post.data.category == category && (
                         <li>
                           <HorizontalCard
                             title={post.data.title}
