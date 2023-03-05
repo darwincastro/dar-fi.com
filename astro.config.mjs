@@ -11,7 +11,9 @@ export default defineConfig({
     compress(),
     mdx({
       syntaxHighlight: 'shiki',
-      shikiConfig: { theme: 'github-dark-dimmed' },
+      shikiConfig: {
+        theme: 'github-dark-dimmed',
+      },
     }),
     sitemap(),
     tailwind(),
