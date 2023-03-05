@@ -5,74 +5,59 @@ import { getCollection } from 'astro:content';
 export async function getStaticPaths({ paginate }) {
   const posts = await getCollection('blog');
   posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-  return paginate(posts, { pageSize: 10 });
+  return paginate(posts, { pageSize: -1 });
 }
-
 const { page } = Astro.props;
+const allCategoriesUnique = new Set();
+page.data.map((post) => {
+  post.data.categories &&
+    post.data.categories.map((category) => {
+      allCategoriesUnique.add(category);
+    });
+});
+const sortedCategories = Array.from(allCategoriesUnique).sort();
 ---
 
 <BaseLayout title="Blog">
   <div>
     <h3 class="text-3xl w-full font-bold mb-5 mt-10 underline">Blog</h3>
   </div>
-  <ul>
-    {
-      page.data.map((post) => (
-        <>
-          <li>
-            <HorizontalCard
-              title={post.data.title}
-              img={post.data.heroImg}
-              tags={post.data.tags}
-              desc={post.data.description}
-              url={'/blog/' + post.slug}
-              target="_self"
-            />
-            <div class="divider my-0" />
-          </li>
-        </>
-      ))
-    }
-  </ul>
-
-  <div class="flex justify-between">
-    {
-      page.url.prev ? (
-        <a href={page.url.prev} class="btn btn-ghost my-10 mx-5">
-          {' '}
-          <svg
-            class="h-6 w-6 fill-current md:h-8 md:w-8"
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-          >
-            <path d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" />
-          </svg>{' '}
-          Recent posts
-        </a>
-      ) : (
-        <div />
-      )
-    }
-    {
-      page.url.next ? (
-        <a href={page.url.next} class="btn btn-ghost my-10 mx-5">
-          Older Posts{' '}
-          <svg
-            class="h-6 w-6 fill-current md:h-8 md:w-8"
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-          >
-            {' '}
-            <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
-          </svg>
-        </a>
-      ) : (
-        <div />
-      )
-    }
+  <div>
+    <ul>
+      {
+        sortedCategories.map((category) => (
+          <>
+            <li
+              tabindex="0"
+              class="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box mb-6 shadow-md"
+            >
+              <input aria-label="collapse" type="checkbox" />
+              <div class="collapse-title text-xl font-medium">{category}</div>
+              <div class="collapse-content">
+                <ul>
+                  {page.data.map((post) => (
+                    <>
+                      {post.data.categories == category && (
+                        <li>
+                          <HorizontalCard
+                            title={post.data.title}
+                            img={post.data.heroImg}
+                            tags={post.data.tags}
+                            desc={post.data.description}
+                            url={'/blog/' + post.slug}
+                            target="_self"
+                          />
+                          <div class="divider my-0" />
+                        </li>
+                      )}
+                    </>
+                  ))}
+                </ul>
+              </div>
+            </li>
+          </>
+        ))
+      }
+    </ul>
   </div>
 </BaseLayout>
