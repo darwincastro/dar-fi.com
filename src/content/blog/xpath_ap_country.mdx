@@ -1,0 +1,54 @@
+---
+title: XPath to get AP country code
+description: XPath used to display the AP country code.
+tags:
+  - "#xpath"
+category: CLI to XPath
+pubDate: 2022-09-30
+updatedDate: 2023-03-03
+---
+
+import Note from '../../components/common/Note.astro';
+
+<Note>
+Please refer to the following <a href="https://dar-fi.com/blog/ios-xe_tracking_xpaths" target="_blank">post</a> to learn how to track XPaths.
+</Note>
+
+## Cisco Platform
+
+C9800-CL
+
+## WLC's version used
+
+17.6.2
+
+## Yang Module
+
+Cisco-IOS-XE-wireless-access-point-oper
+
+## Prefix
+
+
+/wireless-access-point-oper
+
+
+## XPath
+
+
+/wireless-access-point-oper:access-point-oper-data/capwap-data
+
+
+## Example:
+### Sending
+
+```json
+http://10.93.178.145:8480/restconf/proxy/https://10.93.178.68:443/restconf/data/Cisco-IOS-XE-wireless-access-point-oper:access-point-oper-data/capwap-data=00%3A04%3A05%3A00%3A02%3A00/country-code
+```
+
+### Received message from host
+
+```json
+{
+  "Cisco-IOS-XE-wireless-access-point-oper:country-code": "US "
+}
+```

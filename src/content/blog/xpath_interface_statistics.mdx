@@ -1,0 +1,93 @@
+---
+title: XPath to collect interface statistics on IOS XE
+description: XPath used to display statistics for the network interfaces in Cisco IOS XE platforms.
+tags:
+  - "#xpath"
+category: CLI to XPath
+pubDate: 2022-06-28
+updatedDate: 2023-03-05
+---
+
+import Note from '../../components/common/Note.astro';
+
+<Note>
+Please refer to the following <a href="https://dar-fi.com/blog/ios-xe_tracking_xpaths" target="_blank">post</a> to learn how to track XPaths.
+</Note>
+
+## Cisco Platform
+
+IOS XE
+
+## CLI
+
+```
+show interface
+```
+
+## WLC's version used
+
+17.6.2
+
+## Yang Module
+
+Cisco-IOS-XE-interfaces-oper
+
+## Prefix
+
+interfaces-ios-xe-oper
+
+
+## XPath
+
+
+/interfaces-ios-xe-oper:interfaces/interface
+
+
+## Example:
+
+### GET
+
+```json
+curl -X 'GET' \
+  'http://10.93.178.145:8480/restconf/proxy/https://10.93.178.68:443/restconf/data/Cisco-IOS-XE-interfaces-oper:interfaces/interface' \
+  -H 'accept: application/yang-data+json'
+```
+
+### Sending
+
+```json
+http://10.93.178.145:8480/restconf/proxy/https://10.93.178.68:443/restconf/data/Cisco-IOS-XE-interfaces-oper:interfaces/interface
+```
+
+### Received message from host 
+
+I'm just adding the output of the interesting field "description"
+
+```json
+{
+  "Cisco-IOS-XE-interfaces-oper:interface": [
+    {
+},
+      "vrf": "",
+      "ipv4": "0.0.0.0",
+      "ipv4-subnet-mask": "0.0.0.0",
+      "description": "Po1 --> C9348_Core1 Gig1/0/3",
+      "mtu": 1500,
+      "input-security-acl": "",
+      "output-security-acl": "",
+      "v4-protocol-stats": {
+        "in-pkts": "0",
+        "in-octets": "0",
+        "in-error-pkts": "0",
+        "in-forwarded-pkts": "0",
+        "in-forwarded-octets": "0",
+        "in-discarded-pkts": "0",
+        "out-pkts": "0",
+        "out-octets": "0",
+        "out-error-pkts": "0",
+        "out-forwarded-pkts": "0",
+        "out-forwarded-octets": "0",
+        "out-discarded-pkts": "0"
+      },
+```
+

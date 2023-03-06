@@ -1,0 +1,73 @@
+---
+title: XPath to write memory on IOS XE
+description: The write memory command **saves the running configuration as the startup configuration only when the save-config overwrite command determines that this file can be overridden**.
+tags:
+  - "#xpath"
+category: CLI to XPath
+pubDate: 2022-04-01
+updatedDate: 2023-03-05
+---
+
+import Note from '../../components/common/Note.astro';
+
+The write memory command saves the running configuration as the startup configuration only when the save-config overwrite command determines that this file can be overridden.
+
+<Note>
+Please refer to the following <a href="https://dar-fi.com/blog/ios-xe_tracking_xpaths" target="_blank">post</a> to learn how to track XPaths.
+</Note>
+
+## Cisco Platform
+
+IOS XE
+
+## WLC version used
+
+17.6.2
+
+## CLI
+
+```
+write mem
+```
+
+## Yang Module
+
+
+cisco-ia
+
+
+## Prefix
+
+
+cisco-ia
+
+
+## XPath
+
+
+/cisco-ia:save-config
+
+
+## GET
+
+```json
+http://10.93.178.145:8480/restconf/proxy/https://10.93.178.70:443/restconf/operations/cisco-ia:save-config
+```
+
+## Example
+### Sending
+
+```json
+curl -X 'POST' \ 'http://10.93.178.145:8480/restconf/proxy/https://10.93.178.70:443/restconf/operations/cisco-ia:save-config' \ -H 'accept: application/yang-data+json' \ -d ''
+```
+
+### Received message from host
+
+```json
+{
+  "cisco-ia:output": {
+    "result": "Save running-config successful"
+  }
+}
+```
+

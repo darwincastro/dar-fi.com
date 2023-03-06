@@ -1,0 +1,91 @@
+---
+title: XPath to collect RRM measurement 
+description: The Radio Resource Management (RRM) software embedded in the Cisco Wireless LAN Controller acts as a built-in RF engineer to consistently provide real-time RF management of your wireless network.
+tags:
+  - "#xpath"
+category: CLI to XPath
+pubDate: 2022-05-14
+updatedDate: 2023-02-28
+---
+
+import Note from '../../components/common/Note.astro';
+
+
+RRM enables Cisco WLCs to continually monitor their associated lightweight access points for the following information:
+
+-   Traffic load: The total bandwidth used for transmitting and receiving traffic. It enables wireless LAN managers to track and plan network growth ahead of client demand.
+    
+-   Interference: The amount of traffic coming from other 802.11 sources.
+    
+-   Noise: The amount of non-802.11 traffic that is interfering with the currently assigned channel.
+    
+-   Coverage: The received signal strength (RSSI) and signal-to-noise ratio (SNR) for all connected clients.
+    
+-   Other: The number of nearby access points.
+
+<Note>
+Please refer to the following <a href="https://dar-fi.com/blog/ios-xe_tracking_xpaths" target="_blank">post</a> to learn how to track XPaths.
+</Note>
+
+## Cisco Platform
+
+C9800-CL
+
+## WLC's version used
+
+17.6.2
+
+## Yang Module
+
+
+Cisco-IOS-XE-wireless-rrm-oper
+
+
+## Prefix
+
+
+wireless-rrm-oper
+
+
+## XPath
+
+
+/wireless-rrm-oper:rrm-oper-data/rrm-measurement
+
+
+## Example:
+
+### GET
+
+```json
+curl -X 'GET' \
+  'http://10.93.178.145:8480/restconf/proxy/https://10.93.178.70:443/restconf/data/Cisco-IOS-XE-wireless-rrm-oper:rrm-oper-data/rrm-measurement' \
+  -H 'accept: application/yang-data+json'
+```
+
+
+### Sending
+
+```json
+http://10.93.178.145:8480/restconf/proxy/https://10.93.178.70:443/restconf/data/Cisco-IOS-XE-wireless-rrm-oper:rrm-oper-data/rrm-measurement
+```
+
+The following is just a fragment of the WLC response
+
+```json
+{
+  "Cisco-IOS-XE-wireless-rrm-oper:rrm-measurement": [
+    {
+      "wtp-mac": "00:2a:10:5a:c1:c0",
+      "radio-slot-id": 0,
+      "foreign": {
+        "foreign": {
+          "foreign-data": [
+            {
+              "chan": 1,
+              "power": -72,
+              "rogue-20-count": 18,
+              "rogue-40-primary-count": 0,
+              "rogue-80-primary-count": 0
+            },
+```

@@ -1,5 +1,5 @@
 ---
-title: XPath to archive all relevant logs in IOS XE
+title: XPath to archive all relevant logs on IOS XE
 description: To archive all the trace logs relevant to all the processes running on a system since the last reload on the switches and to save this in the specified location.
 tags:
 	- "#xpath"
@@ -8,9 +8,15 @@ pubDate: 2022-03-12
 updatedDate: 2023-03-05
 ---
 
+import Note from '../../components/common/Note.astro';
+
 To archive all the trace logs relevant to all the processes running on a system since the last reload on the switches and to save this in the specified location.
 
 The following XPath will retrieve a full archive, at this time there is not way to get an archive per day.   
+
+<Note>
+Please refer to the following <a href="https://dar-fi.com/blog/ios-xe_tracking_xpaths" target="_blank">post</a> to learn how to track XPaths.
+</Note>
 
 ## Cisco Platform
 
@@ -36,7 +42,7 @@ Cisco-IOS-XE-trace-rpc.yang
 trace-ios-xe-rpc
 
 
-## Xpath
+## XPath
 
 
 /trace-ios-xe-rpc:trace-archive
@@ -57,4 +63,3 @@ trace-ios-xe-rpc
 ```
 
 The archive will be stored on the harddisk drive, but you can use bootflash or any other supported location.
-

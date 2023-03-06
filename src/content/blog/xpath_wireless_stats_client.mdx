@@ -1,0 +1,88 @@
+---
+title: XPath to collect wireless stats client on C9800s
+description: Used to collect stats of wireless clients connected to any WLAN in the Cisco C9800 controllers.
+tags:
+  - "#xpath"
+category: CLI to XPath
+pubDate: 2023-03-05
+updatedDate: 2023-03-05
+---
+
+import Note from '../../components/common/Note.astro';
+
+<Note>
+Please refer to the following <a href="https://dar-fi.com/blog/ios-xe_tracking_xpaths" target="_blank">post</a> to learn how to track XPaths.
+</Note>
+
+## Cisco Platform
+
+C9800-CL
+
+## CLI
+
+```
+show wireless stats client detail 
+```
+
+## WLC version used
+
+
+17.9.3
+
+
+## Yang Module
+
+
+Cisco-IOS-XE-wireless-client-global-oper
+
+
+## Prefix
+
+
+/wireless-client-global-oper
+
+
+## XPath
+
+
+/wireless-client-global-oper:client-global-oper-data/client-global-stats-data
+
+
+## Example:
+
+### GET
+
+```json
+curl -X 'GET' \
+  'http://10.93.178.145:8480/restconf/proxy/https://10.93.178.68:443/restconf/data/Cisco-IOS-XE-wireless-client-global-oper:client-global-oper-data/client-dot11-stats/client-roaming-stats' \
+  -H 'accept: application/yang-data+json'
+```
+
+### Sending
+
+```json
+http://10.93.178.145:8480/restconf/proxy/https://10.93.178.68:443/restconf/data/Cisco-IOS-XE-wireless-client-global-oper:client-global-oper-data/client-dot11-stats/client-roaming-stats
+```
+
+### Received message from host
+
+
+```json
+{
+  "Cisco-IOS-XE-wireless-client-global-oper:client-roaming-stats": {
+    "total-roam": 0,
+    "cckm-roam": 0,
+    "dot11r-roam": 0,
+    "dot11i-fast-roam": 0,
+    "dot11i-slow-roam": 0,
+    "roam-fail": 0,
+    "ap-auth-roams": 0,
+    "ap-auth-dot11i-fast-roam": 0,
+    "ap-auth-dot11i-slow-roam": 0,
+    "flex-11r-roam": 0,
+    "dot11r-slow-roam": 0,
+    "pmkr0-name-mismatch": 0,
+    "pmkr1-name-mismatch": 0
+  }
+}
+```
