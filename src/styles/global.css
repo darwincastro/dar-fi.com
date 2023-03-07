@@ -29,6 +29,7 @@ pre.astro-code copy-code {
   right: 0;
 }
 
-pre.astro-code:hover copy-code {
+pre.astro-code:is(:active, :hover) copy-code,
+pre.astro-code copy-code:focus {
   opacity: 1;
 }
