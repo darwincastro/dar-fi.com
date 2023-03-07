@@ -7,3 +7,16 @@
 .tip * {
   color: #002b3d;
 }
+
+pre.astro-code {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+pre.astro-code copy-code {
+  position: sticky;
+  align-self: flex-start;
+  top: 0;
+  right: 0;
+}
