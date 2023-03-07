@@ -8,15 +8,27 @@
   color: #002b3d;
 }
 
+.tip * > code,
+.tip * > pre {
+  color: #adbac7;
+}
+
 pre.astro-code {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0.75rem;
 }
 
 pre.astro-code copy-code {
+  opacity: 0;
+  transition: opacity 100ms ease-in;
   position: sticky;
   align-self: flex-start;
   top: 0;
   right: 0;
+}
+
+pre.astro-code:hover copy-code {
+  opacity: 1;
 }
