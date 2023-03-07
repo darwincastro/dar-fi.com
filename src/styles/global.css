@@ -21,15 +21,19 @@ pre.astro-code {
 }
 
 pre.astro-code copy-code {
-  opacity: 0;
-  transition: opacity 100ms ease-in;
   position: sticky;
   align-self: flex-start;
   top: 0;
   right: 0;
 }
 
-pre.astro-code:is(:active, :hover) copy-code,
-pre.astro-code copy-code:focus {
-  opacity: 1;
+@media (min-width: 570px) {
+  pre.astro-code copy-code {
+    opacity: 0;
+    transition: opacity 100ms ease-in;
+  }
+
+  pre.astro-code:is(:focus-within, :hover) copy-code {
+    opacity: 1;
+  }
 }
