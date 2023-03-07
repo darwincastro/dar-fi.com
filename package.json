@@ -19,6 +19,7 @@
     "astro": "^2.0.17",
     "daisyui": "^2.51.1",
     "dayjs": "^1.11.7",
+    "lit": "^2.6.1",
     "rollup": "^3.17.3"
   },
   "devDependencies": {
