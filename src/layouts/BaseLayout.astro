@@ -13,6 +13,10 @@ const { image, title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.prop
 <html lang="en">
   <head>
     <BaseHead title={`Darwin Castro - ${title}`} description={description} image={image} />
+    <script>
+      import '../utils/copyCode.js';
+      import '../utils/createCopyCode.js';
+    </script>
   </head>
   <body>
     <div class="bg-base-100 drawer drawer-mobile">
