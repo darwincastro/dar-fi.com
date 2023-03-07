@@ -1,0 +1,28 @@
+---
+import HorizontalCard from './HorizontalCard.astro';
+const { page, category } = Astro.props;
+---
+
+<div class="collapse-content">
+  <ul>
+    {
+      page.data.map((post) => (
+        <>
+          {post.data.category == category && (
+            <li>
+              <HorizontalCard
+                title={post.data.title}
+                img={post.data.heroImg}
+                tags={post.data.tags}
+                desc={post.data.description}
+                url={'/blog/' + post.slug}
+                target="_self"
+              />
+              <div class="divider my-0" />
+            </li>
+          )}
+        </>
+      ))
+    }
+  </ul>
+</div>
