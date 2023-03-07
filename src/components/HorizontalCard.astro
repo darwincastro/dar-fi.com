@@ -4,8 +4,8 @@ const { title, img, desc, url, tags, target = '_blank' } = Astro.props;
 
 <div class="rounded-lg bg-base-100 hover:shadow-xl transition ease-in card max-w-[65ch]">
   <a href={url} target={target}>
-    <div class="hero-content flex-col md:flex-row gap-0">
-      {img && <img src={img} alt={title} class="max-w-[8rem] rounded-lg pb-8 pr-0 md:pr-8 md:pb-0" />}
+    <div class="hero-content flex-col md:flex-row gap-6">
+      {img && <img src={img} alt={title} class="max-w-[7.5rem] rounded-lg" />}
       <div class="grow w-full">
         <h3 class="card-title text-lg md:text-xl">
           {title}
