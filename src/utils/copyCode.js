@@ -40,7 +40,7 @@ export class CopyCode extends LitElement {
         background: #e2e8f022;
         border: none;
         border-radius: 0.25rem;
-        color: #fff;
+        color: #adbac7;
         cursor: pointer;
         font-weight: 600;
       }

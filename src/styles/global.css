@@ -30,10 +30,12 @@ pre.astro-code copy-code {
 @media (min-width: 570px) {
   pre.astro-code copy-code {
     opacity: 0;
-    transition: opacity 100ms ease-in;
+    visibility: hidden;
+    transition: all 100ms ease-in;
   }
 
   pre.astro-code:hover copy-code {
     opacity: 1;
+    visibility: visible;
   }
 }
