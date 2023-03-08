@@ -33,7 +33,7 @@ pre.astro-code copy-code {
     transition: opacity 100ms ease-in;
   }
 
-  pre.astro-code:is(:focus-within, :hover) copy-code {
+  pre.astro-code:hover copy-code {
     opacity: 1;
   }
 }
