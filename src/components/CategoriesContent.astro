@@ -3,8 +3,8 @@ import HorizontalCard from './HorizontalCard.astro';
 const { page, category } = Astro.props;
 ---
 
-<div class="collapse-content">
-  <ul>
+<div class="collapse-content overflow-y-auto">
+  <ul class="max-h-[35rem]">
     {
       page.data.map((post) => (
         <>
