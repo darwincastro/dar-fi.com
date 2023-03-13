@@ -1,0 +1,125 @@
+---
+title: XPath dir harddisk and bootflash in IOS XE
+description: To archive all the trace logs relevant to all the processes running on a system since the last reload on the switches and to save this in the specified location.
+tags:
+  - "#xpath"
+category: CLI to XPath
+pubDate: 2023-03-13
+heroImg: /xpath-assets/image_01.png
+updatedDate: 2023-03-13
+---
+
+import Note from '../../components/common/Note.astro';
+
+<Note>
+Please refer to the following <a href="https://dar-fi.com/blog/ios-xe_tracking_xpaths" target="_blank">post</a> to learn how to track XPaths.
+</Note>
+
+## Cisco Platform
+
+IOS XE
+
+## CLI
+
+dir harddisk:
+
+## WLC's version used
+
+17.9.1ES13
+
+## Yang Module
+
+```
+Cisco-IOS-XE-platform-software-oper
+```
+
+## Prefix
+
+```
+platform-sw-ios-xe-oper
+```
+
+## XPath
+
+```
+platform-sw-ios-xe-oper:cisco-platform-software/q-filesystem/partitions/name
+```
+
+## Example:
+### Sending REST
+
+```json
+https://10.93.178.70/restconf/data/cisco-platform-software/q-filesystem=fru-rp,0,0,-1/partitions=harddisk:
+```
+
+### Received message from host
+
+```xml
+<partitions xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-platform-software-oper"  xmlns:platform-sw-ios-xe-oper="http://cisco.com/ns/yang/Cisco-IOS-XE-platform-software-oper">
+    <name>harddisk:</name>
+    <total-size>230686440</total-size>
+    <used-size>12424312</used-size>
+    <used-percent>5</used-percent>
+    <disk-status>healthy</disk-status>
+    <thresholds>
+        <warning-threshold-percent>70</warning-threshold-percent>
+        <critical-threshold-percent>90</critical-threshold-percent>
+    </thresholds>
+    <is-primary>false</is-primary>
+    <is-writable>true</is-writable>
+    <partition-content>
+        <full-path>/harddisk/copied.txt</full-path>
+        <size>9</size>
+        <type>file</type>
+        <modified-time>2023-03-13T14:37:23+00:00</modified-time>
+    </partition-content>
+</partitions>
+```
+
+### How do I know what corresponds in each field?
+
+I'm glad that you asked, I ran:
+
+```bash
+curl -X 'GET' \
+  'http://10.93.178.145:8480/restconf/proxy/https://10.93.178.70:443/restconf/data/Cisco-IOS-XE-platform-software-oper:cisco-platform-software/q-filesystem' \
+  -H 'accept: application/yang-data+json'
+```
+
+To get the capabilities of the C9800-40 that I'm using, the output:
+
+```json
+{
+  "Cisco-IOS-XE-platform-software-oper:q-filesystem": [
+    {
+      "fru": "fru-rp",
+      "slot": 0,
+      "bay": 0,
+      "chassis": -1,
+      "partitions": [
+	}
+	    ]
+        },
+        {
+          "name": "harddisk:",
+          "total-size": "230686440",
+          "used-size": "12424312",
+          "used-percent": 5,
+          "disk-status": "healthy",
+          "thresholds": {
+            "warning-threshold-percent": 70,
+            "critical-threshold-percent": 90
+		 {
+          "name": "bootflash:",
+          "total-size": "25842772",
+          "used-size": "5760688",
+          "used-percent": 22,
+          "disk-status": "healthy",
+          "thresholds": {
+            "warning-threshold-percent": 70,
+            "critical-threshold-percent": 90
+          },
+         }
+```
+
+I trunked the output with a couple of important partitions **"bootflash:"** and **"harddisk:"**

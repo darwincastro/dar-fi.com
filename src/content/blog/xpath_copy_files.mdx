@@ -1,0 +1,63 @@
+---
+title: XPath to copy files from partitions in IOS XE
+description: Command used to copy files (tested in C9800) it should work with any other IOS-XE device.
+tags:
+  - "#xpath"
+category: CLI to XPath
+pubDate: 2022-03-13
+heroImg: /xpath-assets/image_01.png
+updatedDate: 2023-03-13
+---
+
+import Note from '../../components/common/Note.astro';
+
+<Note>
+Please refer to the following <a href="https://dar-fi.com/blog/ios-xe_tracking_xpaths" target="_blank">post</a> to learn how to track XPaths.
+</Note>
+
+## Cisco Platform
+
+IOS XE
+
+## CLI
+
+```CLI
+copy bootflash:test_copy_file.txt harddisk:copied.txt
+```
+
+## WLC's version used
+
+17.9.1ES13
+
+## Yang Module
+
+Cisco-IOS-XE-rpc
+
+## Prefix
+
+ios-xe-rpc
+
+## XPath
+
+ios-xe-rpc:copy
+
+## Example:
+### RPC
+
+```xml
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="101">
+  <copy xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-rpc">
+    <source-drop-node-name>bootflash:test_copy_file.txt</source-drop-node-name>
+    <destination-drop-node-name>harddisk:copied.txt</destination-drop-node-name>
+  </copy>
+</rpc>
+```
+
+### Received message from host
+
+```xml
+<rpc-reply xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="urn:uuid:809fe9f4-a955-45a9-a94c-32d0a509ecd7"><result xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-rpc">RPC request successful</result>
+</rpc-reply>
+```
+
+NETCONF rpc COMPLETE
