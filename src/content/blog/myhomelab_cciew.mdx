@@ -1,0 +1,107 @@
+---
+title: My home Lab for the CCIE Enterprise Wireless certification
+description: One of my favorite hobbies is doing labs and putting my hands on devices, I'm not the kind of engineer who reads a book and already knows what to do (regarding technology). 
+tags:
+  - "#projects"
+  - "#tools"
+  - "#certifications"
+category: Projects
+pubDate: 2022-07-25
+heroImg: /home_lab_cciew/icon.png
+updatedDate: 2023-03-11
+---
+
+import Note from '../../components/common/Note.astro';
+
+import Important from '../../components/common/Important.astro';
+
+<Note>
+This is a complementary writing related to <a href="https://google.com/" target="_blank">My CCIE Enterprise Wireless Journey</a> post.
+</Note>
+
+I started building my home lab in September 2020 (before my CCIE studies) I'm still adding stuff even though I reached my main goal of obtaining my CCIE# 66154.
+
+I started from scratch by buying some used pieces of equipment, I used to purchase devices with defects that I tried to fix later, I repaired just 30% of those devices though, and the other 70% is my paperweight 🤣
+
+Unpopular opinion, I think a home lab is an investment like education, so my first "investment" was an used <a href="https://i.dell.com/sites/doccontent/shared-content/data-sheets/en/documents/dell-poweredge-r630-spec-sheet.pdf" target="_blank">Dell R620</a>  server that I started using with <a href="https://customerconnect.vmware.com/downloads/info/slug/datacenter_cloud_infrastructure/vmware_vsphere/6_7" target="_blank">ESXi 6.7</a>
+
+This is an old pic that I took in the begging:
+
+![initial lab-front](/home_lab_cciew/image_01.png)
+![initial lab-side](/home_lab_cciew/image_02.png)
+
+<div align="center">
+I called it "The Data Center" 🤣 joke aside 🤣
+</div>
+
+**Dell PowerEdge R620 specs:**
+
+- 2x / E5-2660 = 16 Cores / 32 Threads 
+- 64 GB Ram
+- 2x 300GB 10K RPM SAS HDD
+- 4x 1GB Ethernet ports.
+
+More than enough for my goal, I used the server as a bare metal <a href="https://en.wikipedia.org/wiki/VMware_ESXi" target="_blank">hypervisor</a> to create and deploy virtual machines, let's mention some VMs that I used during my preparation:
+
+1. Windows 10 (wireless test client and jump box for GUI / CLI)
+2. Windows server 2012 (AD / DNS server / DHCP server, NTP server, and Certificate Authority CA)
+3. Ubuntu 19.04 (wireless test client)
+4. 2x vWLC running 8.10.131
+5. 4x C9800-CL running 16.12.3a (2 in HA pair)
+6. An ISE cluster running 2.4
+7. CSR1000 (call manager express)
+8. Cisco Prime running 3.7 (network management)
+9. Cisco CMX 10.6.x (location engine)
+10. GNS3 (network simulator)
+
+Please visit the Cisco <a href="https://learningnetwork.cisco.com/s/article/ccie-enterprise-wireless-v1-0-equipment-and-software-list" target="_blank">learning network</a> portal to know about the current equipment and software list for the CCIE Enterprise Wireless.
+
+I loved learning and practicing with every VM mentioned earlier, but the most used VM for me was the GNS3 VM.
+
+If you don't know <a href="https://www.gns3.com/" target="_blank">GNS3</a> is a network software simulator that allows the combination of virtual and real devices, used to simulate complex networks without server noise and pay for high electricity bills. Yes, there are some limitations but it's a good solution for free. 
+
+Wireless is tough technology, so you will need real devices from time to time to test wireless client behaviors (we cannot simulate those on GNS3 for example)
+
+One of the topologies I used to practice for my CCIE was:
+
+![GNS3 topology](/home_lab_cciew/image_04.jpg)<figcaption>A topology with some virtual controllers, and virtual switches linked to my physical SW 3560CX for remote access.</figcaption>
+
+I used GNS3 to practice the majority of items in section 2.0 of the <a href="https://learningnetwork.cisco.com/s/ccie-enterprise-wireless-exam-topics" target="_blank">Exam Blue Print</a>.
+
+<a href="https://learningcontent.cisco.com/documents/CCIE-Enterprise-Wireless-v1-Exam-Topics.pdf" target="_blank">Download the Complete List of Topics in PDF format</a>
+
+<Important>
+At this time, we cannot practice Cisco QoS in GNS3 because QoS is hardware dependent, it's possible to run the commands in the Switches / Routers via CLI, but we don't have a way to validate a working configuration.
+</Important>
+
+Moving to the physical devices part I had:
+
+1. 2x AIR-AP2702I (regular CAPWAP Aps)
+2. 1x AIR-AP3702I (WGB)
+3. 1x AIR-AP3702I (CAPWAP Ap)
+4. 2x 3802 (one running ME and second as CAPWAP Ap that eventually joins to the ME)
+<div align="center">
+ME = Cisco Mobility Express for Aironet Access Points
+</div>
+5. 2x 1542 (bridges APs used to practice RAP / MAP labs)
+6. 2X SW 3560CX
+7. A 3504 running 8.10.131
+8. A C9800-L running 16.12.3a
+9. Raspberry PI (second DNS server, terminal server)
+10. A 5508 (I bought this by mistake, it's outdated for this version of the exam) however, I ran 8.5.x and I used it to practice speed and mobility between AireOS.
+
+DNAc was cost-prohibited to me, so I practiced using the rack token from <a href="https://networkdojo.com/" target="_blank">Network Dojo</a>. 
+
+Eventually, I ended up with this:
+
+![Final Home Lab](/home_lab_cciew/image_03.png)
+
+I was very privileged to work in Cisco Wireless TAC at that moment, so I could use a bunch of devices in the office lab (including DNAc) to practice every day after work and on weekends.
+
+It's difficult to do this without a good plan and some guidance, so I encourage you to take a look at this <a href="https://www.youtube.com/watch?v=fsynzBdIpvQ" target="_blank">video</a>. Jeff goes above and beyond explaining the basis needed to start the journey, it helped me a lot throughout my adventure.   
+
+<div align="center">
+
+Happy Learning!
+
+</div>

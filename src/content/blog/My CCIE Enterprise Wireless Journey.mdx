@@ -1,0 +1,174 @@
+---
+title: My CCIE Enterprise Wireless Journey
+description: This is my CCIE Wireless journey, 555 days, 13,320 hours, 799,200 minutes, and 47,952,000 seconds since I decided to go for it. Long study nights, countless headaches, and tons of hours reading, watching, and listening to study materials, what started out as a crazy idea worth the effort in the end.
+tags:
+  - "#certifications"
+category: Certifications
+pubDate: 2022-07-14
+heroImg: /cciew/CCIE_Enterprise.png
+updatedDate: 2023-03-11
+---
+
+import Note from '../../components/common/Note.astro';
+import Quote from '../../components/common/Quote.astro';
+import Important from '../../components/common/Important.astro';
+
+<Quote>
+"In order to succeed you must fail, so that you know what not to do the next time."
+Anthony J. D'Angelo
+</Quote>
+
+## Prepare
+
+In  December 2020, I decided to jump into my new adventure "Getting the CCIE Enterprise Wireless v1.0" 
+
+CCIE Enterprise Wireless is an 8-hour hands-on lab that covers the end-to-end lifecycle of complex enterprise wireless networks, from designing and deploying to operating and optimizing.
+
+To earn CCIE Enterprise Wireless, you pass two exams: a qualifying exam and a hands-on lab exam. The qualifying exam for CCIE Enterprise Wireless is the <a href="https://www.cisco.com/c/en/us/training-events/training-certifications/exams/current-list/encor-350-401.html" target="_blank">ENCOR 350-401</a>. 
+
+To achieve CCIE certification, you must take and pass your lab exam within 3 years of passing your core exam.
+
+I had a fresh CCNP Enterprise in my hands, so I could skip that prerequisite. 
+
+## Plan 
+
+> Dreams without goals, are just dreams and they ultimately fuel disappointment.
+>Denzel Washington 
+
+
+I used to plan ahead my weeks for my studies, in weekdays, I preferred to watch videos in the morning for about 2 or 3 hours and complete any associated practice overnight for about 4 or 6 hours. 
+
+Now for weekends, I used to watch videos and read guides for the first 5 to 6 hours, and for the remaining 8 to 10 hours I used to play with my lab and practice any associated session. 
+
+> Be realistic with your time and schedule, and try to keep consistency during your studies.
+
+My initial goal was to study/practice at least 60 hours per week for 12 months, but due to some life events like; working from home + raising my son + my wife was pregnant again + moving from Chicago to Texas + jumping to another role at Cisco + my grandmother and my best friend died the same year, so I had to make some adjustments adding more months from 12 to 17, and reduce the study hours from 60 to 30. 
+
+I keep track of my weekly goals using a planner like:
+
+![Passing score](/cciew/image_03.jpeg)
+
+I used a google chrome extension called <a href="https://chrome.google.com/webstore/detail/stopwatch-timer/eoiibkbchfmgmhlodifjceiginokllbj?hl=en" target="_blank">Stopwatch & Timer</a> to keep track of my study time, and the planner above to record that.
+
+I planned the <a href="https://racks.networkdojo.com/login" target="_blank">racks</a> usage over the weekends (I tried reserving the racks to use during weekday nights, but I failed so many times jumping late from the starting session point) I had to plan ahead because the slots on weekends easily get sold out.
+
+### My study plan approach
+
+- Learn all about every technology mentioned in the <a href="https://learningnetwork.cisco.com/s/ccie-enterprise-wireless-exam-topics" target="_blank">Blue Print.</a>
+	- What's the purpose? 
+	- What do they accomplish?
+	- How do they operate?
+- Learn how to configure each technology.
+- Learn how to verify and troubleshoot each technology.
+- Practice, practice, and practice what you read or watch. 
+
+## Design
+
+### Study Materials used
+
+1. First and foremost, I couldn't accomplish this without the comprehensive training program from <a href="https://networkdojo.com/" target="_blank">Network Dojo</a>. It was very complete, easy to digest, direct to the point, accurate, and best of all (depending on the bundle you buy) you will get access to their racks to practice any exercise provided during the training, and at your own pace/convenience.  
+
+2. At the beginning of my studies, I started using the  <a href="https://www.cisco.com/c/dam/en_us/training-events/le31/le46/cln/marketing/learning-matrix/CCIE-Enterprise-Wireless-v1-Learning-Matrix.xlsx" target="_blank">CCIE Wireless V1 Learning Matrix</a>,  after three months I realized that it would take a lot of time to read all reference guides, docs, white papers, tech notes, case of studies and design guides. It's a universe of information though, but without a route map, you will get lost, and end up learning more information non-related to the CCIE Wireless exam. 
+
+ An example of that would be reading the <a href="https://www.cisco.com/c/en/us/td/docs/security/ise/2-4/admin_guide/b_ISE_admin_guide_24.html" target="_blank">Cisco Identity Service Engine guide for 2.4</a>, there is nothing wrong with reading that guide, but the entire information it's not required to pass the exam.  
+
+<Important>
+From the Learning Matrix:
+"There is no guarantee that you will be able to pass the exam by only referring to material provided within this matrix. But it will certainly improve your skills, which will serve as the foundation you need to build upon."
+</Important>
+
+3. <a href="https://www.ciscopress.com/store/ccnp-enterprise-wireless-design-enwlsd-300-425-and-9780136600954" target="_blank">Official Cert Guide ENWLSD & ENWLSI</a>, generally speaking, it's good, but I missed important explanations, troubleshooting scenarios, and configurations related to the exam.
+
+4. <a href="https://www.ciscopress.com/store/ccie-wireless-v3-study-guide-9781587206207" target="_blank">CCIE Wireless v3 Study Guide</a> I found a lot of value in that book, it's well writing and all concepts related to AireOS, location, and RF are solid.
+
+5. If you are looking on the Internet about wireless topics and found a reference from this <a href="https://www.mrncciew.com" target="_blank">mrncciew.com</a> website just go there! you won't regret it. I found from time to time better explanations and examples there rather than the official documentation.
+
+6. From the site above, Rasika built a completed <a href="https://mrncciew.files.wordpress.com/2012/05/ccie-w-technote1-0.xlsx" target="_blank">TechNote</a> for AireOS that I found very useful during my studies. 
+
+7. AireOS <a href="https://www.cisco.com/en/US/docs/wireless/controller/7.4/command/reference/lwap/lwapcr74_chapter_010.pdf" target="_blank">CLI Commands</a> and this <a href="https://www.cisco.com/c/en/us/td/docs/wireless/controller/8-0/cmd-ref/b_cr80.html" target="_blank">link</a>.
+
+8. Cisco Catalyst 9800 CLI <a href="https://www.cisco.com/c/en/us/td/docs/wireless/controller/9800/16-12/cmd-ref/b_wl_16_12_cr.html" target="_blank">reference</a>.
+
+10. Your best friend C9800 <a href="https://www.cisco.com/c/en/us/products/collateral/wireless/catalyst-9800-series-wireless-controllers/guide-c07-743627.html" target="_blank">Best Practices.</a>
+
+11. AireOS Configuration <a href="https://www.cisco.com/c/en/us/td/docs/wireless/controller/technotes/8-6/b_Cisco_Wireless_LAN_Controller_Configuration_Best_Practices.html" target="_blank">Best Practices.</a>
+
+12. Check my previous <a href="https://dar-fi.com/blog/vlan-bridging-in-me" target="_blank">post</a> that I'm playing with a couple of bridges using VLANs.
+
+
+## Implement
+
+- Practicing Workbook 1, 2, and 3 in Network Dojo rack (I bought the Gold Bundle, but in the middle of my studies I ran out of tokens, so I upgraded to Platinum to get more tokens, access to the mentorship meetings, use the learning management system, and get access to the Discord chat group).
+
+- Practicing Workbook 1 using <a href="https://dar-fi.com/blog/myhomelab_cciew" target="_blank">My Home Lab</a> I had to adjust a couple of things, but I could practice overall 60% "Workbook 1" in my lab (a little advantage of using your lab you can pause whenever you want and resume at any time without losing your progress).
+ 
+- Using the   <a href="https://learningnetwork.cisco.com/s/article/ccie-enterprise-infrastructure-practice-labs" target="_blank">IE practice labs</a> to get familiar with the lab environment, and see how the console looks like.
+
+- Going through the  <a href="https://learningnetwork.cisco.com/s/learning-plan-detail-standard?ltui__urlRecordId=a1c3i0000007i0NAAQ&ltui__urlRedirect=learning-plan-detail-standard/" target="_blank">training videos</a> in the cisco portal.
+
+- Setting up an environment with 2 monitors, one desktop running Linux, and a regular keyboard like the testing center setup.
+
+- Using ESXi, I set the disk of the VMs as "Independent non-persistent" with that configuration I could start over and over without adding the initial configuration, and without the last configuration practiced. For example, if I break something during my lab, I can just power OFF/ON the VM and it will come back with a basic config.
+
+- I didn't buy a <a href="https://en.wikipedia.org/wiki/Terminal_server" target="_blank">terminal server</a>, instead, I used <a href="https://github.com/cminyard/ser2net" target="_blank">ser2net</a> as my terminal server in my raspberry pi.
+
+- Setting up <a href="https://www.microsoft.com/en-us/windows-server" target="_blank">Windows Server</a>  using the useful videos of NLB Solutions on <a href="https://youtu.be/lgOlK9sgY08r" target="_blank">YouTube</a> (I used persistent memory in the hard disk drive for Windows VMs)
+
+- Setting up an <a href="https://www.tecmint.com/install-chrony-in-centos-ubuntu-linux/" target="_blank">NTP</a> server in my raspberry pi for network devices.
+
+- I posted some time ago steps to configure EAP-TLS and Meraki devices, I always use this <a href="https://dar-fi.com/blog/configure-eap-tls-using-ise-and-meraki-ap
+" target="_blank">post</a> as a reference guide to create and sign certificates.
+
+
+## Operate
+
+### Exam day 
+
+**On Jun 8, 2022, I failed on my first attempt at the exam...**
+
+To be honest, I never think of passing the exam the first time. From the time of this writing, I never heard of somebody passing this (v1.0) CCIE Enterprise Wireless in the first attempt (I'm not saying that you aren't capable of that, but keep in mind that chances are pretty low).
+
+* I arrived at the <a href="https://www.cisco.com/c/en/us/training-events/training-certifications/certifications/expert/ccie-lab-exam-locations/richardson.html" target="_blank">Cisco Richardson Office</a> at 7:45 am, allow yourself to arrive early, I was fortunate to live 30 minutes away from the testing office 😁
+ 
+* The proctor was a bit late, so we started walking to the test room close to 8:30 am.
+ 
+* Time flies there! The first 3hrs session is fixed for the DES, I finished DES in 1 1/2, so I  started DOO right after, keep in mind that the remaining time from DES was lost as soon as I started the next module DOO.
+
+- I made a lot of mistakes trying to organize the terminal console, and playing with the 2 screens of the Linux host machine.
+
+- It was my first time seeing the exam engine, and the learning curve was too high, I was trying to read through the instructions, but I was too nervous at the beginning, so I wasted the first 45 minutes setting everything and finding my comfort zone.
+
+- I just completed 50% of the required tasks 🙁 
+
+![Passing score](/cciew/image_02.PNG)
+
+Even though I failed, I think I got the majority of the task with a good score, the lower one it's because I didn't touch those tasks.
+
+## Optimize
+
+After meeting the beast, I learned about my weaknesses, and I realized that I have to improve in some other areas, again time is one of your enemies there, so try to be proactive and write it down your experience, and important details after heading out of the test center.
+
+I was too tired after testing for about 6 1/2 hours, but when I reached my car, before calling my wife I wrote where I got lost, and all my mistakes to read at any other moment.
+
+I made frequent stops in gas stations because I used to remember another thing 🤣 .
+
+**On July 13, 2022, I passed on my second attempt!**
+
+![Passing score](/cciew/image_01.png)
+
+I started this post with a magnificent Quote:
+
+<Quote>
+"In order to succeed you must fail so that you know what not to do the next time."
+Anthony J. D'Angelo
+</Quote>
+   
+Well, that seems to be present on all my Cisco certification paths 🤣  
+   
+Today, I can say that I'm CCIE# 66154  
+  
+This could not be possible without the support of God above all things, without the support of my family (especially my wife) and the support of my close friends, colleagues, managers, leaders, and co-workers.  
+  
+Special thanks to <a href="https://www.linkedin.com/in/ACoAAAKexqkBxpBUx7hmtgVAevDCFnAIABpdmmQ" target="_blank">Jeff Rensink</a> for the incredible work with all the study material created for this journey.  
+  
+Thank you so much, everyone!
