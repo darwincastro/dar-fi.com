@@ -1,0 +1,122 @@
+---
+title: XPath to display mdns global stats
+description: This operational data consists of consolidated MDNS packet statistics.
+tags:
+  - "#xpath"
+category: CLI to XPath
+pubDate: 2023-03-17
+heroImg: /xpath-assets/image_01.png
+updatedDate: 2023-03-03
+---
+
+import Note from '../../components/common/Note.astro';
+
+<Note>
+Please refer to the following <a href="https://dar-fi.com/blog/ios-xe_tracking_xpaths" target="_blank">post</a> to learn how to track XPaths.
+</Note>
+
+## Cisco Platform
+
+C9800
+
+## CLI
+
+```
+show mdns-sd statistics
+
+------------------------------------------------------
+Consolidated mDNS Packet Statistics
+------------------------------------------------------
+mDNS stats last reset time: 03/15/23 14:46:02
+mDNS packets sent: 36
+  IPv4 sent: 36
+    IPv4 advertisements sent: 0
+    IPv4 queries sent: 36
+  IPv6 sent: 0
+    IPv6 advertisements sent: 0
+    IPv6 queries sent: 0
+  Multicast sent: 36
+    IPv4 sent: 36
+    IPv6 sent: 0
+mDNS packets received: 0
+  advertisements received: 0
+  queries received: 0
+  IPv4 received: 0
+    IPv4 advertisements received: 0
+    IPv4 queries received: 0
+  IPv6 received: 0
+    IPv6 advertisements received: 0
+    IPv6 queries received: 0
+mDNS packets dropped: 0
+Query Type Statistics
+  PTR queries received: 0
+  SRV queries received: 0
+  A queries received: 0
+  AAAA queries received: 0
+  TXT queries received: 0
+  ANY queries received: 0
+  OTHER queries received: 0
+```
+
+## WLC's version used
+
+17.9.3
+
+## Yang Module
+
+Cisco-IOS-XE-wireless-mdns-oper
+
+## Prefix
+
+mdns-oper
+
+## XPath
+
+/mdns-oper:mdns-oper-data/mdns-global-stats
+
+## Example:
+### Sending RPC or REST???
+
+```json
+http://10.93.178.145:8480/restconf/proxy/https://10.93.178.70:443/restconf/data/Cisco-IOS-XE-wireless-mdns-oper:mdns-oper-data/mdns-global-stats
+```
+
+### Received message from host
+
+```json
+{
+  "Cisco-IOS-XE-wireless-mdns-oper:mdns-global-stats": {
+    "stats-global": {
+      "pak-sent": "36",
+      "pak-sent-v4": "36",
+      "pak-sent-advt-v4": "0",
+      "pak-sent-query-v4": "36",
+      "pak-sent-v6": "0",
+      "pak-sent-advt-v6": "0",
+      "pak-sent-query-v6": "0",
+      "pak-sent-mcast": "36",
+      "pak-sent-mcast-v4": "36",
+      "pak-sent-mcast-v6": "0",
+      "pak-received": "0",
+      "pak-received-advt": "0",
+      "pak-received-query": "0",
+      "pak-received-v4": "0",
+      "pak-received-advt-v4": "0",
+      "pak-received-query-v4": "0",
+      "pak-received-v6": "0",
+      "pak-received-advt-v6": "0",
+      "pak-received-query-v6": "0",
+      "pak-dropped": "0",
+      "ptr-query": "0",
+      "srv-query": "0",
+      "a-query": "0",
+      "aaaa-query": "0",
+      "txt-query": "0",
+      "any-query": "0",
+      "other-query": "0"
+    },
+```
+
+## Grafana dashboard
+
+![grafana dashboard](/mdns_xpath/image_01.png)

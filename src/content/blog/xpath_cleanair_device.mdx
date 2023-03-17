@@ -1,0 +1,58 @@
+---
+title: XPath to display CleanAir device stats
+description: For every device operating in the unlicensed band, Cisco CleanAir provides information about what it is, how it is impacting your wireless network.
+tags:
+  - "#xpath"
+category: CLI to XPath
+pubDate: 2023-03-17
+heroImg: /xpath-assets/image_01.png
+updatedDate: 2023-03-03
+---
+
+import Note from '../../components/common/Note.astro';
+
+<Note>
+Please refer to the following <a href="https://dar-fi.com/blog/ios-xe_tracking_xpaths" target="_blank">post</a> to learn how to track XPaths.
+</Note>
+
+## Cisco Platform
+
+C9800
+
+## CLI
+
+```CLI
+show ap dot11 24ghz cleanair device type all
+
+DC    = Duty Cycle (%)
+ISI   = Interference Severity Index (1-Low Interference, 100-High Interference)
+RSSI  = Received Signal Strength Index (dBm)
+DevID = Device ID
+PD    = Persistent Device
+
+ClusterID          MAC Address        DevID  Type           PD   AP Name                          Version  ISI  RSSI  DC   Last Update Time               Channel
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+1100.0000.01b9     409f.9dc0.c07a     0xc07a Jammer         No   LAB-9130-2                       CA       53   -76   11   03/17/2023 12:29:52 UTC        1,6,11              
+1100.0000.01ae     e423.07e0.218b     0x218b Continuous TX  No   LAB-9120-2                       CA       2    -62   100  03/17/2023 12:29:12 UTC                            
+
+```
+
+## WLC's version used
+
+17.9.3
+
+## Yang Module
+
+Cisco-IOS-XE-wireless-rrm-oper
+
+## Prefix
+
+wireless-rrm-oper
+
+## XPath
+
+/wireless-rrm-oper:rrm-oper-data/spectrum-device-table
+
+## Grafana dashboard
+
+![cleanair dashboard](/cleanair_xpath/image_01.png)
