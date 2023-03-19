@@ -12,7 +12,6 @@ const { page, category } = Astro.props;
             <li>
               <HorizontalCard
                 title={post.data.title}
-                img={post.data.heroImg}
                 tags={post.data.tags}
                 desc={post.data.description}
                 url={'/blog/' + post.slug}
