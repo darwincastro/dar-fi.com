@@ -15,4 +15,5 @@ const blogCollection = defineCollection({ schema: blogSchema });
 
 export const collections = {
   blog: blogCollection,
+  xpath: blogCollection,
 };
