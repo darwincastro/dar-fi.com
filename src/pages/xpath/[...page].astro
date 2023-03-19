@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths({ paginate }) {
+  const posts = await getCollection('xpath');
+  return paginate(posts, { pageSize: 100 });
+}
+const { page } = Astro.props;
+---
+
+<BaseLayout title="XPath">
+  <div class="max-w-[75ch]">
+    <h3 class="text-3xl w-full font-bold mb-5 mt-10 underline mx-4 md:mx-0">XPath</h3>
+    <div class="divider"></div>
+    <h4 class="text-2xl font-bold text-center my-5">🚧 This is a work in progress 🚧</h4>
+    <p class="text-lg">
+      Navigating within the <a class="underline" href="https://github.com/YangModels/yang" target="_blank">YangModels</a
+      > represents a challenge, we could get lost very easily, and without a route map we could miss a feature required to
+      complete our task.
+    </p>
+    <p class="text-lg my-4">
+      I'm creating an <span class="font-bold">unofficial</span> central repository for Cisco IOS-XE devices, I'm mainly targeting
+      WLCs like the C9800s, but some of the XPaths below might work on other IOS-XE devices as well, for example; CAT9300s.
+    </p>
+    <p class="text-lg">I hope you find the XPath you are looking for, if not please let me know.</p>
+  </div>
+  <div class="mt-6 ml-6">
+    <ul class="list-disc">
+      {
+        page.data.map((post) => (
+          <li>
+            <a class="underline" href={post.slug}>
+              {post.data.title}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</BaseLayout>
