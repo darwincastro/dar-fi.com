@@ -1,0 +1,84 @@
+---
+title: "XPath for CLI command: show ap support-bundle summary"
+description: This is an oper model, it only shows the information about where APs have uploaded their support bundles - an equivalent of "show ap support-bundle summary"
+tags:
+  - "#xpath"
+category: CLI to XPath
+pubDate: 2023-03-24
+heroImg: /xpath-assets/image_01.png
+updatedDate: 2023-03-24
+---
+
+import Note from '../../components/common/Note.astro';
+
+<Note>
+Please refer to the following <a href="https://dar-fi.com/blog/ios-xe_tracking_xpaths" target="_blank">post</a> to learn how to track XPaths.
+</Note>
+
+## Cisco Platform
+
+C9800
+
+## CLI
+
+```CLI
+wlc#show ap support-bundle summary                                                                                     
+AP Name                          Server-IP                                Status          Last Successful Time           Path                                File-name                                                              
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+LAB-9130-1                       10.93.178.147                            Copy Failed     NA                             /home/netadmin/config_files         NA
+```
+
+## WLC's version used
+
+17.9.3
+
+## Yang Module
+
+Cisco-IOS-XE-wireless-access-point-oper
+
+## Prefix
+  
+wireless-access-point-oper
+
+## XPath
+
+  
+/wireless-access-point-oper:access-point-oper-data/support-bundle-info
+
+## Example:
+### Sending RPC
+
+```json
+<nc:rpc xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="urn:uuid:742993ef-e06c-4a4a-8cde-3f78061d0f82">
+  <nc:get>
+    <nc:filter>
+      <access-point-oper-data xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-wireless-access-point-oper">
+        <support-bundle-info>
+          <ap-mac>04:eb:40:9f:9c:40</ap-mac>
+        </support-bundle-info>
+      </access-point-oper-data>
+    </nc:filter>
+  </nc:get>
+</nc:rpc>
+```
+
+### Received message from host
+
+```json
+<rpc-reply xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="urn:uuid:742993ef-e06c-4a4a-8cde-3f78061d0f82">
+  <data>
+    <access-point-oper-data xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-wireless-access-point-oper">
+      <support-bundle-info>
+        <ap-mac>04:eb:40:9f:9c:40</ap-mac>
+        <ap-name>LAB-9130-1</ap-name>
+        <last-server-ip>10.93.178.147</last-server-ip>
+        <last-file-path>/home/netadmin/config_files</last-file-path>
+        <last-mode>bundle-transfer-mode-tftp</last-mode>
+        <status>supp-bundle-copy-failed</status>
+        <failure-reason>curl: (68) TFTP: File Not Found</failure-reason>
+      </support-bundle-info>
+    </access-point-oper-data>
+  </data>
+</rpc-reply>
+```
+
