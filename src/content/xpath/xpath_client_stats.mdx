@@ -1,0 +1,87 @@
+---
+title: XPath to get the SSID client count, and client stats
+description: XPath is used to get operational statistics for a particular radio.
+tags:
+  - "#xpath"
+category: CLI to XPath
+pubDate: 2023-04-01
+heroImg: /xpath-assets/image_01.png
+updatedDate: 2023-04-01
+---
+
+import Note from '../../components/common/Note.astro';
+
+<Note>
+Please refer to the following <a href="https://dar-fi.com/blog/ios-xe_tracking_xpaths" target="_blank">post</a> to learn how to track XPaths.
+</Note>
+
+### Cisco Platform
+
+C9800
+
+### WLC's version used
+
+17.9.3
+
+### Yang Module
+
+Cisco-IOS-XE-wireless-access-point-oper
+
+### Prefix
+
+wireless-access-point-oper
+
+### XPath
+
+/wireless-access-point-oper:access-point-oper-data/radio-oper-stats
+
+### Example:
+### Sending REST
+
+```json
+http://<IP:PORT>/restconf/proxy/https://<IP:PORT>/restconf/data/Cisco-IOS-XE-wireless-access-point-oper:access-point-oper-data/radio-oper-stats=<AP MAC>,slot-id=1/aid-user-list
+```
+
+### Received message from host
+
+
+```json
+{
+
+        "ap-mac": "00:11:22:33:44:55",
+        "slot-id": 1,
+        "aid-user-list": 1,
+        "tx-fragment-count": 0,
+        "multicast-tx-frame-cnt": 3,
+        "failed-count": 2,
+        "retry-count": 1,
+        "multiple-retry-count": 0,
+        "frame-duplicate-count": 0,
+        "rts-success-count": 0,
+        "rts-failure-count": 0,
+        "ack-failure-count": 0,
+        "rx-fragment-count": 0,
+        "multicast-rx-frame-cnt": 120,
+        "fcs-error-count": 0,
+        "tx-frame-count": 2225,
+        "wep-undecryptable-count": 0,
+        "rx-error-frame-count": 0,
+        "mac-mic-err-frame-count": 0,
+        "rx-mgmt-frame-count": 6268,
+        "rx-ctrl-frame-count": 3487,
+        "rx-data-frame-count": 347,
+        "tx-mgmt-frame-count": 3434,
+        "tx-ctrl-frame-count": 0,
+        "tx-data-frame-count": 499,
+        "rx-data-pkt-count": 0,
+        "tx-data-pkt-count": 0,
+        "noise-floor": 0,
+        "ap-radio-stats": {
+          "stuck-ts": "1970-01-01T00:00:00+00:00",
+          "last-ts": "1970-01-01T00:00:00+00:00",
+          "num-radio-stuck-reset": 0
+
+        }
+
+      },
+```

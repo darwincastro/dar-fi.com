@@ -1,0 +1,196 @@
+---
+title: Upgrading Cisco C9800 using RESTCONF
+description: This section describes the upgrade process and the methods to upgrade the Cisco Catalyst 9800 Series Wireless Controller Software via RESTCONF.
+tags:
+  - "#wireless"
+category: Wireless
+pubDate: 2023-04-01
+heroImg: /upgrade_restconf/exchange.png
+updatedDate: 2023-04-01
+---
+
+import Note from '../../components/common/Note.astro';
+import Important from '../../components/common/Important.astro';
+
+
+This is going to be a short post highlighting the steps required to upgrade a Cisco C9800 controller. The procedure could also work with another IOS-XE device 
+
+<Important>
+The procedure in this post was performed using devices in a specific lab environment, if your network is live, ensure that you understand the potential impact of any command. 
+
+Always refer to the official configuration guide of your Cisco device before performing any task.
+</Important>
+
+## Tools used
+
+-  <a href="https://github.com/YangModels/yang/blob/main/vendor/cisco/xe/1791/Cisco-IOS-XE-install-rpc.yang#L188" target="_blank">YangModel</a> for the IOS-XE image install.
+-  <a href="https://github.com/mbj4668/pyang" target="_blank">Pyang with the XPath plugin</a>
+-  Postman
+-  C9800-CL with RESTCONF enabled.
+
+<Note>
+Please refer to the following <a href="https://dar-fi.com/blog/ios-xe_tracking_xpaths" target="_blank">post</a> to learn how to track XPaths using pyang.
+</Note>
+
+I'm assuming that your device is UP and running RESTCONF, otherwise please refer to the following Cisco Deployment <a href="https://www.cisco.com/c/en/us/td/docs/wireless/controller/technotes/8-8/b_c9800_programmability_telemetry_dg.html" target="_blank">link</a>.
+
+<Important>
+The IOS-XE device must be running on "Install Mode”.  
+</Important>
+
+## Three Steps Upgrade
+
+We followed the <a href="https://www.cisco.com/c/en/us/td/docs/wireless/controller/9800/17-2/config-guide/b_wl_17_2_cg/b_wl_17_2_cg_chapter_010010111.html#id_136084" target="_blank">CLI</a> three steps software upgrade in the Cisco configuration guide.
+
+<Important>
+RESTCONF is stateless by nature which means you will get an HTTP 204 status on each installation step. You must verify the state of the installation manually before moving to the next step. 
+</Important>
+
+<Note>
+Please refer to the following <a href="https://dar-fi.com/blog/xpath/xpath_install_state" target="_blank">post</a> to learn how to display the install state operation via XPath.
+</Note>
+
+> To make this post short, I will use the CLI command `show install summary` on each step displaying the expected output.
+
+1. Install add
+
+Postman POST
+
+```xml
+https://<IP:Port>/restconf/operations/Cisco-IOS-XE-install-rpc:install
+```
+
+Postman body
+
+```json
+{
+
+"install": [
+
+{
+
+"uuid": "test",
+
+"one-shot": false,
+
+"path": "bootflash:C9800-CL-universalk9.17.06.04.SPA.bin"}
+
+]
+
+}
+```
+
+- Verify
+
+CLI
+```
+9800#show install summary 
+[ Chassis 1/R0 ] Installed Package(s) Information:
+State (St): I - Inactive, U - Activated & Uncommitted,
+            C - Activated & Committed, D - Deactivated & Uncommitted
+--------------------------------------------------------------------------------
+Type  St   Filename/Version
+--------------------------------------------------------------------------------
+IMG   C    17.06.02.0.2786
+IMG   I    17.06.04.0.4912
+
+--------------------------------------------------------------------------------
+Auto abort timer: inactive
+--------------------------------------------------------------------------------
+```
+
+2. Install Activate
+
+<Important>
+Activate will perform a device reload to complete the process.
+</Important>
+
+Postman POST
+
+```xml
+https://<IP:Port>/restconf/operations/Cisco-IOS-XE-install-rpc:install
+```
+
+Postman body
+
+```json
+{
+
+"activate": [
+
+{
+
+"uuid": "test",
+
+"version": 17.06.04.0.4912
+
+}
+
+]
+
+}
+```
+
+- Verify
+
+CLI
+```
+9800#show install summary 
+[ Chassis 1/R0 ] Installed Package(s) Information:
+State (St): I - Inactive, U - Activated & Uncommitted,
+            C - Activated & Committed, D - Deactivated & Uncommitted
+--------------------------------------------------------------------------------
+Type  St   Filename/Version
+--------------------------------------------------------------------------------
+IMG   U    17.06.04.0.4912
+
+--------------------------------------------------------------------------------
+Auto abort timer: active , time before rollback - 05:53:02
+--------------------------------------------------------------------------------
+```
+
+3. Install Commit
+
+Postman POST
+
+```xml
+https://<IP:Port>/restconf/operations/Cisco-IOS-XE-install-rpc:install
+```
+
+Postman body
+
+```json
+{
+
+"install-commit": [
+
+{
+
+"uuid": "test"
+
+}
+
+]
+
+}
+```
+
+- Verify
+
+CLI
+```
+9800#show install summary 
+[ Chassis 1/R0 ] Installed Package(s) Information:
+State (St): I - Inactive, U - Activated & Uncommitted,
+            C - Activated & Committed, D - Deactivated & Uncommitted
+--------------------------------------------------------------------------------
+Type  St   Filename/Version
+--------------------------------------------------------------------------------
+IMG   C    17.06.04.0.4912
+
+--------------------------------------------------------------------------------
+Auto abort timer: inactive
+--------------------------------------------------------------------------------
+```
+
+That's All Folks!

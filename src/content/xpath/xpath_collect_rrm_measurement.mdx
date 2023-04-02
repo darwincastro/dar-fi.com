@@ -6,7 +6,7 @@ tags:
 category: CLI to XPath
 heroImg: /xpath-assets/image_01.png
 pubDate: 2022-05-14
-updatedDate: 2023-02-28
+updatedDate: 2023-04-01
 ---
 
 import Note from '../../components/common/Note.astro';
@@ -60,7 +60,7 @@ wireless-rrm-oper
 
 ```json
 curl -X 'GET' \
-  'http://10.93.178.145:8480/restconf/proxy/https://10.93.178.70:443/restconf/data/Cisco-IOS-XE-wireless-rrm-oper:rrm-oper-data/rrm-measurement' \
+  'http://<IP:PORT>/restconf/proxy/https://<IP:PORT>/restconf/data/Cisco-IOS-XE-wireless-rrm-oper:rrm-oper-data/rrm-measurement' \
   -H 'accept: application/yang-data+json'
 ```
 
@@ -68,7 +68,7 @@ curl -X 'GET' \
 ### Sending
 
 ```json
-http://10.93.178.145:8480/restconf/proxy/https://10.93.178.70:443/restconf/data/Cisco-IOS-XE-wireless-rrm-oper:rrm-oper-data/rrm-measurement
+http://<IP:PORT>/restconf/proxy/https://<IP:PORT>/restconf/data/Cisco-IOS-XE-wireless-rrm-oper:rrm-oper-data/rrm-measurement
 ```
 
 The following is just a fragment of the WLC response
@@ -77,7 +77,7 @@ The following is just a fragment of the WLC response
 {
   "Cisco-IOS-XE-wireless-rrm-oper:rrm-measurement": [
     {
-      "wtp-mac": "00:2a:10:5a:c1:c0",
+      "wtp-mac": "00:11:22:33:44:55",
       "radio-slot-id": 0,
       "foreign": {
         "foreign": {

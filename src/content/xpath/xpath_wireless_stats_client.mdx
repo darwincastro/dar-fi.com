@@ -6,7 +6,7 @@ tags:
 category: CLI to XPath
 heroImg: /xpath-assets/image_01.png
 pubDate: 2023-03-05
-updatedDate: 2023-03-05
+updatedDate: 2023-04-01
 ---
 
 import Note from '../../components/common/Note.astro';
@@ -55,14 +55,14 @@ Cisco-IOS-XE-wireless-client-global-oper
 
 ```json
 curl -X 'GET' \
-  'http://10.93.178.145:8480/restconf/proxy/https://10.93.178.68:443/restconf/data/Cisco-IOS-XE-wireless-client-global-oper:client-global-oper-data/client-dot11-stats/client-roaming-stats' \
+  'http://<IP:PORT>/restconf/proxy/https://<IP:PORT>/restconf/data/Cisco-IOS-XE-wireless-client-global-oper:client-global-oper-data/client-dot11-stats/client-roaming-stats' \
   -H 'accept: application/yang-data+json'
 ```
 
 ### Sending
 
 ```json
-http://10.93.178.145:8480/restconf/proxy/https://10.93.178.68:443/restconf/data/Cisco-IOS-XE-wireless-client-global-oper:client-global-oper-data/client-dot11-stats/client-roaming-stats
+http://<IP:PORT>/restconf/proxy/https://<IP:PORT>/restconf/data/Cisco-IOS-XE-wireless-client-global-oper:client-global-oper-data/client-dot11-stats/client-roaming-stats
 ```
 
 ### Received message from host

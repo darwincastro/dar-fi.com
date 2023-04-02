@@ -6,7 +6,7 @@ tags:
 category: CLI to XPath
 heroImg: /xpath-assets/image_01.png
 pubDate: 2023-01-10
-updatedDate: 2023-03-03
+updatedDate: 2023-04-01
 ---
 
 import Note from '../../components/common/Note.astro';
@@ -43,14 +43,14 @@ wireless-access-point-oper
 
 ```json
 curl -X 'GET' \
-  'http://10.93.178.145:8480/restconf/proxy/https://10.93.178.68:443/restconf/data/Cisco-IOS-XE-wireless-access-point-oper:access-point-oper-data/cdp-cache-data' \
+  'http://<IP:PORT>/restconf/proxy/https://<IP:PORT>/restconf/data/Cisco-IOS-XE-wireless-access-point-oper:access-point-oper-data/cdp-cache-data' \
   -H 'accept: application/yang-data+json'
 ```
 
 ### Sending
 
 ```json
-http://10.93.178.145:8480/restconf/proxy/https://10.93.178.68:443/restconf/data/Cisco-IOS-XE-wireless-access-point-oper:access-point-oper-data/cdp-cache-data
+http://<IP:PORT>/restconf/proxy/https://<IP:PORT>/restconf/data/Cisco-IOS-XE-wireless-access-point-oper:access-point-oper-data/cdp-cache-data
 ```
 
 ### Received message from host
@@ -59,7 +59,7 @@ http://10.93.178.145:8480/restconf/proxy/https://10.93.178.68:443/restconf/data/
 {
   "Cisco-IOS-XE-wireless-access-point-oper:cdp-cache-data": [
     {
-      "mac-addr": "04:eb:40:9f:9c:40",
+      "mac-addr": "00:11:22:33:44:55",
       "cdp-cache-device-id": "BLV-co-acc-101",
       "ap-name": "LAB-9130-1",
       "last-updated-time": "2023-03-05T00:25:13.513335+00:00",
@@ -70,17 +70,17 @@ http://10.93.178.145:8480/restconf/proxy/https://10.93.178.68:443/restconf/data/
       "cdp-cache-local-port": "GigabitEthernet0",
       "cdp-cache-platform": "cisco C9300-48U",
       "cdp-capabilities-string": "Switch IGMP ",
-      "cdp-cache-ap-address": "10.93.178.82",
+      "cdp-cache-ap-address": "192.168.X.X",
       "cdp-addr-count": 1,
-      "cdp-cache-ip-address-value": "10.93.178.134",
+      "cdp-cache-ip-address-value": "192.168.X.X",
       "ip-address": {
         "ip-address-value": [
-          "10.93.178.134"
+          "192.168.X.X"
         ]
       },
       "cdp-cache-duplex": "cdp-cache-duplex-full",
       "cdp-cache-interface-speed": 4,
-      "wtp-mac-addr": "04:eb:40:9f:9c:40",
+      "wtp-mac-addr": "00:11:22:33:44:55",
       "device-index": 1
     },
 ```

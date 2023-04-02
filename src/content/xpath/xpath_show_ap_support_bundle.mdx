@@ -6,7 +6,7 @@ tags:
 category: CLI to XPath
 pubDate: 2023-03-24
 heroImg: /xpath-assets/image_01.png
-updatedDate: 2023-03-24
+updatedDate: 2023-04-01
 ---
 
 import Note from '../../components/common/Note.astro';
@@ -25,7 +25,7 @@ C9800
 wlc#show ap support-bundle summary                                                                                     
 AP Name                          Server-IP                                Status          Last Successful Time           Path                                File-name                                                              
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-LAB-9130-1                       10.93.178.147                            Copy Failed     NA                             /home/netadmin/config_files         NA
+LAB-9130-1                       10.93.X.X                            Copy Failed     NA                             /home/netadmin/config_files         NA
 ```
 
 ## WLC's version used
@@ -54,7 +54,7 @@ wireless-access-point-oper
     <nc:filter>
       <access-point-oper-data xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-wireless-access-point-oper">
         <support-bundle-info>
-          <ap-mac>04:eb:40:9f:9c:40</ap-mac>
+          <ap-mac>04:eb:40:xx:xx:xx</ap-mac>
         </support-bundle-info>
       </access-point-oper-data>
     </nc:filter>
@@ -69,9 +69,9 @@ wireless-access-point-oper
   <data>
     <access-point-oper-data xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-wireless-access-point-oper">
       <support-bundle-info>
-        <ap-mac>04:eb:40:9f:9c:40</ap-mac>
+        <ap-mac>04:eb:40:xx:xx:xx</ap-mac>
         <ap-name>LAB-9130-1</ap-name>
-        <last-server-ip>10.93.178.147</last-server-ip>
+        <last-server-ip>10.93.x.x</last-server-ip>
         <last-file-path>/home/netadmin/config_files</last-file-path>
         <last-mode>bundle-transfer-mode-tftp</last-mode>
         <status>supp-bundle-copy-failed</status>
@@ -82,3 +82,6 @@ wireless-access-point-oper
 </rpc-reply>
 ```
 
+I didn't have that file name in the specified path, so the message error was expeted!
+
+Happy finding!

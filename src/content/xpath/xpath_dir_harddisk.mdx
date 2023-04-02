@@ -6,7 +6,7 @@ tags:
 category: CLI to XPath
 pubDate: 2023-03-13
 heroImg: /xpath-assets/image_01.png
-updatedDate: 2023-03-13
+updatedDate: 2023-04-01
 ---
 
 import Note from '../../components/common/Note.astro';
@@ -49,7 +49,7 @@ platform-sw-ios-xe-oper:cisco-platform-software/q-filesystem/partitions/name
 ### Sending REST
 
 ```json
-https://10.93.178.70/restconf/data/cisco-platform-software/q-filesystem=fru-rp,0,0,-1/partitions=harddisk:
+https://<IP:PORT>/restconf/data/cisco-platform-software/q-filesystem=fru-rp,0,0,-1/partitions=harddisk:
 ```
 
 ### Received message from host
@@ -82,7 +82,7 @@ I'm glad that you asked, I ran:
 
 ```bash
 curl -X 'GET' \
-  'http://10.93.178.145:8480/restconf/proxy/https://10.93.178.70:443/restconf/data/Cisco-IOS-XE-platform-software-oper:cisco-platform-software/q-filesystem' \
+  'http://<IP:PORT>/restconf/proxy/https://<IP:PORT>/restconf/data/Cisco-IOS-XE-platform-software-oper:cisco-platform-software/q-filesystem' \
   -H 'accept: application/yang-data+json'
 ```
 

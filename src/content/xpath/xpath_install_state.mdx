@@ -1,0 +1,246 @@
+---
+title: XPath to display the install status on IOS XE devices.
+description: Following the three steps upgrade process using the CLI commands, we can verify the state of the installation using the following XPath.
+tags:
+  - "#xpath"
+category: CLI to XPath
+pubDate: 2023-04-01
+heroImg: /xpath-assets/image_01.png
+updatedDate: 2023-04-01
+---
+
+import Note from '../../components/common/Note.astro';
+import Important from '../../components/common/Important.astro';
+
+
+<Note>
+Please refer to the following <a href="https://dar-fi.com/blog/ios-xe_tracking_xpaths" target="_blank">post</a> to learn how to track XPaths.
+</Note>
+
+Following the three steps upgrade process using <a href="https://www.cisco.com/c/en/us/td/docs/wireless/controller/9800/17-2/config-guide/b_wl_17_2_cg/b_wl_17_2_cg_chapter_010010111.html#id_136084" target="_blank">CLI</a> commands, we can verify the state of the installation using the following XPath.
+
+## Cisco Platform
+
+IOS XE
+
+## CLI
+
+```
+show install summary
+```
+
+## WLC's version used
+
+17.6.2
+
+## Yang Module
+
+Cisco-IOS-XE-install-oper
+
+## Example:
+### Sending RPC
+
+```xml
+GET https:// <IP:Port>/restconf/data/install-oper-data/install-location-information
+```
+
+### Received message from host
+
+(The complete output contains 98 lines, and I just include few of them for the demo)
+
+In the next section, I will mention the important flags to look at in each installation step.
+
+```xml
+<collection xmlns="http://tail-f.com/ns/restconf/collection/1.0">
+    <install-location-information xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-install-oper"  xmlns:install-ios-xe-oper="http://cisco.com/ns/yang/Cisco-IOS-XE-install-oper">
+        <fru>fru-rp</fru>
+        <slot>0</slot>
+        <bay>0</bay>
+        <chassis>1</chassis>
+        <install-packages xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-install-oper">
+            <pkg-dir>/bootflash</pkg-dir>
+            <pkg-name>C9800-CL-rpboot.17.06.02.SPA.pkg</pkg-name>
+            <ios-dir>bootflash:</ios-dir>
+            <pkg-data xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-install-oper">
+                <pkg-name>C9800-CL-rpboot.17.06.02.SPA.pkg</pkg-name>
+                <version>17.06.02.0.2786.1637700362..Bengaluru</version>
+                <checksum></checksum>
+    </install-location-information>
+</collection>
+```
+
+## Using 3 steps software upgrade
+
+1. Install add
+
+- Operation command:
+
+CLI
+```
+9800#install add file bootflash:/C9800-CL-universalk9.17.06.04.SPA.bin
+install_add: START Thu Mar 30 05:24:37 UTC 2023
+<5>%INSTALL-5-INSTALL_START_INFO: R0/0: install_engine: Started install add bootflash:/C9800-CL-universalk9.17.06.04.SPA.bin
+install_add: Adding PACKAGE
+install_add: Checking whether new add is allowed ....
+
+--- Starting initial file syncing ---
+Info: Finished copying bootflash:/C9800-CL-universalk9.17.06.04.SPA.bin to the selected chassis
+Finished initial file syncing
+
+--- Starting Add ---
+Performing Add on all members
+  [1] Add package(s) on chassis 1/R0
+  [1] Finished Add on chassis 1/R0
+Checking status of Add on [1/R0]
+Add: Passed on [1/R0]
+Finished Add
+
+Image added. Version: 17.06.04.0.4912
+SUCCESS: install_add  Thu Mar 30 05:27:43 UTC 2023
+<5>%INSTALL-5-INSTALL_COMPLETED_INFO: R0/0: install_engine: Completed install add PACKAGE bootflash:/C9800-CL-universalk9.17.06.04.SPA.bin
+```
+
+- Verify:
+
+CLI
+```
+9800#show install summary 
+[ Chassis 1/R0 ] Installed Package(s) Information:
+State (St): I - Inactive, U - Activated & Uncommitted,
+            C - Activated & Committed, D - Deactivated & Uncommitted
+--------------------------------------------------------------------------------
+Type  St   Filename/Version
+--------------------------------------------------------------------------------
+IMG   C    17.06.02.0.2786
+IMG   I    17.06.04.0.4912
+
+--------------------------------------------------------------------------------
+Auto abort timer: inactive
+--------------------------------------------------------------------------------
+```
+
+Postman flag
+
+```xml
+GET https:// <IP:Port>/restconf/data/install-oper-data/install-location-information
+
+<package-state>install-state-added</package-state>
+```
+
+
+2. Install Activate
+
+<Important>
+Activate requires a device reload to complete the process.
+</Important>
+
+- Operation command:
+
+CLI
+```
+9800#install activate
+install_activate: START Thu Mar 30 05:30:26 UTC 2023
+<5>%INSTALL-5-INSTALL_START_INFO: R0/0: install_engine: Started install activate
+install_activate: Activating PACKAGE
+Following packages shall be activated:
+/bootflash/C9800-CL-rpboot.17.06.04.SPA.pkg
+/bootflash/C9800-CL-mono-universalk9.17.06.04.SPA.pkg
+
+This operation may require a reload of the system. Do you want to proceed? [y/n]y
+--- Starting Activate ---
+Performing Activate on all members
+  [1] Activate package(s) on chassis 1/R0
+    --- Starting list of software package changes ---
+    Old files list:
+      Modified C9800-CL-mono-universalk9.17.06.02.SPA.pkg
+      Modified C9800-CL-rpboot.17.06.02.SPA.pkg
+    New files list:
+      Added C9800-CL-mono-universalk9.17.06.04.SPA.pkg
+      Added C9800-CL-rpboot.17.06.04.SPA.pkg
+    Finished list of software package changes
+  [1] Finished Activate on chassis 1/R0
+Checking status of Activate on [1/R0]
+Activate: Passed on [1/R0]
+Finished Activate
+
+Send model notification for install_activate before reload
+Install will reload the system now!
+SUCCESS: install_activate  Thu Mar 30 05:35:55 UTC 2023
+<5>%INSTALL-5-INSTALL_COMPLETED_INFO: R0/0: install_engine: Completed install activate PACKAGE
+```
+
+- Verify (after device reload)
+
+CLI
+```
+9800#show install summary 
+[ Chassis 1/R0 ] Installed Package(s) Information:
+State (St): I - Inactive, U - Activated & Uncommitted,
+            C - Activated & Committed, D - Deactivated & Uncommitted
+--------------------------------------------------------------------------------
+Type  St   Filename/Version
+--------------------------------------------------------------------------------
+IMG   U    17.06.04.0.4912
+
+--------------------------------------------------------------------------------
+Auto abort timer: active , time before rollback - 05:53:02
+--------------------------------------------------------------------------------
+```
+
+Postman flag
+
+```xml
+GET https:// <IP:Port>/restconf/data/install-oper-data/install-location-information
+
+<package-state>install-state-act-uncommitted</package-state>
+```
+
+3. Install Commit
+
+- Operation command:
+
+CLI
+```
+9800#install commit 
+install_commit: START Thu Mar 30 05:42:40 UTC 2023
+<5>%INSTALL-5-INSTALL_START_INFO: R0/0: install_engine: Started install commit
+install_commit: Committing PACKAGE
+
+--- Starting Commit ---
+Performing Commit on all members
+  [1] Commit package(s) on chassis 1/R0
+  [1] Finished Commit on chassis 1/R0
+Checking status of Commit on [1/R0]
+Commit: Passed on [1/R0]
+Finished Commit
+
+SUCCESS: install_commit  Thu Mar 30 05:42:51 UTC 2023
+<5>%INSTALL-5-INSTALL_COMPLETED_INFO: R0/0: install_engine: Completed install commit PACKAGE
+```
+
+- Verify
+
+CLI
+```
+9800#show install summary 
+[ Chassis 1/R0 ] Installed Package(s) Information:
+State (St): I - Inactive, U - Activated & Uncommitted,
+            C - Activated & Committed, D - Deactivated & Uncommitted
+--------------------------------------------------------------------------------
+Type  St   Filename/Version
+--------------------------------------------------------------------------------
+IMG   C    17.06.04.0.4912
+
+--------------------------------------------------------------------------------
+Auto abort timer: inactive
+--------------------------------------------------------------------------------
+```
+
+Postman flag
+
+```xml
+GET https:// <IP:Port>/restconf/data/install-oper-data/install-location-information
+
+<package-state>install-state-committed</package-state>
+```
+
