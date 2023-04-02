@@ -13,7 +13,8 @@ import Note from '../../components/common/Note.astro';
 import Important from '../../components/common/Important.astro';
 
 
-This is going to be a short post highlighting the steps required to upgrade a Cisco C9800 controller. The procedure could also work with another IOS-XE device 
+This is going to be a short post highlighting the steps required to upgrade a Cisco C9800 controller. The procedure could also work with another IOS-XE device.
+
 
 <Important>
 The procedure in this post was performed using devices in a specific lab environment, if your network is live, ensure that you understand the potential impact of any command. 
@@ -37,6 +38,8 @@ I'm assuming that your device is UP and running RESTCONF, otherwise please refer
 <Important>
 The IOS-XE device must be running on "Install Mode”.  
 </Important>
+
+**Cisco-IOS-XE-install-rpc:** this is the module that allows the user to make software upgrade operations.
 
 ## Three Steps Upgrade
 
