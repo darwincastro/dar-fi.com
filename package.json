@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.9",
-    "astro-compress": "^1.1.35",
+    "astro-compress": "^1.1.42",
     "autoprefixer": "^10.4.13",
     "postcss": "^8.4.21",
     "prettier": "^2.8.7",
