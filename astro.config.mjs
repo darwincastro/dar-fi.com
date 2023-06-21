@@ -12,7 +12,7 @@ export default defineConfig({
     mdx({
       syntaxHighlight: 'shiki',
       shikiConfig: {
-        theme: 'github-dark-dimmed',
+        theme: 'one-dark-pro',
       },
     }),
     sitemap(),
