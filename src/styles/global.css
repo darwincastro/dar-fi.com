@@ -4,6 +4,10 @@
   display: none;
 }
 
+.tip * > a {
+  color: currentColor;
+}
+
 .tip * > code,
 .tip * > pre {
   color: #adbac7;
