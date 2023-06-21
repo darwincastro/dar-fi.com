@@ -4,10 +4,6 @@
   display: none;
 }
 
-.tip * {
-  color: #002b3d;
-}
-
 .tip * > code,
 .tip * > pre {
   color: #adbac7;
