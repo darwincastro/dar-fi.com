@@ -14,12 +14,12 @@ const { title, img, desc, url, tags, target = '_blank' } = Astro.props;
         </h3>
         <p class="py-2 text-base opacity-90">{desc}</p>
         <div class="card-actions justify-end">
-          {tags && tags.map((tag) => <div class="badge badge-primary rounded-lg my-4 md:my-0">{tag}</div>)}
+          {tags && tags.map((tag) => <div class="badge badge-accent rounded-lg my-4 md:my-0">{tag}</div>)}
         </div>
         <div class="card-actions items-center mt-6">
           <a
             href={url}
-            class="uppercase text-sm font-bold -ml-2 block hover:underline hover:underline-offset-4 focus:underline active:text-primary transition duration-200 after:content-['_→'] after:group-hover:text-primary after:py-1 after:pr-1 after:text-lg"
+            class="uppercase text-sm font-bold -ml-2 block hover:underline hover:underline-offset-4 focus:underline active:text-accent transition duration-200 after:content-['_→'] after:group-hover:text-accent after:py-1 after:pr-1 after:text-lg"
             target={target}>read article&nbsp;</a
           >
         </div>
