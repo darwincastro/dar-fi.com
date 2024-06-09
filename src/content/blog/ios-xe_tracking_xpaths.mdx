@@ -8,9 +8,11 @@ tags:
 category: Projects
 pubDate: 2022-08-15
 heroImg: /tracking_xpath/man-removebg-preview.png
-updatedDate: 2023-03-07
+updatedDate: 2024-06-09
 ---
 import Note from '../../components/common/Note.astro';
+import Important from '../../components/common/Note.astro';
+
 
 ## Tracking XPaths:
 
@@ -18,15 +20,20 @@ Working with YANG Models is extensive and a bit challenging, we created this gui
 
 (This is a work in progress. We are still looking for a better/efficient way to get that information)
 
-## Components used:
+## Prerequisites:
 
--  MacBook running Big Sur and earlier (it will work with Linux too) We haven’t tested with a Windows device.
+- A macOS or Linux computer with Internet access.
+- Homebrew installed (for macOS users).
+- Git installed.
+-  `pyenv` and `pip` installed (if not already installed).
+- The `pyang` and `fzf` tools were installed.
+- <a href="https://github.com/NSO-developer/pyang-xpath/tree/master" target="_blank">pyang-xpath</a>  XPath plugin.
 
--  Internet access
 
 **Getting ready:**
 
-<a href="https://brew.sh/" target="_blank">Homebrew</a> is a popular package manager for MacOS. If you already have Homebrew installed, you can go to the 2nd step to install Git.
+<a href="https://brew.sh/" target="_blank">Homebrew</a> is a popular package manager for MacOS.
+If you already have Homebrew installed, you can go to the 2nd step to install Git.
 
 1. Open terminal and paste the following command:
 
@@ -35,53 +42,94 @@ Working with YANG Models is extensive and a bit challenging, we created this gui
   "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-2. Install <a href="https://github.com/git-guides/install-git" target="_blank">Git</a>:
+2. Install <a href="https://github.com/git-guides/install-git" target="_blank">Git (if not already installed)</a>:
 
 ```sh
 brew install git
 ```
 
-3. Git clone the <a href="https://github.com/YangModels/yang" target="_blank">YangModels</a> repository to your computer running:
+3. Git clone the <a href="https://github.com/YangModels/yang" target="_blank">YangModels</a> repository to your computer.
+
 
 ```sh
 git clone https://github.com/YangModels/yang.git
 ```
 
-4. If you have Python installed in your computer, go to the 5th step:
+4. Install `pyenv` (if not already installed)
 
 ```sh
-brew install python
+brew install pyenv
 ```
 
-5. Install <a href="https://pip.pypa.io/en/stable/installation/" target="_blank">pip</a>:
+5. Install pyenv version 3.8:
 
 ```sh
-python3 -m ensurepip --upgrade
+pyenv install 3.8
 ```
 
-and
+6. Create and activate a virtual environment with Python 3.8
+
+- Get the version and path of Python installed:
 
 ```sh
-python3 get-pip.py
+pyenv versions
 ```
 
-6. Install <a href="https://pypi.org/project/pyang/" target="_blank">pyang</a>:
+- Create the virtual environment `<fix your 3.8.x version>`
 
 ```sh
-pip install –user pyang
+~/.pyenv/versions/3.8.x/bin/python -m venv yang
+```
+
+7. Change the directory and activate the virtual environment
+
+
+- Run the following to work within the cloned "yang" repository:
+
+```sh
+cd yang
+```
+
+-  Activate the virtual environment:
+
+```sh
+source bin/activate
+```
+
+8. Install <a href="https://pip.pypa.io/en/stable/installation/" target="_blank">pip</a>:
+
+```sh
+pip install --upgrade pip
+```
+
+9. Install <a href="https://pypi.org/project/pyang/" target="_blank">pyang</a>:
+
+```sh
+pip install pyang
 ```
 
 Pyang is an extensible YANG (RFC 6020/7950) validator. Provides a framework for plugins that can convert YANG modules to other formats.
 
-7. Git clone <a href="https://github.com/NSO-developer/pyang-xpath" target="_blank">pyang-xpath</a> plugin to your computer:
+10. Clone the <a href="https://github.com/NSO-developer/pyang-xpath" target="_blank">pyang-xpath</a> plugin and record the downloaded path
+
+- Run the following command to clone the `pyang-xpath` plugin:
 
 ```sh
 git clone https://github.com/NSO-developer/pyang-xpath.git
 ```
 
-This plugin prints the name of each YANG node on a separate line with its full XPath path. This is useful when looking for a particular element in a large YANG file, and looking for the exact path it (or they) are at.
+This plugin prints the name of each YANG node on a separate line with its full XPath path.
+This is useful when looking for a particular element in a large YANG file, and looking for the exact path it (or they) are at.
 
-8. Install command-line fuzzy finder <a href="https://github.com/junegunn/fzf" target="_blank">fuzzy finder</a>:
+- Run and copy the path of the pyang-xpath dir to be used in step 4 of **"Track XPaths Using pyang and pyang-xpath"** section:
+
+```sh
+find "$(pwd)" -type d -name "pyang-xpath" -print -quit
+```
+
+11. Install command-line fuzzy finder <a href="https://github.com/junegunn/fzf" target="_blank">fuzzy finder</a> (fzf) and <a href="https://formulae.brew.sh/formula/ripgrep" target="_blank">ripgrep</a> (rg) command
+
+- Run the following command to install fuzzy finder:
 
 ```sh
 brew install fzf
@@ -89,8 +137,7 @@ brew install fzf
 
 It's an interactive Unix filter for command-line that can be used with any list; files, command history, processes, hostnames, bookmarks, git commits, etc.
 
-
-9. Install <a href="https://formulae.brew.sh/formula/ripgrep" target="_blank">ripgrep</a>:
+- Run the following command to install ripgrep:
 
 ```sh
 brew install ripgrep
@@ -99,6 +146,7 @@ brew install ripgrep
 Ripgrep is a line-oriented search tool that recursively searches the current directory for a regex pattern. 
 
 Using fuzzy finder and ripgrep we will something like the grep command, but interactive!
+
 
 **Let’s see how everything works:**
 
@@ -247,17 +295,16 @@ module: Cisco-IOS-XE-lldp-oper
 
 You can see the complete tree of the module “Cisco-IOS-XE-lldp-oper.yang” it’s still a lot information to digest, but now you have a hierarchical view of a yang module, but we are still looking for the Xpath though!
 
-5. The pyang Xpath filter will come into play, using the same module let’s run:
+5. The pyang Xpath filter will come into play, using the **copied** path from **step 10**
 
 ```sh
-pyang --plugindir ~/pyang-xpath/ \ 
-  -f xpath Cisco-IOS-XE-lldp-oper.yang
+pyang --plugindir <path_to_your_plugin> -f xpath Cisco-IOS-XE-lldp-oper.yang
 ```
 
 The output should look like:
 
 ```sh
-darwin@darwins-Mac 1791 % pyang --plugindir ~/pyang-xpath/ \ 
+darwin@darwins-Mac 1791 % pyang --plugindir <path_to_your_plugin> \
 -f xpath Cisco-IOS-XE-lldp-oper.yang  
   
 >>> module: Cisco-IOS-XE-lldp-oper  
@@ -367,14 +414,14 @@ We can see all the XPaths within our module “Cisco-IOS-XE-lldp-oper.yang”, b
 You can try using: `| grep` statement at the end of the command to reduce the list:
 
 ```sh
-pyang --plugindir ~/pyang-xpath/ -f xpath \
+pyang --plugindir <path_to_your_plugin> -f xpath \
  Cisco-IOS-XE-lldp-oper.yang | grep entry
 ```
 
 The following would be the reduced list of XPaths:
 
 ```sh
-darwin@darwins-Mac 1791 % pyang --plugindir ~/pyang-xpath/ \
+darwin@darwins-Mac 1791 % pyang --plugindir <path_to_your_plugin> \
  -f xpath Cisco-IOS-XE-lldp-oper.yang | grep entry  
   
 >>> module: Cisco-IOS-XE-lldp-oper
@@ -413,22 +460,521 @@ darwin@darwins-Mac 1791 % pyang --plugindir ~/pyang-xpath/ \
 There is another way to get a more specific XPath line, for this we must match the exact keyword or combination to get any result, for example:
 
 ```sh
-pyang --plugindir ~/pyang-xpath/ \ 
+pyang --plugindir <path_to_your_plugin> \
   -f xpath Cisco-IOS-XE-lldp-oper.yang --xpath-name=lldp-entry
 ```
 
   
 ```sh
-pyang --plugindir ~/pyang-xpath/ \ 
+pyang --plugindir <path_to_your_plugin> \
   -f xpath Cisco-IOS-XE-lldp-oper.yang --xpath-name=lldp-entry  
   
 >>> module: Cisco-IOS-XE-lldp-oper
 /lldp-entries/lldp-entry
 ```
 
+<Important>
+Exit the virtual environment by using the “deactivate” command in your terminal window.
+</Important>
+
+
+<div align="justify">The XPath Tracking Procedure, authored by Darwin Castro, provides network
+    engineers with a powerful toolkit for efficiently discovering and utilizing XPaths within YANG models.
+    By combining the capabilities of tools like "pyang", "fzf", and "ripgrep", engineers can rapidly pinpoint
+    the XPaths they require, simplifying network automation and management tasks. This procedure empowers engineers
+    to navigate complex YANG repositories with confidence, ultimately enhancing their ability to configure and manage
+    network devices effectively. Whether you are working with Cisco XE devices, as illustrated in this guide,
+    or any other YANG model, this procedure equips you with the tools to achieve XPath precision.</div>
+</br>
+</br---
+title: Tracking XPaths on IOS XE
+description: We created this guide to help any engineer navigating into the YANG repositories looking for any desired XPath.
+tags:
+  - "#xpath"
+  - "#projects"
+  - "#tools"
+category: Projects
+pubDate: 2022-08-15
+heroImg: /tracking_xpath/man-removebg-preview.png
+updatedDate: 2024-06-09
+---
+import Note from '../../components/common/Note.astro';
+import Important from '../../components/common/Note.astro';
+
+
+## Tracking XPaths:
+
+Working with YANG Models is extensive and a bit challenging, we created this guide to help any engineer navigating into the YANG repositories looking for any desired XPath. Visit this  <a href="https://en.wikipedia.org/wiki/XPath" target="_blank">Link</a> for more information about XPaths.
+
+(This is a work in progress. We are still looking for a better/efficient way to get that information)
+
+## Prerequisites:
+
+- A macOS or Linux computer with Internet access.
+- Homebrew installed (for macOS users).
+- Git installed.
+-  `pyenv` and `pip` installed (if not already installed).
+- The `pyang` and `fzf` tools were installed.
+- <a href="https://github.com/NSO-developer/pyang-xpath/tree/master" target="_blank">pyang-xpath</a>  XPath plugin.
+
+
+**Getting ready:**
+
+<a href="https://brew.sh/" target="_blank">Homebrew</a> is a popular package manager for MacOS.
+If you already have Homebrew installed, you can go to the 2nd step to install Git.
+
+1. Open terminal and paste the following command:
+
+```sh
+/bin/bash -c \
+  "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+2. Install <a href="https://github.com/git-guides/install-git" target="_blank">Git (if not already installed)</a>:
+
+```sh
+brew install git
+```
+
+3. Git clone the <a href="https://github.com/YangModels/yang" target="_blank">YangModels</a> repository to your computer.
+
+
+```sh
+git clone https://github.com/YangModels/yang.git
+```
+
+4. Install `pyenv` (if not already installed)
+
+```sh
+brew install pyenv
+```
+
+5. Install pyenv version 3.8:
+
+```sh
+pyenv install 3.8
+```
+
+6. Create and activate a virtual environment with Python 3.8
+
+- Get the version and path of Python installed:
+
+```sh
+pyenv versions
+```
+
+- Create the virtual environment `<fix your 3.8.x version>`
+
+```sh
+~/.pyenv/versions/3.8.x/bin/python -m venv yang
+```
+
+7. Change the directory and activate the virtual environment
+
+
+- Run the following to work within the cloned "yang" repository:
+
+```sh
+cd yang
+```
+
+-  Activate the virtual environment:
+
+```sh
+source bin/activate
+```
+
+8. Install <a href="https://pip.pypa.io/en/stable/installation/" target="_blank">pip</a>:
+
+```sh
+pip install --upgrade pip
+```
+
+9. Install <a href="https://pypi.org/project/pyang/" target="_blank">pyang</a>:
+
+```sh
+pip install pyang
+```
+
+Pyang is an extensible YANG (RFC 6020/7950) validator. Provides a framework for plugins that can convert YANG modules to other formats.
+
+10. Clone the <a href="https://github.com/NSO-developer/pyang-xpath" target="_blank">pyang-xpath</a> plugin and record the downloaded path
+
+- Run the following command to clone the `pyang-xpath` plugin:
+
+```sh
+git clone https://github.com/NSO-developer/pyang-xpath.git
+```
+
+This plugin prints the name of each YANG node on a separate line with its full XPath path.
+This is useful when looking for a particular element in a large YANG file, and looking for the exact path it (or they) are at.
+
+- Run and copy the path of the pyang-xpath dir to be used in step 4 of **"Track XPaths Using pyang and pyang-xpath"** section:
+
+```sh
+find "$(pwd)" -type d -name "pyang-xpath" -print -quit
+```
+
+11. Install command-line fuzzy finder <a href="https://github.com/junegunn/fzf" target="_blank">fuzzy finder</a> (fzf) and <a href="https://formulae.brew.sh/formula/ripgrep" target="_blank">ripgrep</a> (rg) command
+
+- Run the following command to install fuzzy finder:
+
+```sh
+brew install fzf
+```
+
+It's an interactive Unix filter for command-line that can be used with any list; files, command history, processes, hostnames, bookmarks, git commits, etc.
+
+- Run the following command to install ripgrep:
+
+```sh
+brew install ripgrep
+```
+
+Ripgrep is a line-oriented search tool that recursively searches the current directory for a regex pattern.
+
+Using fuzzy finder and ripgrep we will something like the grep command, but interactive!
+
+
+**Let’s see how everything works:**
+
+Let’s say that we are looking for a Xpath equivalent to a Cisco CLI command like: `show lldp entry` in our case we are working with Cisco XE devices version 17.9.1.
+
+1. In your computer terminal, let’s go to the yang directory using:
+
+```sh
+cd yang/vendor/cisco/xe/1791
+```
+
+2. Let’s start filtering looking for lldp (which is going to be our interesting keyword):
+
+```sh
+rg --vimgrep lldp | fzf -i
+```
+
+<Note>
+  The sky is the limit… You can try combinations for example: `lldp entry` and see if you get expected results.
+</Note>
+Your terminal should look like this:
+
+![cd within yang folder](/tracking_xpath/image_01.png)
+
+As soon as you hit enter, you will get into an interactive shell with the greater than sign `>`
+
+3. We are looking for an equivalent of show lldp entry, so let’s try completing the command and see:
+
+![interactive shell](/tracking_xpath/image_02.png)
+
+I highlighted one interesting line `list lldp-entry` seems to be something related to our command, if you click on that line and hit enter, the terminal will print out that specific result like:
+
+![listing lldp entry](/tracking_xpath/image_03.png)
+
+**What did we get?**
+
+Searching inside the 1791 folder we got a module “Cisco-IOS-XE-lldp-oper.yang” that has some relationship with our `lldp entry` command.
+
+Now, let’s explore inside the module “Cisco-IOS-XE-lldp-oper.yang”
+
+4.  We can see the complete tree of the module running:
+
+```sh
+pyang -f tree Cisco-IOS-XE-lldp-oper.yang
+```
+
+The output should look like:
+
+```sh
+darwin@darwins-Mac 1791 % pyang -f tree Cisco-IOS-XE-lldp-oper.yang
+
+module: Cisco-IOS-XE-lldp-oper
++--ro lldp-entries
++--ro lldp-entry* [device-id local-interface connecting-interface]
+| +--ro device-id string
+| +--ro local-interface string
+| +--ro connecting-interface string
+| +--ro ttl? uint32
+| +--ro capabilities
+| | +--ro repeater? empty
+| | +--ro bridge? empty
+| | +--ro access-point? empty
+| | +--ro router? empty
+| | +--ro telephone? empty
+| | +--ro docsis? empty
+| | +--ro station? empty
+| | +--ro other? empty
+| +--ro port-vlan-id? uint32
+| +--ro mau-type? uint32
+| +--ro auto-neg
+| | +--ro enabled? empty
+| | +--ro supported? empty
+| +--ro power
+| +--ro is-drawing-power? empty
+| +--ro power-details
+| +--ro power-pair? lldp-ios-xe-oper:lldp-pwr-pair-type
+| +--ro power-class? lldp-ios-xe-oper:lldp-pwr-class-type
+| +--ro power-device-type? lldp-ios-xe-oper:lldp-pwr-device-type
+| +--ro power-source? lldp-ios-xe-oper:lldp-pwr-source-type
+| +--ro power-priority? lldp-ios-xe-oper:lldp-pwr-priority-type
+| +--ro power-requested? uint32
+| +--ro power-allocated? uint32
++--ro lldp-state-details!
+| +--ro enabled? boolean
+| +--ro hello-timer? uint64
+| +--ro system-name? string
+| +--ro system-desc? string
+| +--ro chassis-id? string
+| +--ro chassis-id-type? lldp-ios-xe-oper:chid-subtype
+| +--ro frame-in? uint64
+| +--ro frame-out? uint64
+| +--ro frame-error-in? uint64
+| +--ro frame-discard? uint64
+| +--ro tlv-discard? uint64
+| +--ro tlv-unknown? uint64
+| +--ro entries-aged-out? uint64
+| +--ro mem-failures? uint64
+| +--ro encap-failures? uint64
+| +--ro inqueue-overflow? uint64
+| +--ro table-overflow? uint64
++--ro lldp-intf-details* [if-name]
++--ro if-name string
++--ro isenabled? boolean
++--ro lldp-neighbor-details* [identifier]
+| +--ro identifier string
+| +--ro chassis-id? string
+| +--ro chassis-id-type? lldp-ios-xe-oper:chid-subtype
+| +--ro port-id? string
+| +--ro port-id-type? lldp-ios-xe-oper:poid-type
+| +--ro port-desc? string
+| +--ro system-name? string
+| +--ro system-desc? string
+| +--ro time-remaining? uint32
+| +--ro age? uint32
+| +--ro time-since-last-update? uint32
+| +--ro mgmt-addrs* []
+| | +--ro mgmt-addr? string
+| | +--ro mgmt-addr-type? lldp-ios-xe-oper:mgmt-type
+| +--ro system-capabilities
+| | +--ro repeater? empty
+| | +--ro bridge? empty
+| | +--ro access-point? empty
+| | +--ro router? empty
+| | +--ro telephone? empty
+| | +--ro docsis? empty
+| | +--ro station? empty
+| | +--ro other? empty
+| +--ro enabled-capabilities
+| | +--ro repeater? empty
+| | +--ro bridge? empty
+| | +--ro access-point? empty
+| | +--ro router? empty
+| | +--ro telephone? empty
+| | +--ro docsis? empty
+| | +--ro station? empty
+| | +--ro other? empty
+| +--ro media-caps? lldp-ios-xe-oper:phy-media-cap
+| +--ro ttl? uint32
+| +--ro orgtlv-detail* [platform-id]
+| | +--ro platform-id string
+| | +--ro system-cookie? string
+| +--ro peer-src-mac? yang:mac-address
++--ro tx? lldp-ios-xe-oper:tx-state
++--ro rx? lldp-ios-xe-oper:rx-state
+```
+
+You can see the complete tree of the module “Cisco-IOS-XE-lldp-oper.yang” it’s still a lot information to digest, but now you have a hierarchical view of a yang module, but we are still looking for the Xpath though!
+
+5. The pyang Xpath filter will come into play, using the **copied** path from **step 10**
+
+```sh
+pyang --plugindir <path_to_your_plugin> -f xpath Cisco-IOS-XE-lldp-oper.yang
+```
+
+The output should look like:
+
+```sh
+darwin@darwins-Mac 1791 % pyang --plugindir <path_to_your_plugin> \
+-f xpath Cisco-IOS-XE-lldp-oper.yang
+
+>>> module: Cisco-IOS-XE-lldp-oper
+/lldp-entries
+/lldp-entries/lldp-entry
+/lldp-entries/lldp-entry/device-id
+/lldp-entries/lldp-entry/local-interface
+/lldp-entries/lldp-entry/connecting-interface
+/lldp-entries/lldp-entry/ttl
+/lldp-entries/lldp-entry/capabilities
+/lldp-entries/lldp-entry/capabilities/repeater
+/lldp-entries/lldp-entry/capabilities/bridge
+/lldp-entries/lldp-entry/capabilities/access-point
+/lldp-entries/lldp-entry/capabilities/router
+/lldp-entries/lldp-entry/capabilities/telephone
+/lldp-entries/lldp-entry/capabilities/docsis
+/lldp-entries/lldp-entry/capabilities/station
+/lldp-entries/lldp-entry/capabilities/other
+/lldp-entries/lldp-entry/port-vlan-id
+/lldp-entries/lldp-entry/mau-type
+/lldp-entries/lldp-entry/auto-neg
+/lldp-entries/lldp-entry/auto-neg/enabled
+/lldp-entries/lldp-entry/auto-neg/supported
+/lldp-entries/lldp-entry/power
+/lldp-entries/lldp-entry/power/is-drawing-power
+/lldp-entries/lldp-entry/power/power-details
+/lldp-entries/lldp-entry/power/power-details/power-pair
+/lldp-entries/lldp-entry/power/power-details/power-class
+/lldp-entries/lldp-entry/power/power-details/power-device-type
+/lldp-entries/lldp-entry/power/power-details/power-source
+/lldp-entries/lldp-entry/power/power-details/power-priority
+/lldp-entries/lldp-entry/power/power-details/power-requested
+/lldp-entries/lldp-entry/power/power-details/power-allocated
+/lldp-entries/lldp-state-details
+/lldp-entries/lldp-state-details/enabled
+/lldp-entries/lldp-state-details/hello-timer
+/lldp-entries/lldp-state-details/system-name
+/lldp-entries/lldp-state-details/system-desc
+/lldp-entries/lldp-state-details/chassis-id
+/lldp-entries/lldp-state-details/chassis-id-type
+/lldp-entries/lldp-state-details/frame-in
+/lldp-entries/lldp-state-details/frame-out
+/lldp-entries/lldp-state-details/frame-error-in
+/lldp-entries/lldp-state-details/frame-discard
+/lldp-entries/lldp-state-details/tlv-discard
+/lldp-entries/lldp-state-details/tlv-unknown
+/lldp-entries/lldp-state-details/entries-aged-out
+/lldp-entries/lldp-state-details/mem-failures
+/lldp-entries/lldp-state-details/encap-failures
+/lldp-entries/lldp-state-details/inqueue-overflow
+/lldp-entries/lldp-state-details/table-overflow
+/lldp-entries/lldp-intf-details
+/lldp-entries/lldp-intf-details/if-name
+/lldp-entries/lldp-intf-details/isenabled
+/lldp-entries/lldp-intf-details/lldp-neighbor-details
+/lldp-entries/lldp-intf-details/lldp-neighbor-details/identifier
+/lldp-entries/lldp-intf-details/lldp-neighbor-details/chassis-id
+/lldp-entries/lldp-intf-details/lldp-neighbor-details/chassis-id-type
+/lldp-entries/lldp-intf-details/lldp-neighbor-details/port-id
+/lldp-entries/lldp-intf-details/lldp-neighbor-details/port-id-type
+/lldp-entries/lldp-intf-details/lldp-neighbor-details/port-desc
+/lldp-entries/lldp-intf-details/lldp-neighbor-details/system-name
+/lldp-entries/lldp-intf-details/lldp-neighbor-details/system-desc
+/lldp-entries/lldp-intf-details/lldp-neighbor-details/time-remaining
+/lldp-entries/lldp-intf-details/lldp-neighbor-details/age
+/lldp-entries/lldp-intf-details/lldp-neighbor-details/time-since-last-update
+/lldp-entries/lldp-intf-details/lldp-neighbor-details/mgmt-addrs
+/lldp-entries/lldp-intf-details/lldp-neighbor-details/mgmt-addrs/mgmt-addr
+/lldp-entries/lldp-intf-details/lldp-neighbor-details/mgmt-addrs/mgmt-addr-type
+/lldp-entries/lldp-intf-details/lldp-neighbor-details/system-capabilities
+/lldp-entries/lldp-intf-details/lldp-neighbor-details/system-capabilities/repeater
+/lldp-entries/lldp-intf-details/lldp-neighbor-details/system-capabilities/bridge
+/lldp-entries/lldp-intf-details/lldp-neighbor-details/system-capabilities/access-point
+/lldp-entries/lldp-intf-details/lldp-neighbor-details/system-capabilities/router
+/lldp-entries/lldp-intf-details/lldp-neighbor-details/system-capabilities/telephone
+/lldp-entries/lldp-intf-details/lldp-neighbor-details/system-capabilities/docsis
+/lldp-entries/lldp-intf-details/lldp-neighbor-details/system-capabilities/station
+/lldp-entries/lldp-intf-details/lldp-neighbor-details/system-capabilities/other
+/lldp-entries/lldp-intf-details/lldp-neighbor-details/enabled-capabilities
+/lldp-entries/lldp-intf-details/lldp-neighbor-details/enabled-capabilities/repeater
+/lldp-entries/lldp-intf-details/lldp-neighbor-details/enabled-capabilities/bridge
+/lldp-entries/lldp-intf-details/lldp-neighbor-details/enabled-capabilities/access-point
+/lldp-entries/lldp-intf-details/lldp-neighbor-details/enabled-capabilities/router
+/lldp-entries/lldp-intf-details/lldp-neighbor-details/enabled-capabilities/telephone
+/lldp-entries/lldp-intf-details/lldp-neighbor-details/enabled-capabilities/docsis
+/lldp-entries/lldp-intf-details/lldp-neighbor-details/enabled-capabilities/station
+/lldp-entries/lldp-intf-details/lldp-neighbor-details/enabled-capabilities/other
+/lldp-entries/lldp-intf-details/lldp-neighbor-details/media-caps
+/lldp-entries/lldp-intf-details/lldp-neighbor-details/ttl
+/lldp-entries/lldp-intf-details/lldp-neighbor-details/orgtlv-detail
+/lldp-entries/lldp-intf-details/lldp-neighbor-details/orgtlv-detail/platform-id
+/lldp-entries/lldp-intf-details/lldp-neighbor-details/orgtlv-detail/system-cookie
+/lldp-entries/lldp-intf-details/lldp-neighbor-details/peer-src-mac
+/lldp-entries/lldp-intf-details/tx
+/lldp-entries/lldp-intf-details/rx
+darwin@darwins-Mac 1791 %
+```
+
+We can see all the XPaths within our module “Cisco-IOS-XE-lldp-oper.yang”, because we are interested in `show lldp entry` the following lines contain the Xpath for the CLI command:
+
+```sh
+>>> module: Cisco-IOS-XE-lldp-oper
+/lldp-entries
+/lldp-entries/lldp-entry
+```
+
+You can try using: `| grep` statement at the end of the command to reduce the list:
+
+```sh
+pyang --plugindir <path_to_your_plugin> -f xpath \
+ Cisco-IOS-XE-lldp-oper.yang | grep entry
+```
+
+The following would be the reduced list of XPaths:
+
+```sh
+darwin@darwins-Mac 1791 % pyang --plugindir <path_to_your_plugin> \
+ -f xpath Cisco-IOS-XE-lldp-oper.yang | grep entry
+
+>>> module: Cisco-IOS-XE-lldp-oper
+
+/lldp-entries/lldp-entry
+/lldp-entries/lldp-entry/device-id
+/lldp-entries/lldp-entry/local-interface
+/lldp-entries/lldp-entry/connecting-interface
+/lldp-entries/lldp-entry/ttl
+/lldp-entries/lldp-entry/capabilities
+/lldp-entries/lldp-entry/capabilities/repeater
+/lldp-entries/lldp-entry/capabilities/bridge
+/lldp-entries/lldp-entry/capabilities/access-point
+/lldp-entries/lldp-entry/capabilities/router
+/lldp-entries/lldp-entry/capabilities/telephone
+/lldp-entries/lldp-entry/capabilities/docsis
+/lldp-entries/lldp-entry/capabilities/station
+/lldp-entries/lldp-entry/capabilities/other
+/lldp-entries/lldp-entry/port-vlan-id
+/lldp-entries/lldp-entry/mau-type
+/lldp-entries/lldp-entry/auto-neg
+/lldp-entries/lldp-entry/auto-neg/enabled
+/lldp-entries/lldp-entry/auto-neg/supported
+/lldp-entries/lldp-entry/power
+/lldp-entries/lldp-entry/power/is-drawing-power
+/lldp-entries/lldp-entry/power/power-details
+/lldp-entries/lldp-entry/power/power-details/power-pair
+/lldp-entries/lldp-entry/power/power-details/power-class
+/lldp-entries/lldp-entry/power/power-details/power-device-type
+/lldp-entries/lldp-entry/power/power-details/power-source
+/lldp-entries/lldp-entry/power/power-details/power-priority
+/lldp-entries/lldp-entry/power/power-details/power-requested
+/lldp-entries/lldp-entry/power/power-details/power-allocated
+```
+
+There is another way to get a more specific XPath line, for this we must match the exact keyword or combination to get any result, for example:
+
+```sh
+pyang --plugindir <path_to_your_plugin> \
+  -f xpath Cisco-IOS-XE-lldp-oper.yang --xpath-name=lldp-entry
+```
+
+
+```sh
+pyang --plugindir <path_to_your_plugin> \
+  -f xpath Cisco-IOS-XE-lldp-oper.yang --xpath-name=lldp-entry
+
+>>> module: Cisco-IOS-XE-lldp-oper
+/lldp-entries/lldp-entry
+```
+
+<Important>
+Exit the virtual environment by using the “deactivate” command in your terminal window.
+</Important>
+
+
+<div align="justify">The XPath Tracking Procedure, authored by Darwin Castro, provides network
+    engineers with a powerful toolkit for efficiently discovering and utilizing XPaths within YANG models.
+    By combining the capabilities of tools like "pyang", "fzf", and "ripgrep", engineers can rapidly pinpoint
+    the XPaths they require, simplifying network automation and management tasks. This procedure empowers engineers
+    to navigate complex YANG repositories with confidence, ultimately enhancing their ability to configure and manage
+    network devices effectively. Whether you are working with Cisco XE devices, as illustrated in this guide,
+    or any other YANG model, this procedure equips you with the tools to achieve XPath precision.</div>
+
 
 <div align="center">
   Happy XPath tracking!
 </div>
-
-
